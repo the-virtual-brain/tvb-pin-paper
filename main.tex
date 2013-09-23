@@ -1,0 +1,191 @@
+%!TEX TS-program = pdflatex                                                    %
+%!TEX encoding = UTF8                                                          %
+%!TEX spellcheck = en-US                                                       %
+%------------------------------------------------------------------------------%
+% to compile use "latexmk --pdf main.tex"                                      %
+%------------------------------------------------------------------------------%
+% to count words 
+% "pdftotext main_nofigs_nocaptions.pdf - | egrep -e '\w\w\w+' | iconv -f ISO-8859-15 -t UTF-8 | wc -w"
+% -----------------------------------------------------------------------------%
+
+\documentclass{bioinfo}
+\usepackage{url}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[pdftex]{graphicx} 
+%\usepackage{graphics}
+%\usepackage{hyperref}
+\usepackage{float}
+\floatplacement{figure}{H}
+\usepackage{booktabs}     % nice tables
+\usepackage{tabularx}     % even nicer tabular environments 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{multicol}
+\usepackage{listings}
+\usepackage{tikz,times}
+\usepackage{courier}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{arrows,positioning}
+\usepackage{xcolor}
+\usepackage[font=bf]{subfig}
+%\usepackage{sectsty}
+%\sectionfont{\normalsize\bfseries}
+%\usepackage[labelfont=bf]{caption}
+%\usepackage{endfloat} %place figures at end of document
+%------------------------------------------------------------------------------%
+%\captionsetup{
+%%format = hang,                % caption format
+%labelformat = simple,          % caption label : name and number
+%labelsep = period,             % separation between label and text
+%textformat = simple,           % caption text as it is
+%justification = justified,     % caption text justified
+%singlelinecheck = true,        % for single line caption text is centered
+%font = {up,singlespacing},     % defines caption (label & text) font
+%labelfont = {bf,footnotesize}, % NOTE: tiny size is not working
+%textfont = footnotesize,
+%%width = \textwidth,           % define width of the caption text
+%skip = 1ex,                    % skip the space between float and caption
+%listformat = simple,           % in the list of floats, label + caption
+%}
+
+%------------------------------------------------------------------------------%
+%\hypersetup{
+%    bookmarks=true,         % show bookmarks bar?
+%    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+%    pdffitwindow=false,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+%    pdftitle={TheVirtualBain},    % title
+%    pdfauthor={PSL},        % author
+%    pdfsubject={ProposedArticle},   % subject of the document
+%    pdfcreator={paupau},    % creator of the document
+%    pdfnewwindow=true,      % links in new window
+%    colorlinks=true,       % false: boxed links; true: colored links
+%    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+%    citecolor=blue,        % color of links to bibliography
+%    filecolor=magenta,      % color of file links
+%    urlcolor=blue           % color of external links
+%}
+%-----------------------------------------------------------------------
+%\usepackage{subcaption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                             New and renew commands                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
+\newcommand{\inputTikZ}[2]{%
+\scalebox{#1}{\input{#2}}}
+\newcommand*{\h}{\hspace{5pt}}   % for indentation
+\newcommand*{\hh}{\h\h}          % double indentation
+\newcommand{\TVB}{\textit{TheVirtualBrain }}
+\newcommand*{\tvbmodule}[1]{{\textsc{#1}}}          % scientific modules in "simulator"
+\newcommand*{\tvbdatatype}[1]{\textbf{\emph{#1}}}   % datatypes in "datatypes"
+\newcommand*{\tvbclass}[1]{{\ttfamily\emph{#1}}}    % classes either in simulator mods or datatypes
+\newcommand*{\tvbmethod}[1]{{\textsf{#1}}}          % methods
+\newcommand*{\tvbattribute}[1]{{\ttfamily{#1}}}     % attributes
+\newcommand*{\tvbtrait}[1]{{\ttfamily{#1}}}         % traited types
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                            Colors and graphics                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{palegreen}{HTML}{DAFFDA}
+\definecolor{lightgray}{rgb}{0.15,0.15,0.15}
+\definecolor{orange}{HTML}{FF7300}
+\DeclareGraphicsExtensions{.jpg,.pdf,.png,.tiff}%,.mps,.bmp
+\graphicspath{{figures/}}
+ 
+%##--------------------------------------------------------------------------##%
+%##                               START HERE                                 ##%
+%##--------------------------------------------------------------------------##%
+\copyrightyear{}
+\pubyear{}
+
+\begin{document}
+\lstset{language=Python, 
+        caption=b, 
+        breaklines=false, 
+        basicstyle=\bf\tiny\ttfamily, 
+        stringstyle=\color{magenta}
+        } 
+\firstpage{1}
+
+%%  Authorship and Title
+\title[TVB]{Integrating neuroinformatics tools in TheVirtualBrain}
+\author[Sanz Leon {et~al}]{
+        M. Marmaduke Woodman\,$^{1,*}$,  
+        Paula Sanz Leon\,$^{1}$, 
+        Jochen Mersmann\,$^{2}$,
+        Lia Domide\,$^{3}$, 
+        Anthony R. McIntosh \,$^{4}$ and  
+        Viktor Jirsa\,$^{1}$\footnote{to whom correspondence should be addressed: mw@eml.cc,
+        viktor.jirsa@univ-amu.fr}}
+
+\address{$^{1}$ Institut de Neurosciences des Syst{\`e}mes, 27, Bd. Jean Moulin, 13005, Marseille, France.\\
+         $^{3}$ Codemart, 13, Petofi Sandor, 400610, Cluj-Napoca, Romania.\\
+         $^{2}$ CodeBox GmbH, Hugo Eckener Str. 7, 70184 Stuttgart, Germany.\\
+         $^{4}$ Rotman Research Institute at Baycrest, Toronto, M6A 2E1, Ontario, Canada\\
+        }
+
+\history{}
+
+\editor{}
+
+\maketitle
+
+%##--------------------------------------------------------------------------##%
+%##                               ABSTRACT                                   ##%
+%##--------------------------------------------------------------------------##%
+
+
+\begin{abstract}
+\section{}
+
+TheVirtualBrain (TVB) is a neuroinformatics Python package representing the
+convergence of lines of work in clinical, systems, theoretical neuroscience in
+the integration, analysis, visualization and modeling of neural dynamics of
+the human brain as well as the imaging modalities through which these dynamics
+are measured. Specifically, TVB is composed of a flexible simulator for both 
+neural dynamics and modalities such as MEG and fMRI, common analysis 
+techniques such as wavelet decomposition and multiscale sample entropy, 
+interactive visualizers for replaying cortical timeseries on the 3D surface 
+or editing large-scale connectivity matrices, and an (optional) user interface
+accessible through modern web browsers. Tying together these
+pieces with persistent data storage, based on a combination of SQL \& HDF5,
+is a rich, open-ended system of datatypes modeling (systems level) neuroscientific data and the relations
+among them. This data modeling system in parallel with the so-called 
+adapter pattern architecture permit the integration of TVB with any other
+computational system, including MATLAB for which support is already available.
+ Notably, TVB provides infrastructure for multiple projects and 
+multiple users, possibly participating under multiple roles: a clinician
+may import diffusion spectrum imaging data, launch a tractography algorithm, 
+and identify potential lesion points, and then share this data with a computational 
+expert who would then enter to contribute simulation parameter sweeps and analyses, 
+to test which lesion point is most probably given certain empirical imaging data, 
+et cetera; this is one of many multi-user use cases supported by TVB.
+TVB also drives research forward on many levels: the simulator
+itself represents the systematization of several recent ad-hoc simulations
+in the modeling literature on human rest state. 
+In these ways, TVB serves as an integrating platform for disparate expertises
+in the high level analysis and modeling of the human brain.
+This paper will begin with a brief outline of the history and motivation for TVB
+as a unified project \textit{per se}. We proceed to describe the framework and simulator, 
+giving usage examples in the web UI and in plain Python scripting.
+Finally, we compare TVB with the nearest neighbors in brain modeling, simulation
+performance, recent advances thereupon with native code compilation and GPUs, and the 
+role of Python and its rich scientific ecosystem in TVB. 
+
+  
+\section{Keywords:} connectivity, connectome, neural mass, neural field, 
+time delays, full-brain network model, Python, virtual brain, large-scale 
+simulation,  web platform, GPUs
+\end{abstract}
+
+\end{document}
