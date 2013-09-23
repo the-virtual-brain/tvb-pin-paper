@@ -1,0 +1,66 @@
+The \TVB simulator resembles popular neural network simulators in 
+many fundamental ways, both mathematically and in terms of informatics 
+structures, however we have found it necessary to introduce auxiliary
+concepts particularly useful in the modeling of large scale brain 
+networks.
+
+\subsection{Node dynamics}
+
+	In our models, nodes are no longer abstract neurons nor necessarily 
+	small groups thereof, but rather large populations of neurons, considered
+	by, for example, the work of Wilson and Cowan. 
+
+	\note[mw]{quick list of models \& their relevance}
+
+\subsection{Network structure}
+	
+	The nodes are embedded in two scale network structure. The first of which
+	is derived from empirical measurements of the myelinated corticocortical
+	connectivity, which we shall refer to as the inhomogeneous, large scale
+	structure. An implication of this structure is the inherent delays in 
+	communication due to finite conduction velocity.
+
+	The second form of network structure is prescribed in the case of a 
+	cortical surface by the combination of said surface and a connectivity
+	kernel. Together, these generate a homogeneous, local connectivity. 
+	For the current work, we consider this coupling to be instantaneous.
+
+
+\subsection{Integration of stochastic delay differential equations}
+
+	Rather unlike other simulation paradigms, both noise and delays are
+	common features of simulations in \TVB. As such, the simulator is equipped
+	with Heun and Euler methods for stochastic integration and the pairwise
+	inter-regional delays are treated in an efficient fashion. 
+
+	\note[mw]{the general equation here}
+
+	\note[mw]{Describe handling of delays?}
+
+\subsection{Forward solutions}
+
+	One of the primary goals of the \TVB simulator is to allow for the
+	simulation of empirical whole-brain data, such as EEG or fMRI.
+	\TVB implements several forward solutions as so-called monitors, 
+	including MEG, sEEG, EEG and fMRI. 
+
+	Crucially, given the amount of data \TVB may produce, especially for
+	simulations on a cortical surface, each of the monitors is "on-line"
+	in the sense that is runs in constant space.
+
+\subsection{Native code generation for C \& GPU}
+
+	Several of the core components (integrators, mass models, coupling
+	functions) have targeted towards a C source code backend, which has
+	allowed for the compilation of simulations to native code loaded 
+	either as a shared library accessed via the \texttt{ctypes} modules
+	or as CUDA kernels accessed via the \texttt{pycuda} module \cite{pycuda}.
+	While such an approach may provide speed ups, they depend on the
+	presence of a C compiler and, in the case of GPU, the CUDA toolkit and
+	a compatible graphics card. 
+
+
+\subsection{Other simulators compared to \TVB}
+
+	
+

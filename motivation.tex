@@ -1,0 +1,56 @@
+
+While whole-brain level simulators have been developed and published for
+several years now, making the final step of connecting these simulations to
+empirical results has remained a challenge due to several factors:
+
+\begin{enumerate}
+	\item Source code is typically not distributed, effectively closing
+	the behavior, black box, etc. 
+
+	\item The forward solutions required to obtain simulated M/EEG \& fMRI
+	data are non trivial, requiring interaction with several pieces of software
+
+	\item Published simulation methods for stochastic, delayed systems on
+	surfaces are almost non existent
+
+	\item Managing all of the different computational pieces is typically
+	challenging for those who work with empirical data
+
+\end{enumerate}
+
+To address these concerns, a flexible architecture was developed to
+allow easy integration of any computational tools along with a system
+for describing typically types of data. A web based UI was developed
+for users not comfortable with programming, as well as MATLAB toolbox
+for interacting with the Python based framework, given that many
+neuroscientists are already comfortable with the MATLAB workflow.
+Lastly, a high performance, highly documented simulator along with
+various forward solutions have been implemented and released under a
+GPL licence to ensure universal access to high quality simulations, 
+developed on the well-known Github, making it extremely easy for 
+anyone to contribute.
+
+\subsection{Why another simulator?}
+
+This section actually motivates the integration story, otherwise 
+nothing else is really necessary.
+
+\subsection{Why Python?}
+
+The core simulator actually began in MATLAB, however, as the needs 
+expanded, the architecture, detailed in the next section, quickly 
+outgrew the programming conventions typical of MATLAB packages.
+
+Also, Python is free, and has an extremely rich ecosystem
+
+\subsection{Collaboration}
+
+In effect, we wish for a theoretician and clinician to be able to
+collaborate; to enable such a possibility, we require a platform
+to enable such opportunity. 
+
+\subsection{Integration}
+
+Large scale simulation implies flexible integration. We shall see
+how this is enable by the architecture..
+
