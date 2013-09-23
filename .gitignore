@@ -1,8 +1,0 @@
-# typical gamut of pdflatex working files
-*.aux
-*.idx
-*.log
-*.toc
-*.bbl
-*.blg
-*.pdf
