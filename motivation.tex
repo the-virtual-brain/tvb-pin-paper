@@ -4,6 +4,7 @@ several years now, making the final step of connecting these simulations to
 empirical results has remained a challenge due to several factors:
 
 \begin{enumerate}
+
 	\item Source code is typically not distributed, effectively closing
 	the behavior, black box, etc. 
 
@@ -11,10 +12,11 @@ empirical results has remained a challenge due to several factors:
 	data are non trivial, requiring interaction with several pieces of software
 
 	\item Published simulation methods for stochastic, delayed systems on
-	surfaces are almost non existent
+		surfaces are almost non existent (XPPAUT is a notable exception).
+		Efficient handling of $N^2$ delays requires custom routines.
 
 	\item Managing all of the different computational pieces is typically
-	challenging for those who work with empirical data
+	challenging for those who work with empirical data.
 
 \end{enumerate}
 
@@ -30,27 +32,56 @@ GPL licence to ensure universal access to high quality simulations,
 developed on the well-known Github, making it extremely easy for 
 anyone to contribute.
 
-\subsection{Why another simulator?}
 
-This section actually motivates the integration story, otherwise 
-nothing else is really necessary.
-
-\subsection{Why Python?}
-
-The core simulator actually began in MATLAB, however, as the needs 
-expanded, the architecture, detailed in the next section, quickly 
-outgrew the programming conventions typical of MATLAB packages.
-
-Also, Python is free, and has an extremely rich ecosystem
-
-\subsection{Collaboration}
+Large scale simulation implies flexible integration. We shall see
+how this is enable by the architecture..
+\note[mw]{expand}
 
 In effect, we wish for a theoretician and clinician to be able to
 collaborate; to enable such a possibility, we require a platform
 to enable such opportunity. 
+\note[mw]{expand}
 
-\subsection{Integration}
 
-Large scale simulation implies flexible integration. We shall see
-how this is enable by the architecture..
+\subsection{Why another simulator?}
+
+A significant part of \TVB is simulating brain-scale neural networks. While
+several existing simulators could have been adapted, we have estimated that
+\TVB style simulations are far enough outside the design of other simulators to
+make starting from scratch a better idea.
+
+Many neural network simulators have been developed and published, focusing
+first on abstract rate neurons (in the style of PDP), modelling neurocognitive
+processes, on one hand, and on the other, full multicompartmental neuron
+simulators treating complex spatial geometries, e.g. NEURON.  More recently,
+due to interest in the computational properties of spiking neurons and their
+relevance to experimental observations, simulators targeting specifically
+spiking neurons have been prominent, e.g. Brian.
+
+However, another level description of neural dynamics has been treated
+in the literature of neural mass models and neural fields. Here, the spatial
+extent of the modeled dynamics is far larger and hence permits networks 
+thereof to scale reasonably to the entire cortex, under the assumptions 
+of the models, when combined with empirical measurements of cortico-
+cortical connectivity. Therefore, the physical scale modeled by the \TVB
+simulators differs from that for which other simulators were designed.
+Several technical issues stem from this scale, e.g. efficient handling
+of dense $N^2$ delays and neural field-like connectivity, which will be
+discussed in more detail below. 
+
+\subsection{Why Python?}
+
+In fact, the core simulator began in MATLAB, however, as the needs 
+expanded, the architecture, detailed in the next section, quickly 
+outgrew the matrix-struct-function triumvirate that is conventional
+in MATLAB programming. While modern MATLAB permits advanced object-oriented
+programming, it has the disadvantages of being relatively unknown or unused,
+largely unsupported by MATLAB's own IDE, the MATLAB Compiler, and the free
+alternative Octave, lastly it provides no support for metaclasses or data
+descriptors, which were extensively used in \TVB's architecture.
+
+The architecture of \TVB had been prototyped in Python, and in turn, both the
+language and the scientific ecosystem were more than rich enough to support
+continued developed entirely within Python, of both the architecutre and the
+simulator.
 

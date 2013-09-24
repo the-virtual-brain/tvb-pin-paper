@@ -1,13 +1,71 @@
 
-The architecture of \TVB is divided into a framework and a 
-scientific library. 
-
-\subsection{Adapters}
+\TVB is divided into a framework and a scientific library, where the framework
+handles primarily adapter infrastruct, the web-based user interface and
+database connectivity while the scientific library includes datatypes, 
+common analyses and the simulator. 
 
 \subsection{Datatypes}
 
-\subsection{Et cetera \dots}
+In scientific Python code, it is conventional to provide arguments
+of an algorithm as a "bare" array or collection there of, and sanity
+checks of arguments proceed on the basis of array geometry, for example.
+In \TVB, we consider a \textit{datatype} to be a full, formal description of 
+an entity involved in an algorithm that would be part of \TVB. 
+For example, the \texttt{Connectivity} datatype, which may elsewhere
+be represented by a simple $N$ by $N$ NumPy array, is written as a class
+in which one of the attributes, \texttt{weights} is a explicitly typed 
+\texttt{FloatArray}, and the declaration of this type is complemented by
+explicit label, default values, and documentation strings. 
 
-\note[mw]{I would like some help from Lia \& Laurent to
-fill out this section}
+\note[mw]{Add a listing showing this}.
+
+Because an explicit goal of \TVB was to provide a user interface to each of the
+datatypes and algorithms contained within, it is necessary at some point to
+provide metadata. A \texttt{traits} system was developed, similar to that of
+IPython or EPD, was developed, allowing for a attributes of a datatype class to
+be written out with full metadata. An extensive set of existing building 
+blocks are already provided from numeric types and arrays to lists, tuples, 
+string, and dictionaries.
+
+\note[mw]{Show description of a data type}
+
+ When methods of such a class are invoked,
+they may use the traited attributes directly, accessing either a default value
+or one given during the instantiation of the object. Additionally, this allows
+the web-based UI to introspect a class for all of its attributes and their
+descriptions, to provide help in the interface. The explicit typing also allows
+such classes to be nearly automatically mapped to SqlAlchemy \& HDF5 tables,
+the combination of which provides persistence for datatypes when using the web
+UI.  Lastly, because such metadata is used to build the docstring of a class,
+the IPython user also may obtain extensive descriptions of attributes and
+function arguments in the usual way. 
+
+\subsection{Adapters}
+
+While datatypes provide a way of description what algorithms work with, 
+sufficing for the typical user looking to write scripts against the
+available libraries, the web-based UI requires algorithms to adhere to 
+a generic interface, which is elsewhere referred to as the Adapter pattern.
+Typically, this implies that a class is written that is able to describe
+the collection to datatypes required and a single method to invoke the
+algorithm.
+
+\note[mw]{Show the adapter for FastICA}
+
+Note that the adapters and datatypes are intended to provide full 
+power and flexibility of the framework; when the simulator is invoked from
+the web-based UI, it is done so through an \texttt{SimulatorAdapter} which,
+despite being relatively complex, is datatypes all the way down.
+
+\subsection{Examples}
+
+\note[mw]{Show code examples, and explain the mechanics}
+
+\subsubsection{Adapting sklearn's FastICA}
+
+\subsubsection{Interfacing with the Brain Connectivity Toolbox}
+
+\subsubsection{The Surface datatype}
+
+
 
