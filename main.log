@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.18)  24 SEP 2013 16:45
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.18)  24 SEP 2013 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1215,13 +1215,14 @@ Overfull \vbox (1.0pt too high) has occurred while \output is active []
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
 )
-Extra height:0.0pt when 267.56247pt
-(2)Left:267.56247pt Right:267.12494pt Output:267.56247pt
+Extra height:10.0pt when 251.56247pt
+Extra height:0.0pt when 252.56247pt
+(2)Left:252.56247pt Right:250.12494pt Output:252.56247pt
 - LAST -
 Extra skip:0.0pt
-Left:267.56247pt
-Right:267.12494pt
-Output:267.56247pt
+Left:252.56247pt
+Right:250.12494pt
+Output:252.56247pt
 
 Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
@@ -1270,7 +1271,7 @@ w/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (4 pages, 160229 bytes).
+Output written on main.pdf (4 pages, 160843 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  62 compressed objects within 1 object stream
