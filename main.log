@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.18)  24 SEP 2013 15:23
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.9.18)  24 SEP 2013 16:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -750,6 +750,9 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
 )
+(/usr/share/texlive/texmf-dist/tex/latex/bera/beramono.sty
+Package: beramono 2004/01/31 (WaS)
+)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshape
 s.code.tex
 File: tikzlibraryshapes.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
@@ -974,19 +977,19 @@ Package trackchanges Warning: A maximum of 5 editors are supported.
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
-LaTeX Font Info:    ... okay on input line 122.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 122.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 124.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1033,9 +1036,9 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package crop Info: requested driver: `' on input line 122.
-Package crop Info: detected driver: `pdftex' on input line 122.
-Package crop Info: using `pdftex' graphics driver on input line 122.
+Package crop Info: requested driver: `' on input line 124.
+Package crop Info: detected driver: `pdftex' on input line 124.
+Package crop Info: using `pdftex' graphics driver on input line 124.
 \c@lstlisting=\count162
 
 ABD: EveryShipout initializing macros
@@ -1046,103 +1049,103 @@ Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-LaTeX Font Info:    Try loading font information for T1+phv on input line 149.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 149.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <9> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 149.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <9> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 149.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <19> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 149.
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <19> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 149.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 149.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 149.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 158.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <16> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 149.
-LaTeX Font Info:    Calculating math sizes for size <13> on input line 149.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 158.
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 158.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 149.
+(Font)              size <12> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 149.
+(Font)              size <6> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <13> not available
-(Font)              size <12> substituted on input line 149.
+(Font)              size <12> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 149.
+(Font)              size <6> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <13> not available
-(Font)              size <12> substituted on input line 149.
+(Font)              size <12> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 149.
+(Font)              size <6> substituted on input line 158.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 149.
+LaTeX Font Info:    Try loading font information for U+msa on input line 158.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 149.
+LaTeX Font Info:    Try loading font information for U+msb on input line 158.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Calculating math sizes for size <9.09996> on input line 149
+LaTeX Font Info:    Calculating math sizes for size <9.09996> on input line 158
 .
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 149.
+(Font)              size <5> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.54997> not available
-(Font)              size <5> substituted on input line 149.
+(Font)              size <5> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 149.
+(Font)              size <5> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 149.
+(Font)              size <7> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 149.
+(Font)              size <7> substituted on input line 158.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 149.
+(Font)              size <7> substituted on input line 158.
 
 
-Underfull \hbox (badness 10000) detected at line 149
+Underfull \hbox (badness 10000) detected at line 158
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--149
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
 $[]$[]\T1/ptm/m/n/8 to whom cor-re-spon-dence should be ad-dressed:
  []
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <8> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 157.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 166.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 198.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 207.
 (./motivation.tex [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -1150,10 +1153,13 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 
 ])
 (./architecture.tex
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 14.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-))
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 14.
+ (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
+File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
+)
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 14.
+)
 (./ui.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <8> not available
 (Font)              Font shape `T1/phv/b/it' tried instead on input line 6.
@@ -1172,7 +1178,22 @@ Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[2]) (./simulator.tex
+[2]
+LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 12.
+LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 18.
+LaTeX Font Info:    Font shape `T1/fvm/bx/n' in size <8> not available
+(Font)              Font shape `T1/fvm/b/n' tried instead on input line 19.
+LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
+(Font)              scaled to size 7.19995pt on input line 19.
+
+Overfull \hbox (11.5603pt too wide) in paragraph at lines 92--97
+\T1/fvm/m/n/9 the-[]virtual-[]brain / scientific _ library / tree / trunk / tvb
+ /
+ []
+
+) (./simulator.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 58.
 
@@ -1180,25 +1201,6 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
 Package natbib Warning: Citation `pycuda' on page 3 undefined on input line 58.
 
 
-) (./future.tex) (./main.bbl
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.12494pt when 623.42844pt
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-Extra height:10.12494pt when 624.42844pt
-Extra height:0.0pt when 625.42844pt
-(2)Left:625.42844pt Right:624.85687pt Output:625.42844pt
-- LAST -
-Extra skip:0.0pt
-Left:625.42844pt
-Right:624.85687pt
-Output:625.42844pt
 
 Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
@@ -1207,7 +1209,35 @@ Overfull \hbox (261.0pt too wide) has occurred while \output is active
 
 Overfull \vbox (1.0pt too high) has occurred while \output is active []
 
- [3]
+ [3])
+(./future.tex) (./main.bbl
+
+Package natbib Warning: Empty `thebibliography' environment on input line 3.
+
+)
+Extra height:0.0pt when 267.56247pt
+(2)Left:267.56247pt Right:267.12494pt Output:267.56247pt
+- LAST -
+Extra skip:0.0pt
+Left:267.56247pt
+Right:267.12494pt
+Output:267.56247pt
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[4
+
+]
 
 Package natbib Warning: There were undefined citations.
 
@@ -1218,31 +1248,32 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 17480 strings out of 493485
- 319884 string characters out of 3143526
- 430331 words of memory out of 3000000
- 20332 multiletter control sequences out of 15000+200000
- 74959 words of font info for 103 fonts, out of 3000000 for 9000
+ 17828 strings out of 493485
+ 322918 string characters out of 3143526
+ 430629 words of memory out of 3000000
+ 20672 multiletter control sequences out of 15000+200000
+ 76818 words of font info for 109 fonts, out of 3000000 for 9000
  961 hyphenation exceptions out of 8191
- 56i,11n,56p,414b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,11n,56p,414b,1086s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (3 pages, 157877 bytes).
+ts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmb8a.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (4 pages, 160229 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 85 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

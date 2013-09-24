@@ -27,6 +27,8 @@
 \usepackage{listings}
 \usepackage{tikz,times}
 \usepackage{courier}
+\usepackage[scaled]{beramono}
+
 \usetikzlibrary{shapes,arrows}
 \usetikzlibrary{arrows,positioning}
 \usepackage{xcolor}
@@ -120,7 +122,14 @@
 \pubyear{}
 
 \begin{document}
-\lstset{language=Python} 
+\lstset{language=Python,
+	captionpos=b,
+	keepspaces=true,
+	numbers=none,
+	showspaces=false,
+	basicstyle=\fontsize{8pt}{8}\ttfamily
+	} 
+
 \firstpage{1}
 
 %%  Authorship and Title
