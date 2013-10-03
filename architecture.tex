@@ -4,7 +4,45 @@ handles primarily adapter infrastruct, the web-based user interface and
 database connectivity while the scientific library includes datatypes, 
 common analyses and the simulator. 
 
-\subsection{Datatypes}
+\note[lp]{FIN: Frontiers in Neuroinformatics}
+
+\subsection{TVB Framework}
+
+\subsubsection{General description}
+
+The framework has been developped with genericity and modularity in mind. It
+provides a database back-end, workflow management and a number of features to
+support collaborative work.  The central idea is data-oriented in a sense that
+data are fed and stored into the system and can be transformed into another type
+of data (including vizualization) throught the operation provided by an external
+library (including TVB scientific library, but not restricted to it) that have
+been \emph{adapted} to the framework. As a consequence, the two central concepts
+are \emph{datatypes} i.e. types of data that can be handled in the framework and
+\emph{adapters} i.e. processes that allow to interface/adapt external libraries
+to  the datatypes handled by within the framework.
+
+The framework also provides user interfaces: web-based graphical interface and
+console interface for advanced user and developpers.
+
+Due to the genericity of the framework, it relies on
+the Python \emph{abstract classes} mechanism.
+\note[lp]{From Python glossary:}
+Abstract base classes complement duck-typing by providing a way to define
+interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
+
+\subsubsection{Datatypes}
+
+\paragraph{Description and examples}
+
+\note[lp]{From FIN paper:} TVB-datatypes are annotated data structures which
+contain one or more data attributes and associated descriptive information, as
+well as methods for operating on the data they contain. The definition of a
+datatype is achieved using TVB's traiting system, which was inpired by the
+traiting system developed by Enthought \cite{Enthought_2001} 
+
+\note[lp]{The TVB-trait system might be worth described here?}
+
+\note[lp]{Table 2 "TVB datatypes" of FIN article might be interesting here?}
 
 In scientific Python code, it is conventional to provide arguments
 of an algorithm as a "bare" array or collection there of, and sanity
@@ -40,10 +78,18 @@ UI.  Lastly, because such metadata is used to build the docstring of a class,
 the IPython user also may obtain extensive descriptions of attributes and
 function arguments in the usual way. 
 
-\subsubsection{The Connectivity datatype}
+\note[lp]{The Connectivity datatype might be an example}
 
+\paragraph{Datatypes, data storage and retrieval} 
 
-\subsection{Adapters}
+Data storage is managed using \emph{SQLAlchemy}
+\texttt{http://www.sqlalchemy.org/} which provides a common interface for the
+two proposed storage system: SQLite and PostgreSQL \note[lp]{or flat file
+system?}.
+
+\subsubsection{Adapters}
+
+\paragraph{General description}
 
 While datatypes provide a way of description what algorithms work with, 
 sufficing for the typical user looking to write scripts against the
@@ -52,6 +98,25 @@ a generic interface, which is elsewhere referred to as the Adapter pattern.
 Typically, this implies that a class is written that is able to describe
 the collection to datatypes required and a single method to invoke the
 algorithm.
+
+Adapters are derived from the abstract class named \texttt{ABCAdapter} which
+defines the common interface for the adapters with methods...
+
+Several categories of adapters have been defined: 
+\begin{itemize}
+    \item \textit{analyzers} which allow the interface between libraries
+        containing algorithm for the analysis of the data (wavelets, FastICA,
+        etc.) and the TVB framework and datatypes.
+    \item \textit{creators}
+    \item \textit{exporters} 
+    \item \textit{portlets} 
+    \item \textit{simulator}
+\item \textit{uploaders}: allow the upload of external data into TVB framework
+    such as gifti files of plain csv files.
+\item \textit{visualizers} \note[lp]{derived from the ABCDisplayer abstract class} allow
+    to display the correct datatype.
+\end{itemize}
+
 
 \note[mw]{Show the adapter for FastICA}
 
@@ -71,9 +136,9 @@ than just initialization and invocation, e.g. provide expected shape of
 result, it was advantageous to create a distinct set of interfaces built
 on the abstract base class framework provided by Python's standard library.
 
-\subsubsection{Adapting sklearn's FastICA}
+\paragraph{Adapting sklearn's FastICA}
 
-\subsubsection{Interfacing with MATLAB}
+\paragraph{Interfacing with MATLAB}
 
 One of the well-known libraries for characterizing anatomical 
 and functional connectivity is the Brain Connectivity Toolbox. Because
@@ -90,4 +155,16 @@ user situation, and where Octave is available, it is quite fast. In the
 case that many operations are necessary, they can be batched into the 
 same run.
 
+\subsubsection{User interfaces}
 
+\paragraph{web-based user interface}
+
+The http is served using \emph{Cherrypy} \texttt{http://www.cherrypy.org/} which
+is a minimalist, object-oriented web framework.
+
+\paragraph{Console interface}
+
+\note[lp]{Maybe use the example at the end of
+https://github.com/the-virtual-brain/docs/blob/trunk/ContributorsManual/ContributorsManual.rst}
+
+\subsection{Scientific libraries}
