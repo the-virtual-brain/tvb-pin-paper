@@ -1,20 +1,44 @@
 
-\TVB is divided into a framework and a scientific library, where the framework
-handles primarily adapter infrastruct, the web-based user interface and
-database connectivity while the scientific library includes datatypes, 
-common analyses and the simulator. 
+\TVB is logically and technically divided at deploy time into a scientific library and a framework, 
+where the scientific library includes datatypes, common analyses and the simulator as its central piece,
+while the framework handles execution infrastructure, the web-based user interface and database connectivity. 
+While TVB Scientific Library can function independently, as a Python module, TVB Framework needs the scientific library to wrap around it at runtime.
 
-\note[lp]{FIN: Frontiers in Neuroinformatics}
+\TVB source code is available for download on Github at \url{https://github.com/the-virtual-brain/}. Previous Git and Python knowledge is required for contributing.
+Although you could independently install Python and the rest of TVB dependencies on your machine, and then use the Github code as a local clone, 
+we recommend you to download TVB Distribution from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on Github and further use
+contributor-setup script from TVB-Distribution to link the two. In this recommended use-case, you will have all TVB Dependencies already installed 
+ and under control.
+
+ \begin{figure*}
+        \centering
+        \includegraphics[width=0.90\textwidth]{images/architecture.jpg}
+        \caption{\TVB architecture: 
+        Yellow blocks are part of the Scientific Library of TVB, while the green blocks are part of TVB Framework.
+        TVB provides two independent interfaces, depending on the interaction type wanted by the end-user (web or console).
+        TVB Storage layer is compulsory for the web interface, but it can be switched on/off for the console interface.
+         }
+        \label{fig:architecture}
+ \end{figure*}
+
+
+\subsection{TVB Scientific Library}
+
+	\subsubsection{General description}
+TVB Scientific Library code can be found online at \url{https://github.com/the-virtual-brain/scientific_library}
+
+	\subsubsection{Datatypes}
+
 
 \subsection{TVB Framework}
 
-\subsubsection{General description}
+	\subsubsection{General description}
 
-The framework has been developped with genericity and modularity in mind. It
+The framework has been developed with generality and modularity in mind. It
 provides a database back-end, workflow management and a number of features to
 support collaborative work.  The central idea is data-oriented in a sense that
 data are fed and stored into the system and can be transformed into another type
-of data (including vizualization) throught the operation provided by an external
+of data (including visualization) through the operation provided by an external
 library (including TVB scientific library, but not restricted to it) that have
 been \emph{adapted} to the framework. As a consequence, the two central concepts
 are \emph{datatypes} i.e. types of data that can be handled in the framework and
@@ -22,9 +46,9 @@ are \emph{datatypes} i.e. types of data that can be handled in the framework and
 to  the datatypes handled by within the framework.
 
 The framework also provides user interfaces: web-based graphical interface and
-console interface for advanced user and developpers.
+console interface for advanced user and developers.
 
-Due to the genericity of the framework, it relies on
+Due to the generality of the framework, it relies on
 the Python \emph{abstract classes} mechanism.
 \note[lp]{From Python glossary:}
 Abstract base classes complement duck-typing by providing a way to define
@@ -37,7 +61,7 @@ interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
 \note[lp]{From FIN paper:} TVB-datatypes are annotated data structures which
 contain one or more data attributes and associated descriptive information, as
 well as methods for operating on the data they contain. The definition of a
-datatype is achieved using TVB's traiting system, which was inpired by the
+datatype is achieved using TVB's traiting system, which was inspired by the
 traiting system developed by Enthought \cite{Enthought_2001} 
 
 \note[lp]{The TVB-trait system might be worth described here?}
@@ -155,16 +179,4 @@ user situation, and where Octave is available, it is quite fast. In the
 case that many operations are necessary, they can be batched into the 
 same run.
 
-\subsubsection{User interfaces}
 
-\paragraph{web-based user interface}
-
-The http is served using \emph{Cherrypy} \texttt{http://www.cherrypy.org/} which
-is a minimalist, object-oriented web framework.
-
-\paragraph{Console interface}
-
-\note[lp]{Maybe use the example at the end of
-https://github.com/the-virtual-brain/docs/blob/trunk/ContributorsManual/ContributorsManual.rst}
-
-\subsection{Scientific libraries}
