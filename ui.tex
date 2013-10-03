@@ -1,16 +1,110 @@
 
-\subsection{Web Interface}
+\subsection{Graphical Interface Interaction}
 
-	\subsubsection{Projects, Users \& Data}
+A graphical web interface was chosen as option of TVB face for quick interaction. The web interface is easy to access (local or remotely),
+it can be used by different types of users, including the ones without programming knowledge, and it offers great 
+support while learning about TVB concepts and workflow expectations. 
+In our modeling diagrams, we called the actor accessing \TVB through the web interface a "G-User".
+
+The http is served using \emph{Cherrypy} \texttt{http://www.cherrypy.org/} which is a minimalist, object-oriented web framework, 
+in combination with Genshi templating system, to support the separation as guided by MVC (Model View Controller) pattern.
+
+	\subsubsection{Projects, Accounts, Operations \& Data}
+	
+\TVB uses entities like: Account, Project, Operation, DataType and Workflow for modeling G-User actions and artifacts. 
+
+ A TVB Account or User is needed for accessing TVB through the web interface. 
+ When TVB web interface is fired for the first time, the G-User is requested to set the username and password for the first account.
+Later on, people can \texttt{register} for other accounts, but for using these accounts they will need first to get validated by the 
+first account (which acts under "admin" role).
+
+A TVB Project is a logical grouping entity that  can be used in several ways by the end-user; 
+for example one could choose to create a project for each experiment in TVB, while others might create projects for each subject they simulate.
+Each Project has a single User (or Account) as owner, but can be shared with multiple other users.
+
+Any execution of an Adapter results into an Operation in the context of a project. Multiple Operations will be executed under the same project.
+For example we will have operations created for each execution of a simulation, each run of a Fourier analyzer, or launch of a Brain Visualizer.
+An operation changes status over time, from \texttt{started} into: \texttt{canceled}, \texttt{finished successfully} or \texttt{finished with error}.
+One operation could have multiple input and output parameters. Parameters can be scalars or DataTypes.
+
+A workflow in TVB is a set of Operations with they artifacts, and wraps around a simulation as leading operation.
+A workflow can be seen as a default Tag placed by the system on Operations and DataTypes which are logically connected, as resulting one after the other.
+Custom tags can also be added by the end-user both on DataTypes and operations, for tracking data inside a TVB Project.
+	
+ \begin{figure*}
+ 	\centering
+	\subfloat[][]{\includegraphics[width=0.59\textwidth]{images/ui_projects.png}}
+	\subfloat[][]{\includegraphics[width=0.39\textwidth]{images/ui_project_graph.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.58\textwidth]{images/ui_project_operations.png}}
+	\subfloat[][]{\includegraphics[width=0.39\textwidth]{images/ui_project_datatype_details.png}}
+	\caption{\TVB Data Organization: 
+	(A) View All Projects.
+	(B) 2D graph display of operations with their input and output DataTypes .
+	(C) View Operations in current project, with their status, duration, results, etc.
+	(D) DataType details and further available operations for it. This menu becomes available after clicking a DataType result from several places in \TVB }
+        \label{fig:project}
+\end{figure*}
 
 	\subsubsection{Simulator Interface}
 	
-	\subsubsection{Visualizers \& Analysis}
+	\subsubsection{Analysis \& Visualizers}
+
+\TVB does not aim to compete at the analysis level with other tools in Neuroscience, 
+highly specialized and with great history in data analysis, like  FSL or SPM. 
+What we offer is a minimalist set or algorithms to post-process your 
+simulated results (or even process imported patient measured scans) inside TVB, mainly for quick validations.
+We have created inside \TVB adapters for Fast ICA from the python library \texttt{sklearn}, 
+we've implemented a python version of Fourier Spectral Analysis, 
+we have even wrapped the Matlab library BCT \url{https://sites.google.com/site/bctnet/}, and others as analyzers.
+
+For each of the DataTypes produced in TVB, one or multiple visualizers are available.	
+\TVB has couple of  visualizer types, each developed with the technology providing better support on the specific requirements for the visualization in course:
+
+\begin{enumerate}
+
+	\item WebGL viewers: based on HTML 5 Canvas element and the gl context. 
+	These viewers offer 3D nice display, vectorial zoom support, user interaction with the scene (rotate, translate), quick response 
+	(even when thousands of vertices and edges are to be manipulated) and good resolution for the images exported.
+	
+	\item SVG viewers: offer great selection, zoom and scaling effects and extraordinary quality for the exported artifacts, while having 
+	a relatively low number of elements to display on the page. 
+	We use such viewers for manipulating and displaying TimeSeries, Covariance or Cross Coherence DataType results.
+	
+	\item MPLH5 viewers: Matplotlib has an HTML 5 backend that we use for viewing some TVB DataTypes (like Fourier or Wavelet)
+	\url{https://code.google.com/p/mplh5canvas/}
+	
+	\item Other simpler viewers are using JIT \url{http://philogb.github.io/jit/} or FLOT \url{http://www.flotcharts.org/} JS libraries.
+	These are mainly 2D graph displayers for some TVB generated data.
+
+\end{enumerate}
+
 
 	\subsubsection{Connectivity Tool}
 
-\subsection{\texttt{hello\_brain.py}}
+Connectivity in the context of \TVB is a DataType, mapping structural information about a subject (real patient or theoretical model).
+For editing and viewing a Connectivity, \TVB has a specific page, where the G-User could manipulate connectivity strength and length 
+starting from the granularity of an edge.
+We do not store or use information about the exact anatomical path or a connection, only the region centers and connection weights and lengths.
 
+ \begin{figure*}
+ 	\centering
+	\subfloat[][]{\includegraphics[width=0.98\textwidth]{images/ui_connectivity.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.98\textwidth]{images/ui_connectivity_delays.png}}
+	\caption{Connectivity Tools: 
+	(A) Left side: Displaying weighted connections between selection of nodes, with 3D manipulation.
+	Right side: Editing weight connections, singular or bulk.
+	(B) Left side: Show effect of connectivity delays when conductions speed is 1.
+	Right side: Editing and displaying one quadrant from the matrix of connection tracts.}
+        \label{fig:connectivity}
+\end{figure*}
+
+
+
+\subsection{Scripting Interaction}
+
+\texttt{hello\_brain.py}
 To give a basic feel for scripting \TVB simulations, we will 
 walk through a simple example of a region-level simulation. We 
 start with
