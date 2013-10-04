@@ -22,39 +22,11 @@ contributor-setup script from TVB-Distribution to link the two. In this recommen
  \end{figure*}
 
 
-\subsection{TVB Scientific Library}
+	\subsection{TVB Scientific Library}
 
 	\subsubsection{General description}
-TVB Scientific Library code can be found online at \url{https://github.com/the-virtual-brain/scientific_library}
 
 	\subsubsection{Datatypes}
-
-
-\subsection{TVB Framework}
-
-	\subsubsection{General description}
-
-The framework has been developed with generality and modularity in mind. It
-provides a database back-end, workflow management and a number of features to
-support collaborative work.  The central idea is data-oriented in a sense that
-data are fed and stored into the system and can be transformed into another type
-of data (including visualization) through the operation provided by an external
-library (including TVB scientific library, but not restricted to it) that have
-been \emph{adapted} to the framework. As a consequence, the two central concepts
-are \emph{datatypes} i.e. types of data that can be handled in the framework and
-\emph{adapters} i.e. processes that allow to interface/adapt external libraries
-to  the datatypes handled by within the framework.
-
-The framework also provides user interfaces: web-based graphical interface and
-console interface for advanced user and developers.
-
-Due to the generality of the framework, it relies on
-the Python \emph{abstract classes} mechanism.
-\note[lp]{From Python glossary:}
-Abstract base classes complement duck-typing by providing a way to define
-interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
-
-\subsubsection{Datatypes}
 
 \paragraph{Description and examples}
 
@@ -104,7 +76,32 @@ function arguments in the usual way.
 
 \note[lp]{The Connectivity datatype might be an example}
 
-\paragraph{Datatypes, data storage and retrieval} 
+
+\subsection{TVB Framework}
+
+	\subsubsection{General description}
+
+The framework has been developed with generality and modularity in mind. It
+provides a database back-end, workflow management and a number of features to
+support collaborative work.  The central idea is data-oriented in a sense that
+data are fed and stored into the system and can be transformed into another type
+of data (including visualization) through the operation provided by an external
+library (including TVB scientific library, but not restricted to it) that have
+been \emph{adapted} to the framework. As a consequence, the two central concepts
+are \emph{datatypes} i.e. types of data that can be handled in the framework and
+\emph{adapters} i.e. processes that allow to interface/adapt external libraries
+to  the datatypes handled by within the framework.
+
+The framework also provides user interfaces: web-based graphical interface and
+console interface for advanced user and developers.
+
+Due to the generality of the framework, it relies on
+the Python \emph{abstract classes} mechanism.
+\note[lp]{From Python glossary:}
+Abstract base classes complement duck-typing by providing a way to define
+interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
+
+\subsubsection{Data Storage}
 
 Data storage is managed using \emph{SQLAlchemy}
 \texttt{http://www.sqlalchemy.org/} which provides a common interface for the
