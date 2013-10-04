@@ -4,13 +4,13 @@
 A graphical web interface was chosen as option of TVB face for quick interaction. The web interface is easy to access (local or remotely),
 it can be used by different types of users, including the ones without programming knowledge, and it offers great 
 support while learning about TVB concepts and workflow expectations. 
-In our modeling diagrams, we called the actor accessing \TVB through the web interface a "G-User".
+In our modeling diagrams, we called the actor accessing \TVB through the web interface a \emph{G-User}.
 
 The http is served using \emph{Cherrypy} \texttt{http://www.cherrypy.org/} which is a minimalist, object-oriented web framework, 
 in combination with Genshi templating system, to support the separation as guided by MVC (Model View Controller) pattern.
 
 	\subsubsection{Projects, Accounts, Operations \& Data}
-	
+
 \TVB uses entities like: Account, Project, Operation, DataType and Workflow for modeling G-User actions and artifacts. 
 
  A TVB Account or User is needed for accessing TVB through the web interface. 
@@ -27,17 +27,19 @@ For example we will have operations created for each execution of a simulation, 
 An operation changes status over time, from \texttt{started} into: \texttt{canceled}, \texttt{finished successfully} or \texttt{finished with error}.
 One operation could have multiple input and output parameters. Parameters can be scalars or DataTypes.
 
-A workflow in TVB is a set of Operations with they artifacts, and wraps around a simulation as leading operation.
+A Workflow in TVB is a set of Operations with they artifacts, and wraps around a simulation as leading operation.
 A workflow can be seen as a default Tag placed by the system on Operations and DataTypes which are logically connected, as resulting one after the other.
 Custom tags can also be added by the end-user both on DataTypes and operations, for tracking data inside a TVB Project.
 	
  \begin{figure*}
  	\centering
-	\subfloat[][]{\includegraphics[width=0.59\textwidth]{images/ui_projects.png}}
-	\subfloat[][]{\includegraphics[width=0.39\textwidth]{images/ui_project_graph.png}}
+	\subfloat[][]{\includegraphics[width=0.50\textwidth]{images/ui_projects.png}}
+	\qquad
+	\subfloat[][]{\includegraphics[width=0.434\textwidth]{images/ui_project_graph.png}}
 	\\
-	\subfloat[][]{\includegraphics[width=0.58\textwidth]{images/ui_project_operations.png}}
-	\subfloat[][]{\includegraphics[width=0.39\textwidth]{images/ui_project_datatype_details.png}}
+	\subfloat[][]{\includegraphics[width=0.50\textwidth]{images/ui_project_operations.png}}
+	\qquad
+	\subfloat[][]{\includegraphics[width=0.434\textwidth]{images/ui_project_datatype_details.png}}
 	\caption{\TVB Data Organization: 
 	(A) View All Projects.
 	(B) 2D graph display of operations with their input and output DataTypes .
@@ -54,6 +56,7 @@ Custom tags can also be added by the end-user both on DataTypes and operations, 
 highly specialized and with great history in data analysis, like  FSL or SPM. 
 What we offer is a minimalist set or algorithms to post-process your 
 simulated results (or even process imported patient measured scans) inside TVB, mainly for quick validations.
+
 We have created inside \TVB adapters for Fast ICA from the python library \texttt{sklearn}, 
 we've implemented a python version of Fourier Spectral Analysis, 
 we have even wrapped the Matlab library BCT \url{https://sites.google.com/site/bctnet/}, and others as analyzers.
@@ -83,15 +86,15 @@ For each of the DataTypes produced in TVB, one or multiple visualizers are avail
 	\subsubsection{Connectivity Tool}
 
 Connectivity in the context of \TVB is a DataType, mapping structural information about a subject (real patient or theoretical model).
-For editing and viewing a Connectivity, \TVB has a specific page, where the G-User could manipulate connectivity strength and length 
+For editing and viewing a Connectivity, \TVB has a specific page, where the G-User could manipulate connectivity strength and lengths 
 starting from the granularity of an edge.
 We do not store or use information about the exact anatomical path or a connection, only the region centers and connection weights and lengths.
 
  \begin{figure*}
  	\centering
-	\subfloat[][]{\includegraphics[width=0.98\textwidth]{images/ui_connectivity.png}}
-	\\
-	\subfloat[][]{\includegraphics[width=0.98\textwidth]{images/ui_connectivity_delays.png}}
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_connectivity.png}}
+	\qquad
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_connectivity_delays.png}}
 	\caption{Connectivity Tools: 
 	(A) Left side: Displaying weighted connections between selection of nodes, with 3D manipulation.
 	Right side: Editing weight connections, singular or bulk.
