@@ -22,11 +22,11 @@ contributor-setup script from TVB-Distribution to link the two. In this recommen
  \end{figure*}
 
 
-	\subsection{TVB Scientific Library}
+	\subsection{\TVB Scientific Library}
 
 	\subsubsection{General description}
 
-	\subsubsection{Datatypes}
+	\subsubsection{\TVB Datatypes}
 
 \paragraph{Description and examples}
 
@@ -77,7 +77,7 @@ function arguments in the usual way.
 \note[lp]{The Connectivity datatype might be an example}
 
 
-\subsection{TVB Framework}
+\subsection{\TVB Framework}
 
 	\subsubsection{General description}
 
@@ -95,18 +95,20 @@ to  the datatypes handled by within the framework.
 The framework also provides user interfaces: web-based graphical interface and
 console interface for advanced user and developers.
 
-Due to the generality of the framework, it relies on
-the Python \emph{abstract classes} mechanism.
+Due to the generality of the framework, it relies on the Python \emph{abstract classes} mechanism.
 \note[lp]{From Python glossary:}
 Abstract base classes complement duck-typing by providing a way to define
 interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
 
 \subsubsection{Data Storage}
 
-Data storage is managed using \emph{SQLAlchemy}
-\texttt{http://www.sqlalchemy.org/} which provides a common interface for the
-two proposed storage system: SQLite and PostgreSQL \note[lp]{or flat file
-system?}.
+We are storing data both in the file system and in a relational database.
+The file system is for storing big chunks of data, and the relational database is mainly for quick indexing, 
+and storing entities which are used at display time in the web interface.
+
+The relational database management is done from the code by using \emph{SQLAlchemy} \texttt{http://www.sqlalchemy.org/}, 
+which offers a transparent manner to connect underneath to either: SQLite or PostgreSQL, as the user chooses at install time.
+
 
 \subsubsection{Adapters}
 
