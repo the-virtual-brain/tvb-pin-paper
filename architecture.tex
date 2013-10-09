@@ -1,8 +1,8 @@
 
 \TVB is logically and technically divided at deploy time into a scientific library and a framework package, 
-where the scientific library includes datatypes, common analyses and the simulator as its central piece,
+where the scientific library includes datatypes, basic analyses and the simulator as its central piece,
 while the framework handles execution infrastructure, the web-based user interface and data storage. 
-While \TVB Scientific Library can function independently, as a Python module, \TVB Framework needs 
+ \TVB Scientific Library can function independently, as a Python module, but \TVB Framework needs 
 the scientific library to wrap around it at runtime.
 
 \TVB source code is available for download on Github at \url{https://github.com/the-virtual-brain/}. 
@@ -28,7 +28,7 @@ as part of \emph{TVB\_Distribution}.
 	\subsection{Basic Concepts}
 
 \TVB has been developed with generality and modularity in mind. The central idea is data-oriented in a sense that
-data are fed and stored into the system and can be transformed into another type
+data is fed and stored into the system and can be transformed into another type
 of data (including visualization) through operations provided by an external
 library (including \TVB scientific library, but not restricted to it) that have
 been \emph{adapted} to the framework. As a consequence, central concepts in \TVB
@@ -38,15 +38,15 @@ to  the datatypes handled by within the framework.
 
 	\subsubsection{\TVB Traits}
 
-System inspired by the traiting module developed by Enthought \cite{Enthought_2001}.
-Out traiting system offers a way to annotate fields and classes used inside \TVB, with specific trait-attributes,
-which will be futher used in different layers of the application, to extract necessary information from them.
-Trait-attributes are synonim with meta-data for classes and their fields.
+System is inspired by the traiting module developed by Enthought \cite{Enthought_2001}.
+Out traiting system offers a way to annotate fields and classes from inside \TVB, with specific trait-attributes,
+which will be further used in different layers of the application.
+Trait-attributes are synonym with meta-data for \TVB classes and their fields.
 
 Because an explicit goal of \TVB was to provide a user interface to each of the
 entities and algorithms contained within, it is necessary at some point to
 provide metadata on how to built that interface. A \texttt{traits} system was developed, similar to that of
-IPython or EPD, was developed, allowing for a attributes of a data class to
+IPython or EPD, was developed, allowing for fields on a \TVB class to
 be written out with full metadata on it. An extensive set of  building 
 blocks are already implements from numeric types and arrays to lists, tuples, 
 string, and dictionaries.
@@ -54,15 +54,16 @@ string, and dictionaries.
  When methods of such a class with annotated fields are invoked,
 they may use the traited-attributes directly, accessing either a default value
 or one given during the instantiation of the object. Additionally, this allows
-the web-based user interface to introspect a class for all of its attributes and their
+the web-based user interface to introspect a class for all of its fields and their
 descriptions, to provide help and choose the proper display form. The explicit typing also allows
 such classes to be nearly automatically mapped to storage tables,
 thus providing smooth persistence, when the storage layer is enabled.  
 Lastly, because such metadata is used to build the docstring of a class,
-the IPython user also may obtain extensive descriptions of attributes and
-function arguments in the usual way. 
+the IPython user also may obtain extensive descriptions of class, fields, methods and
+arguments in the usual way. 
 
-So, we have trait-attributes for describing how a certain class will be futher stored in the database and the file-storage system,
+So, we have trait-attributes for describing how a certain class with its fields 
+will be stored in the database and the file-storage system,
 for describing display manners in the web-interface, for documenting fields or classes, 
 and even meta-data on what valid values are allowed on a certain field. 
 The complete list of currently supported traited-attributes is described in Table \ref{tab:traits}.
@@ -70,29 +71,29 @@ The complete list of currently supported traited-attributes is described in Tabl
 \begin{center}
 	\begin{table*}[ht]
   	\label{tab:traits}
-  	\caption{TVB currently available Traited attributes}
+  	\caption{TVB currently available Traited Attributes}
 
 	\begin{tabularx}{\textwidth}{lll}
       		\toprule
-      		Traited attribute name    & Description  \\ 
+      		Traited Attribute    & Description  \\ 
       		\midrule
 		default 	& Default value for current field. Will be set on any new instance if not specified otherwise in the constructor.  \\
 		console\_default & Define how a default value can be computed for current field, when console interface is enabled. \\
 		range	& Specify the set of accepted values for current field. Mark that this field is usable for parameter space exploration. \\
 
-		label		& Short text for displaying in UI in front of current field. \\
-		doc		& Longer decsription for current field. To be displayed in UI as help-text. \\
+		label		& Short text to be displayed in UI, in front of current field. \\
+		doc		& Longer description for current field. To be displayed in UI as help-text. \\
 		required	& Mark current field as required for when building a new instance of the parent class. \\
 		locked	& When present and \emph{True}, current field will be displayed as read-only in the web interface. \\
 
-		options	& Attribute present for fields of type \emph{Enumerate}, marking the accepted options. \\
+		options	& Attribute present for fields of type \emph{Enumerate}, specifying the accepted options as a list of strings. \\
 		filters\_ui	& Filters towards other fields, to be applied in UI. \\
 		select\_multiple & When \emph{True}, current field will be displayed as a select  with multiple options in UI (default is single-select) \\
-		order	& Optional number identifying the index for current field to appear in UI at it. \\
+		order	& Optional number identifying the index at which current field will be displayed in UI. \\
 				& When negative, the field is not displayed at all. Ascending order for indices is considered when displaying. \\
 
-		use\_storage	& When \emph{False}, current field is not stored in database or file storage at all. \\
-		file\_storage	& Valid values for this attribute are: \emph{None} , \emph{HDF5}, \emph{expandable\_HDF5} \\
+		use\_storage	& When \emph{False}, current field is not stored in database or file storage. \\
+		file\_storage	& Valid values for this attribute are: \emph{None} , \emph{HDF5}, or  \emph{expandable\_HDF5}, \\
 					& When \emph{None}, current field is not stored in the file-storage at all. When \emph{HDF5}, we use regular H5 file storage. \\
 					& When \emph{expandable\_HDF5} value is set, a H5 stored in chuncks is used. \\
 		\bottomrule
@@ -103,31 +104,30 @@ The complete list of currently supported traited-attributes is described in Tabl
 
 	\subsubsection{DataTypes}
 
-In \TVB, DataTypes represent the common language, to be used between different other application parties: 
-uploaders, creators, analyzers, simulator and visualizers.
-Some of the algorithms are creating these Datatypes, while others are getting them as input. 
-In order to decouple the creation and several usages of such entities, DataTypes, are defined outside the algorithms 
+In \TVB, DataTypes represent the common language, to be used between different other application parts: 
+like uploaders, analyzers, simulator and visualizers.
+Some of the algorithms are producing these DataTypes, while others are reading them as input. 
+In order to decouple the definition and several usages of such entities, DataTypes are declared outside the algorithms 
 and shared between them. For example an instance of datatype TimeSeriesRegion is created by the Simulator, 
-it can be accepted as input for several visualizers or analyzed by PCA or CossCoherence algorithms.
+and it can be accepted as input for several visualizers or analyzed by PCA and CossCoherence algorithms.
 
-In a more technical definition, \TVB-DataTypes are annotated structures (Python classes) which
-contain one or more data attributes and associated descriptive information, as
+In a more technical definition, \TVB DataTypes are annotated structures (Python classes), which
+contain one or more fields and associated descriptive information, as
 well as methods for operating on the data they contain. The definition of a
-datatype is achieved using \TVB's traiting system, mentioned in previous section.
+DataType is achieved using \TVB's traiting system, mentioned in previous section.
 
 In scientific Python code, it is conventional to provide arguments
 of an algorithm as a "bare" array or collection there of, and sanity
 checks of arguments proceed on the basis of array geometry, for example.
-In \TVB, we consider a \textit{datatype} to be a full, formal description of 
+In \TVB, we consider a \textit{DataType} to be a full, formal description of 
 an entity involved in an algorithm that would be part of \TVB. 
-For example, the \texttt{Connectivity} datatype, which may elsewhere
+For example, the \texttt{Connectivity} DataType, which may elsewhere
 be represented by a simple $N$ by $N$ NumPy array, is written as a class
-in which one of the attributes, \texttt{weights} is a explicitly typed 
+in which one of the attributes, \texttt{weights}, is a explicitly typed 
 \texttt{FloatArray}, and the declaration of this type is complemented by
 explicit label, default values, and documentation strings. 
 
 \begin{lstlisting}
-
 class ConnectivityData(MappedType):
 
   region_labels = arrays.StringArray( 
@@ -146,12 +146,11 @@ class ConnectivityData(MappedType):
 	label="Conduction speed", 
 	default=numpy.array([3.0]), 
 	file_storage=core.FILE_STORAGE_NONE,
-        doc="""... matrix of conduction speeds ...""")
+         doc="""... matrix of conduction speeds ...""")
 
   centres = arrays.PositionArray( 
 	label="Region centres",
         doc="""... locations for the region centers""")
-
 \end{lstlisting}
 
 	\subsubsection{Profile}
@@ -192,13 +191,15 @@ and storing entities which are used at display time in the web interface.
 
 The relational database management is done from the code by using \emph{SQLAlchemy} \texttt{http://www.sqlalchemy.org/}, 
 which offers a transparent manner to connect underneath to either: SQLite or PostgreSQL, as the user chooses at install time.
-When choosing PostgreSQL, the end-user needs to separately install and configure the database, and provide on \TVB
-interface the URL for connection only.
+When choosing PostgreSQL, the end-user needs to separately install and configure the database, and provide in \TVB
+interface only the URL for connection.
+
+\note[ld]{Write more details here. E.g. about GIDs}
 
 
 \subsubsection{Adapters}
 
-While datatypes provide a way of description what data algorithms work with, 
+While DataTypes provide a way of description what data do algorithms work with, 
 sufficing for the typical user looking to write scripts against the
 available libraries, \TVB framework requires algorithms to adhere to 
 a generic interface, which is elsewhere referred to as the Adapter pattern.
@@ -210,6 +211,8 @@ Adapters are derived from the abstract class named \texttt{ABCAdapter} which
 defines the common interface for the adapters with compulsory methods to be implemented like:
 
 \begin{lstlisting}
+class ABCAdapter(object):
+
   @abstractmethod
   def get_input_tree(self):
 
@@ -222,7 +225,6 @@ defines the common interface for the adapters with compulsory methods to be impl
   @abstractmethod
   def get_required_disk_size(self, **kwargs):
 
-  @abstractmethod
   def get_execution_time_approximation(self, **kwargs):
 
   def configure(self, **kwargs):
@@ -231,7 +233,7 @@ defines the common interface for the adapters with compulsory methods to be impl
   def launch(self):
 \end{lstlisting}
 
-Several categories of adapters have been defined: 
+Several categories of adapters have been defined in \TVB: 
 
 \begin{itemize}
 	\item \textit{creators} which are internal algorithms for producing DataType instances. 
