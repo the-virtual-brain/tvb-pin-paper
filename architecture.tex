@@ -76,9 +76,25 @@ The complete list of currently supported traited-attributes is described in Tabl
       		\toprule
       		Traited attribute name    & Description  \\ 
       		\midrule
-		default 	& Default value \\
-		label		& Short text for displaying in UI \\
-		doc		& Longer decsription for current field. To be displayed in UI as help-text \\
+		default 	& Default value for current field. Will be set on any new instance if not specified otherwise in the constructor.  \\
+		console\_default & Define how a default value can be computed for current field, when console interface is enabled. \\
+		range	& Specify the set of accepted values for current field. Mark that this field is usable for parameter space exploration. \\
+
+		label		& Short text for displaying in UI in front of current field. \\
+		doc		& Longer decsription for current field. To be displayed in UI as help-text. \\
+		required	& Mark current field as required for when building a new instance of the parent class. \\
+		locked	& When present and \emph{True}, current field will be displayed as read-only in the web interface. \\
+
+		options	& Attribute present for fields of type \emph{Enumerate}, marking the accepted options. \\
+		filters\_ui	& Filters towards other fields, to be applied in UI. \\
+		select\_multiple & When \emph{True}, current field will be displayed as a select  with multiple options in UI (default is single-select) \\
+		order	& Optional number identifying the index for current field to appear in UI at it. \\
+				& When negative, the field is not displayed at all. Ascending order for indices is considered when displaying. \\
+
+		use\_storage	& When \emph{False}, current field is not stored in database or file storage at all. \\
+		file\_storage	& Valid values for this attribute are: \emph{None} , \emph{HDF5}, \emph{expandable\_HDF5} \\
+					& When \emph{None}, current field is not stored in the file-storage at all. When \emph{HDF5}, we use regular H5 file storage. \\
+					& When \emph{expandable\_HDF5} value is set, a H5 stored in chuncks is used. \\
 		\bottomrule
     	\end{tabularx}
 	\end{table*}
