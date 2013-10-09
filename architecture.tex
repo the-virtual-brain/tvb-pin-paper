@@ -64,7 +64,26 @@ function arguments in the usual way.
 
 So, we have trait-attributes for describing how a certain class will be futher stored in the database and the file-storage system,
 for describing display manners in the web-interface, for documenting fields or classes, 
-and even meta-data on what valid values are allowed on a certain field.
+and even meta-data on what valid values are allowed on a certain field. 
+The complete list of currently supported traited-attributes is described in Table \ref{tab:traits}.
+
+\begin{center}
+	\begin{table*}[ht]
+  	\label{tab:traits}
+  	\caption{TVB currently available Traited attributes}
+
+	\begin{tabularx}{\textwidth}{lll}
+      		\toprule
+      		Traited attribute name    & Description  \\ 
+      		\midrule
+		default 	& Default value \\
+		label		& Short text for displaying in UI \\
+		doc		& Longer decsription for current field. To be displayed in UI as help-text \\
+		\bottomrule
+    	\end{tabularx}
+	\end{table*}
+\end{center}
+
 
 	\subsubsection{DataTypes}
 
@@ -163,34 +182,64 @@ interface the URL for connection only.
 
 \subsubsection{Adapters}
 
-While datatypes provide a way of description what algorithms work with, 
+While datatypes provide a way of description what data algorithms work with, 
 sufficing for the typical user looking to write scripts against the
-available libraries, the web-based UI requires algorithms to adhere to 
+available libraries, \TVB framework requires algorithms to adhere to 
 a generic interface, which is elsewhere referred to as the Adapter pattern.
 Typically, this implies that a class is written that is able to describe
 the collection to datatypes required and a single method to invoke the
 algorithm.
 
 Adapters are derived from the abstract class named \texttt{ABCAdapter} which
-defines the common interface for the adapters with methods...
+defines the common interface for the adapters with compulsory methods to be implemented like:
+
+\begin{lstlisting}
+  @abstractmethod
+  def get_input_tree(self):
+
+  @abstractmethod
+  def get_output(self):
+
+  @abstractmethod
+  def get_required_memory_size(self, **kwargs):
+
+  @abstractmethod
+  def get_required_disk_size(self, **kwargs):
+
+  @abstractmethod
+  def get_execution_time_approximation(self, **kwargs):
+
+  def configure(self, **kwargs):
+
+  @abstractmethod
+  def launch(self):
+\end{lstlisting}
 
 Several categories of adapters have been defined: 
+
 \begin{itemize}
-    \item \textit{analyzers} which allow the interface between libraries
-        containing algorithm for the analysis of the data (wavelets, FastICA,
-        etc.) and the TVB framework and datatypes.
-    \item \textit{creators}
-    \item \textit{exporters} 
-    \item \textit{portlets} 
-    \item \textit{simulator}
-\item \textit{uploaders}: allow the upload of external data into TVB framework
-    such as gifti files of plain csv files.
-\item \textit{visualizers} \note[lp]{derived from the ABCDisplayer abstract class} allow
-    to display the correct datatype.
+	\item \textit{creators} which are internal algorithms for producing DataType instances. 
+		Each creator has one or multiple pages in the web interface, in which the user
+		 configures input parameters and chooses from the available options for computing a particular DataType.
+
+	\item \textit{uploaders}: allow the upload into \TVB framework of external data, 
+    		such as \emph{gifti} files of plain \emph{csv} files.
+
+	\item \textit{simulator} is an adapter wrapping over \TVB simulator library, and adjusting it to fit
+		the workflow mechanisms inside \TVB framework .
+
+	\item \textit{analyzers} which offer the interface between libraries containing algorithms 
+		for the analysis of the data (wavelets, FastICA, BCT, etc.) and the \TVB framework and datatypes.
+
+	\item \textit{visualizers} are derived from the \emph{ABCDisplayer} abstract class, and are preparing  
+		a DataType instance for display. Each Visualizer (Python adapter class) requires a complementary set
+		of JS and HTML files for managing the actual display of data.
+
+	\item \textit{portlets} are wrapper classes for a chain of analyzers and a visualizer at the end of the chain.
+
+	\item \textit{exporters} are utility classes for preparing data in TVB (DataType or group of DataTypes)
+		before export (web download).
 \end{itemize}
-
-
-\note[mw]{Show the adapter for FastICA}
 
 Note that the adapters and datatypes are intended to provide full 
 power and flexibility of the framework; when the simulator is invoked from
@@ -210,19 +259,23 @@ on the abstract base class framework provided by Python's standard library.
 
 \paragraph{Adapting sklearn's FastICA}
 
+\note[mw]{Show the adapter for FastICA}
+
 \paragraph{Interfacing with MATLAB}
 
 One of the well-known libraries for characterizing anatomical 
-and functional connectivity is the Brain Connectivity Toolbox. Because
-it is written in MATLAB, with maintainers who prefer MATLAB, we 
+and functional connectivity is the \emph{Brain Connectivity Toolbox}. 
+Because it is written in MATLAB, with maintainers who prefer MATLAB, we 
 chose not to port routines of the library to Python but instead use
-a MATLAB adapter which runs arbitrary MATLAB code. This generic
-adapter works by generating a wrapper script for the MATLAB code, which
-wraps the code in a try-except clause, and loads and saves the workspace
-before and after execution, 
+a MATLAB adapter which runs arbitrary MATLAB code. 
+
+This generic Matlab adapter works by generating at runtime a script with the MATLAB code, 
+wrapping the script call in Python with a try-except clause,  
+loading and saving the workspace before and after the call,
 generating a workspace \texttt{.mat} file, invoking the MATLAB or Octave
-executable, and loading the resulting workspace file. Despite invocation
-of MATLAB being a relatively slow operation, this works fine in a single
+executable, and loading the resulting workspace file. 
+
+Despite invocation of MATLAB being a relatively slow operation, this works fine in a single
 user situation, and where Octave is available, it is quite fast. In the 
 case that many operations are necessary, they can be batched into the 
 same run.
