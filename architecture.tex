@@ -109,7 +109,7 @@ like uploaders, analyzers, simulator and visualizers.
 Some of the algorithms are producing these DataTypes, while others are reading them as input. 
 In order to decouple the definition and several usages of such entities, DataTypes are declared outside the algorithms 
 and shared between them. For example an instance of datatype TimeSeriesRegion is created by the Simulator, 
-and it can be accepted as input for several visualizers or analyzed by PCA and CossCoherence algorithms.
+and it can be accepted as input for several visualizers or analyzed by PCA and Cross Coherence algorithms.
 
 In a more technical definition, \TVB DataTypes are annotated structures (Python classes), which
 contain one or more fields and associated descriptive information, as
@@ -262,9 +262,9 @@ Several categories of adapters have been defined in \TVB:
 Note that the adapters and datatypes are intended to provide full 
 power and flexibility of the framework; when the simulator is invoked from
 the web-based UI, it is done so through an \texttt{SimulatorAdapter} which,
-despite being relatively complex, is datatypes all the way down.
+despite being relatively complex, is build with \emph{traits} all the way down.
 
-It is reasonable to ask to what such a scheme offers over the more 
+It is reasonable to ask what such a scheme offers over the more 
 conventional approach of Python, where presumably it would have been
 sufficient that each adapter consist of a class with an \texttt{\_\_init\_\_}
 and \texttt{\_\_call\_\_} method, in the case of a function type. 
@@ -272,8 +272,9 @@ We note that because in the case of \TVB, the context in which an object
 is used is more varied, e.g. not simply initialized but loaded through 
 SqlAlchemy's ORM, and that the adapter is required to perform more tasks
 than just initialization and invocation, e.g. provide expected shape of 
-result, it was advantageous to create a distinct set of interfaces built
-on the abstract base class framework provided by Python's standard library.
+result, estimate occupied memory and do not start if insufficient resources are found on current machine,
+ it was advantageous to create a distinct set of interfaces built on top of
+the abstract base class framework provided by Python's standard library.
 
 \paragraph{Adapting sklearn's FastICA}
 
@@ -284,10 +285,10 @@ on the abstract base class framework provided by Python's standard library.
 One of the well-known libraries for characterizing anatomical 
 and functional connectivity is the \emph{Brain Connectivity Toolbox}. 
 Because it is written in MATLAB, with maintainers who prefer MATLAB, we 
-chose not to port routines of the library to Python but instead use
+chose not to port routines of the library to Python but instead build
 a MATLAB adapter which runs arbitrary MATLAB code. 
 
-This generic Matlab adapter works by generating at runtime a script with the MATLAB code, 
+This generic Matlab adapter works by generating at runtime a script with MATLAB code, 
 wrapping the script call in Python with a try-except clause,  
 loading and saving the workspace before and after the call,
 generating a workspace \texttt{.mat} file, invoking the MATLAB or Octave
