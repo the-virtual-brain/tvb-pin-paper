@@ -13,6 +13,23 @@ in combination with \emph{Genshi} templating system, to support the separation o
 
 \TVB uses entities like: Account, Project, Operation, DataType and Workflow, for modeling G-User actions and artifacts. 
 
+ \begin{figure}[!htbp]
+ 	\centering
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_projects.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_graph.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_operations.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_datatype_details.png}}
+	\caption{\TVB Data Organization
+	(A) View all Projects
+	(B) 2D graph display of Operations with their input and output DataTypes 
+	(C) View all Operations in current project with their status, duration, results, etc
+	(D) DataType details and further available operations for it. This menu becomes available after clicking a DataType result from several places in \TVB }
+        \label{fig:project}
+\end{figure}
+
  An \emph{Account} or \emph{User} is needed for accessing  \TVB through the web interface. 
  When \TVB web interface is fired for the first time, the G-User is requested to set the username and password for the first account.
 Later on, people can \emph{register} for other accounts, but for using these new accounts they will need first to get validated by the 
@@ -28,28 +45,13 @@ An operation changes status over time, from \emph{started} into \emph{canceled},
 One operation can have multiple input and output parameters and parameters can be scalars or DataTypes.
 
 A \emph{Workflow} in \TVB is a set of operations with they artifacts, and wraps around a simulation as leading component.
-A workflow can be seen as a default \emph{tag} placed by the system on operations and DataTypes 
+A workflow can be seen as a default \emph{tag} placed by the system on Operations and DataTypes 
 which are logically connected, as resulting one after the other.
-Custom tags can also be added by the end-user both on DataTypes and operations, for tracking data inside a TVB Project.
-	
- \begin{figure}[!htbp]
- 	\centering
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_projects.png}}
-	\\
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_graph.png}}
-	\\
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_operations.png}}
-	\\
-	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_datatype_details.png}}
-	\caption{\TVB Data Organization: 
-	(A) View All Projects
-	(B) 2D graph display of operations with their input and output DataTypes 
-	(C) View all Operations in current project with their status, duration, results, etc
-	(D) DataType details and further available operations for it. This menu becomes available after clicking a DataType result from several places in \TVB }
-        \label{fig:project}
-\end{figure}
+Custom tags can also be added by the end-user both on DataTypes and Operations, for tracking entities inside a Project.
 
 	\subsubsection{Simulator Interface}
+	
+\note[ld]{Fill description for this}
 	
 	\subsubsection{Analysis \& Visualizers}
 
@@ -64,24 +66,6 @@ we have even wrapped the Matlab library \emph{BCT} \url{https://sites.google.com
 
 For each of the DataTypes produced in \TVB, one or multiple visualizers are available.	
 \TVB has couple of  visualizer types, each developed with the technology providing better support on the specific requirements for the visualization in course:
-
-\begin{enumerate}
-
-	\item \emph{WebGL viewers:} are based on \emph{HTML 5 Canvas} element and the \emph{gl} context. 
-	These viewers offer 3D nice display, vectorial zoom support, user interaction with the scene (rotate, translate), quick response 
-	(even when thousands of vertices and edges are to be manipulated) and good resolution for the images exported.
-	
-	\item \emph{SVG viewers:} offer great selection, zoom and scaling effects and extraordinary quality for the exported artifacts, while having 
-	a relatively low number of elements to display on the page. 
-	We use such viewers for manipulating and displaying TimeSeries, Covariance or Cross Coherence DataType results.
-	
-	\item \emph{MPLH5 viewers:} \emph{Matplotlib} has an \emph{HTML 5} backend that we use for viewing someof \TVB DataTypes (like Fourier or Wavelet)
-	\url{https://code.google.com/p/mplh5canvas/}
-	
-	\item \emph{Other} simpler viewers are using JIT \url{http://philogb.github.io/jit/} or FLOT \url{http://www.flotcharts.org/} JS libraries.
-	These are mainly 2D graph displayers for some simple \TVB generated data.
-
-\end{enumerate}
 
  \begin{figure}[!htbp]
 	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_brain.png}}
@@ -98,6 +82,25 @@ For each of the DataTypes produced in \TVB, one or multiple visualizers are avai
 	(D) FLOT: Parameter Space Exploration results grid}
         \label{fig:viewers}
 \end{figure}
+
+\begin{enumerate}
+
+	\item \emph{WebGL viewers:} are based on \emph{HTML 5 Canvas} element and the \emph{gl} context. 
+	These viewers offer 3D nice display, vectorial zoom support, user interaction with the scene (rotate, translate), quick response 
+	(even when thousands of vertices and edges are to be manipulated) and good resolution for the images exported.
+	
+	\item \emph{SVG viewers:} offer great selection, zoom and scaling effects and extraordinary quality for the exported artifacts, while having 
+	a relatively low number of elements to display on the page. 
+	We use such viewers for manipulating and displaying TimeSeries, Covariance or Cross Coherence DataType results.
+	
+	\item \emph{MPLH5 viewers:} \emph{Matplotlib} has an \emph{HTML 5} backend that we use for viewing some of \TVB DataTypes (like Fourier or Wavelet)
+	\url{https://code.google.com/p/mplh5canvas/}
+	
+	\item \emph{Other} simpler viewers in \TVB are using JIT \url{http://philogb.github.io/jit/} or FLOT \url{http://www.flotcharts.org/} - JS libraries.
+	These are mainly 2D graph displayers for some simple \TVB generated data.
+
+\end{enumerate}
+
 
 	\subsubsection{Connectivity Tool}
 
