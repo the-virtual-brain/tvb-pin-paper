@@ -8,48 +8,134 @@ networks.
 
 \subsection{Node dynamics}
 
-	In our models, nodes are not abstract neurons nor necessarily 
-	small groups thereof, but rather large populations of neurons, considered
-	by, for example, the work of Wilson and Cowan. 
+	In \TVB, nodes are not considered to be abstract neurons nor necessarily 
+	small groups thereof, but rather large populations of neurons. 
 
-	\note[mw]{quick list of models \& their relevance}
+	\note[mw] {Highlight use of statistical mode models?}
+
+
+	\note[mw]{Discuss the differing assumption sof mass models. Discuss how
+		the goal is not to reproduce precise traces of neurons (like in the
+		case of Brett's adaptive exponential model) but rather reproduce
+	mass-scale phenomena (oscillation) and network phenomena. }
 
 \subsection{Network structure}
-	
-	The nodes are embedded in two scale network structure. The first of which
-	is derived from empirical measurements of the myelinated corticocortical
-	connectivity, which we shall refer to as the inhomogeneous, large scale
-	structure. An implication of this structure is the inherent delays in 
-	communication due to finite conduction velocity.
 
-	The second form of network structure is prescribed in the case of a 
-	cortical surface by the combination of said surface and a connectivity
-	kernel. Together, these generate a homogeneous, local connectivity. 
-	For the current work, we consider this coupling to be instantaneous.
+	The network of neural masses in TVB simulations directly follows from 
+	a pair of 
+	geometrical constraints on cortical dynamics. The first is the 
+	large-scale white matter fibers that form a non-local and hetergeneous
+	(translation variant) connectivity, either measured by anatomical
+	tracing (CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging. The second
+	is that of horizontal projections along the surface, which are modeled
+	through a translation invarient connectivity kernel, approximating a 
+	neural field. 
 
-	\note[mw]{Need to explain regional \& surface simulations}
+	\subsubsection{Large-scale connectivity}
+
+	The large-scale region level connectivity at the scale of centimeters,
+	resembles more a traditional
+	neural network than a neural field in that neural space is discrete, 
+	each node corresponding to a neuroanatomical region of interest, such
+	as V1, etc. It is at this level that inter-regional delays play a large
+	role. 
+
+	It is often seen in the literature that the inter-node coupling functions
+	\textit{are} part of the node model itself. In \TVB, we have instead 
+	chosen to factor such models into the intrinsic neural mass dynamics, where each 
+	neural mass's equations specify how connectivity contributes to the
+	node dynamics, and the coupling function, which specifies how the activity
+	from each region is mapped through the connectivity matrix. Common coupling 
+	functions are provided such as the linear, difference and periodic functions
+	often used in the literature.
+
+	\subsubsection{Local connectivity}
+
+	The local connectivity of the cortex at the scale of millimeters provides
+	a continuous 2D surface along horizontal projections connect 
+	cortical columns. Such a structure has previously been modeled by
+	neural fields \cite{Amari_1977,Jirsa_1997}. In \TVB, a cortical mesh, 
+	as obtained from structural MRI and simplified, provides a spatial 
+	discretization on which neural masses are placed and connected with a
+	connectivity kernel, itself only a function of the geodesic distance
+	between the two masses, and this is considered to provide an
+	adequate approximation of a neural field, depending on the properties
+	of the mesh and the imaging modalities that sample the activity simulated
+	on the mesh \ref{Spiegler_2013}.
+
+	\TVB currently provides several connectivity kernels, among others, 
+	the Laplacian and Gaussian kernels. Once a cortical surface mesh 
+	and connectivity kernel and its parameters are chosen, the geodesic
+	distance (i.e. the distance along the cortical surface) is evaluated
+	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
+	past which the kernel falls to 0. This results in a sparse matrix that 
+	is used during integration to implement the approximate neural field. 
 
 \subsection{Integration of stochastic delay differential equations}
 
-	Rather unlike other simulation paradigms, both noise and delays are
-	common features of simulations in \TVB. As such, the simulator is equipped
-	with Heun and Euler methods for stochastic integration and the pairwise
-	inter-regional delays are treated in an efficient fashion. 
+	In order to obtain numerical approximations of the neural model 
+	described above, \TVB provides several integrators. For
+	deterministic simulations, the well-known Euler, 
+	Heun and Runge-Kutta 4th order algorithms are available. For stochastic
+	simulations, stochastic Euler and Heun integrators are available, 
+	following recent literature on numerical solutions to stochastic
+	differential equations \cite{Kloeden_1995,Mannella_2002,Mannella_1989}.
 
-	\note[mw]{the general equation here}
+	While the literature on numerical treatment of delayed or 
+	stochastic systems exists, it is less well known how to treat 
+	the presence of both. For the moment, the methods implemented by \TVB
+	treat stochastic integration separately from delays. 
+	This separation conincides with a modeling assumption that in
+	\TVB the dynamical phenomena to be studied are largely determined
+	by the interaction of the network structure and neural mass dynamics, 
+	and that stochastic fluctuations do not fundamentally reorganize the
+	solutions of the system \ref{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
 
-	\note[mw]{Describe handling of delays?}
+	Due to such a separation, the implementation of delays in the
+	regional coupling is performed outside the integration step,
+	by indexing a circular buffer containing the recent simulation 
+	history, and providing a matrix of delayed state data to the 
+	network of neural masses. While the number of pairwise
+	connections rises with $N^2$, only one buffer per region 
+	is stored with a length corresponding to the longest projection
+	from that region.
 
 \subsection{Forward solutions}
 
-	One of the primary goals of the \TVB simulator is to allow for the
-	simulation of empirical whole-brain data, such as EEG or fMRI.
-	\TVB implements several forward solutions as so-called monitors, 
-	including MEG, sEEG, EEG and fMRI. 
+	A primary goal of \TVB is not only to model neural activity itself
+	but just as importantly the imaging modalities common in human 
+	neurosciences, using so-called forward solutions, which allow for
+	the projection of neural activity into sensor space. To account
+	parsimoniously for other ways in which simulated data might be saved, 
+	such as simple temporal averaging, we refer to each of these simply as 
+	\textit{Monitors}, which take as input neural activity and 
+	output a particular projection thereof. In most cases, this 
+	takes the discrete-time form of
 
-	Crucially, given the amount of data \TVB may produce, especially for
-	simulations on a cortical surface, each of the monitors is "on-line"
-	in the sense that is runs in constant space.
+	\[ \hat{y}[j, t] = \sum_{i=1, \tau=1}^{N_W, N_k} W[j, i] K[\tau] y[i, t-\tau] \]
+
+	\noindent where $y[i, t]$ is the amplitude of the $i^{th}$ neural mass at time
+	$t$, $K[\tau]$ is a temporal kernel, and $W[j, i]$ is a spatial kernel,
+	usually projecting the state variable of interest of the $i^{th}$ 
+	neural mass to the $j^{th}$ sensor. 
+
+	Where necessary for computational reasons, monitors employ more than 
+	one internal buffer. The fMRI monitor is one 
+	example: given a typical sampling frequency of simulation may be upward of 
+	64 kHz, and the haemodynamic response function may last several seconds, 
+	requiring many gigabytes of memory for the fMRI monitor alone. Given that 
+	the time-scale of simulation and fMRI differ by several orders of magnitude, 
+	the subsequent averaging and downsampling is entirely justified. 
+
+	In the cases of the EEG and MEG monitors, $K$ implements a simple
+	temporal average, and $W$ consists of a so-called lead-field matrix as typically
+	derived from a combination of structural imaging data of the patient 
+	and the locations and orientations of the neural sources and the locations
+	and orientions of the EEG electrodes and MEG gradiometers and magnetometers. 
+	As the development and implementation of such lead-fields is well developed
+	elsewhere \cite{Jirsa_2002,Nolte2003,Gramfort_2010}, \TVB provides access
+	to the well-known OpenMEEG package, however, the user is free to provide 
+	his or her own.
 
 \subsection{Native code generation for C \& GPU}
 
@@ -57,10 +143,10 @@ networks.
 	functions) have targeted towards a C source code backend, which has
 	allowed for the compilation of simulations to native code loaded 
 	either as a shared library accessed via the \texttt{ctypes} modules
-	or as CUDA kernels accessed via the \texttt{pycuda} module \cite{pycuda}.
+	or as CUDA kernels accessed via the PyCUDA \cite{PyCUDA}.
 	While such an approach may provide speed ups, they depend on the
 	presence of a C compiler and, in the case of GPU, the CUDA toolkit and
-	a compatible graphics card, and in the future, prepacked versions of \TVB
+	a compatible graphics card, and in the future, prepackaged versions of \TVB
 	will include precompiled objects for most kinds of simulations. 
 
 	The approach used in compiling a simulation to native code takes advantage
