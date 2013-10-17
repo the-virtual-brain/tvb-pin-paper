@@ -70,10 +70,11 @@ networks.
 	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
 	past which the kernel falls to 0. This results in a sparse matrix that 
 	is used during integration to implement the approximate neural field. 
+	\note[psl] The Laplacian kernel is not implemented yet.
 
 \subsection{Integration of stochastic delay differential equations}
 
-	In order to obtain numerical approximations of the neural model 
+	In order to obtain numerical approximations of the large-scale brain network model 
 	described above, \TVB provides several integrators. For
 	deterministic simulations, the well-known Euler, 
 	Heun and Runge-Kutta 4th order algorithms are available. For stochastic
