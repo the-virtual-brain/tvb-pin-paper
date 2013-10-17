@@ -53,13 +53,15 @@ make starting from scratch a better idea.
 Many neural network simulators have been developed and published, focusing
 first on abstract rate neurons (in the style of PDP), modelling neurocognitive
 processes, on one hand, and on the other, full multicompartmental neuron
-simulators treating complex spatial geometries, e.g. NEURON.  More recently,
-due to interest in the computational properties of spiking neurons and their
-relevance to experimental observations, simulators targeting specifically
-spiking neurons have been prominent, e.g. Brian.
+simulators treating complex spatial geometries, e.g. NEURON \cite{Hines_2001}.
+More recently, due to interest in the computational properties of spiking 
+neurons and their relevance to experimental observations, simulators targeting
+specifically spiking neurons have been prominent, e.g. Brian 
+\cite{Goodman_2009}.
 
 However, another level description of neural dynamics has been treated
-in the literature of neural mass models and neural fields. Here, the spatial
+in the literature of neural mass models and neural fields 
+\cite{Deco_2008a, Coombes_2010}. Here, the spatial
 extent of the modeled dynamics is far larger and hence permits networks 
 thereof to scale reasonably to the entire cortex, under the assumptions 
 of the models, when combined with empirical measurements of cortico-
@@ -84,4 +86,7 @@ The architecture of \TVB had been prototyped in Python, and in turn, both the
 language and the scientific ecosystem were more than rich enough to support
 continued developed entirely within Python, of both the architecutre and the
 simulator, in addition to it being a general purpose language. 
+\note[sk]{Perhaps: The benifits gained, when dealing with contributors of, 
+shall we say, varying backgrounds, by Python's strong focus on style 
+conventions.}
 

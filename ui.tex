@@ -279,6 +279,9 @@ sim.monitors{2}.class = 'Raw';
 sim.monitors{2}.period = 1.0; % ms
 \end{lstlisting}
 
+\note[sk]{Raw monitor has no period, or rather the period can't be set as it is
+fixed as the integration time step...}
+
 Lastly, we submit the struct as a new simulation
 
 \begin{lstlisting}
