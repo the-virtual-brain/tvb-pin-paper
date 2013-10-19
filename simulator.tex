@@ -13,6 +13,18 @@ networks.
 
 	\note[mw] {Highlight use of statistical mode models?}
 
+	\note[sk]{I'd suggest focusing on different models. The implementation
+	    of the mode decomposition, which is based on the papers, isn't 
+	    functional as a generic decomposition -- it lacks a proper 
+	    normalisation. Done properly you should be able to vary the number of 
+	    modes and in doing so not qualitatively alter the dynamics but rather 
+	    approach the ``true'' ensemble dynamics as you increase the number of 
+	    modes, but this isn't possible as the equations stand, which in reality 
+	    means that these models are actually just static high dimensional 
+	    models -- that is, without an ability to modify the number of modes 
+	    meaningfully, they could be equivalently recast as models with 3 times
+	    the number of state variables.}
+
 
 	\note[mw]{Discuss the differing assumption sof mass models. Discuss how
 		the goal is not to reproduce precise traces of neurons (like in the
@@ -28,7 +40,12 @@ networks.
 	(translation variant) connectivity, either measured by anatomical
 	tracing (CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging. The second
 	is that of horizontal projections along the surface, which are modeled
-	through a translation invarient connectivity kernel, approximating a 
+	through a translation invarient
+	\note[sk]{Not technically true, using singular parameters will produce 
+	this but that's only a limited subset of the capability, spatially 
+	inhomogeneous parameters are supported -- thus being more general than
+	the restricted case of translational invariance} 
+	connectivity kernel, approximating a 
 	neural field. 
 
 	\subsubsection{Large-scale connectivity}
@@ -61,7 +78,11 @@ networks.
 	between the two masses, and this is considered to provide an
 	adequate approximation of a neural field, depending on the properties
 	of the mesh and the imaging modalities that sample the activity simulated
-	on the mesh \ref{Spiegler_2013}.
+	on the mesh \cite{Spiegler_2013}. 
+	\note[sk]{The implementation of the local connectivity kernel is such
+	that is can be re-purposed as a discrete Laplace-Beltrami operator,
+	allowing for the implementation of true neural-field models that 
+	use a second-order spatial derivative as their explicit spatial term.}
 
 	\TVB currently provides several connectivity kernels, among others, 
 	the Laplacian and Gaussian kernels. Once a cortical surface mesh 
@@ -77,7 +98,10 @@ networks.
 	In order to obtain numerical approximations of the large-scale brain network model 
 	described above, \TVB provides several integrators. For
 	deterministic simulations, the well-known Euler, 
-	Heun and Runge-Kutta 4th order algorithms are available. For stochastic
+	Heun and Runge-Kutta 4th order 
+    \note[sk]{Probably best not to mention rk4 as it's only available 
+    for isolated model integration, ie no networked delays...}
+	algorithms are available. For stochastic
 	simulations, stochastic Euler and Heun integrators are available, 
 	following recent literature on numerical solutions to stochastic
 	differential equations \cite{Kloeden_1995,Mannella_2002,Mannella_1989}.
@@ -90,7 +114,7 @@ networks.
 	\TVB the dynamical phenomena to be studied are largely determined
 	by the interaction of the network structure and neural mass dynamics, 
 	and that stochastic fluctuations do not fundamentally reorganize the
-	solutions of the system \ref{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
+	solutions of the system \cite{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
 
 	Due to such a separation, the implementation of delays in the
 	regional coupling is performed outside the integration step,
@@ -100,6 +124,9 @@ networks.
 	connections rises with $N^2$, only one buffer per region 
 	is stored with a length corresponding to the longest projection
 	from that region.
+	\note[sk]{Unless something has changed, I'm fairly sure the 
+	length of the history is set based on the longest projection
+	of the whole network and not specific per region...}
 
 \subsection{Forward solutions}
 
@@ -233,7 +260,15 @@ networks.
 		\label{fig:gpu_pse}
 	\end{figure}
 
-	As can be seen in the listing, the calculations
+	\note[sk]{One figure or two, re captions}
+
+	\note[sk]{Specify hardware (GPU/CPU) and whether Numpy is mkl-linked, to 
+	    provide a more solid foundation for timing comparisons...}
+
+	\note[sk]{It would be interesting to see a longer run (say a few seconds)
+	    to show if/how-quickly the error grows...}
+
+	As can be seen in the listing \note[sk]{can listings be numbered and labelled...}, the calculations
 	in native code are performed with 32-bit floating point numbers, and it
 	is reasonable to ask if this is numerically accurate. In Fig 
 	\ref{fig:gpu_pse}, we present a parameter space exploration performed with
@@ -246,7 +281,7 @@ networks.
 	 \begin{figure}
 		{\includegraphics[width=0.48\textwidth]{images/gpu_acceleration.png}}
 		\caption{}
-		\label{fig:gpu_pse}
+		\label{fig:gpu_acceleration}
 	\end{figure}
 
 	This approach allows significant acceleration of parameter sweeps in the
@@ -254,7 +289,7 @@ networks.
 	advantage of the fact that in many cases, only numerical values vary
 	between different threads and not memory access patterns. Where one of the
 	dimensions of a parameter sweep implies changing memory access patterns, 
-	for example conduction velocity, it is advantageous to reorder the parameters,
+	for example conduction speed, it is advantageous to reorder the parameters,
 	so that such memory varying parameters only change between grids of GPU
 	threads and not within.
 

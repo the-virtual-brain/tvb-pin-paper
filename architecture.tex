@@ -117,7 +117,7 @@ well as methods for operating on the data they contain. The definition of a
 DataType is achieved using \TVB's traiting system, mentioned in previous section.
 
 In scientific Python code, it is conventional to provide arguments
-of an algorithm as a "bare" array or collection there of, and sanity
+of an algorithm as a ``bare'' array or collection there of, and sanity
 checks of arguments proceed on the basis of array geometry, for example.
 In \TVB, we consider a \textit{DataType} to be a full, formal description of 
 an entity involved in an algorithm that would be part of \TVB. 
@@ -168,7 +168,7 @@ in \TVB are: \emph{command profile}, \emph{deployment profile} (with web interfa
 
 	\subsubsection{\TVB Specific Datatypes}
 
-\note[lp]{Table 2 "TVB datatypes" of FIN article might be interesting here?}
+\note[lp]{Table 2 ``TVB datatypes'' of FIN article might be interesting here?}
 
 	\subsection{\TVB Framework}
 
@@ -283,7 +283,8 @@ the abstract base class framework provided by Python's standard library.
 \paragraph{Interfacing with MATLAB}
 
 One of the well-known libraries for characterizing anatomical 
-and functional connectivity is the \emph{Brain Connectivity Toolbox}. 
+and functional connectivity is the \emph{Brain Connectivity Toolbox} 
+\cite{Rubinov_2010}. 
 Because it is written in MATLAB, with maintainers who prefer MATLAB, we 
 chose not to port routines of the library to Python but instead build
 a MATLAB adapter which runs arbitrary MATLAB code. 
