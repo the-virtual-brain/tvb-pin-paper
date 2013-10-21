@@ -9,27 +9,61 @@ networks.
 \subsection{Node dynamics}
 
 	In \TVB, nodes are not considered to be abstract neurons nor necessarily 
-	small groups thereof, but rather large populations of neurons. 
+	small groups thereof, but rather large populations of neurons. Concretely, 
+	the main assumption of the neural mass modeling approach in TVB is that
+	large pools of neurons on the millimeter scale are strongly approximated
+	by population level equations describing the major statistical modes of 
+	neural dynamics. Often, averaging techniques are employed, though techniques
+	retaining several modes have been developed \cite{Stefanescu_2011}.
+	Such an approach is certainly not new; one of the early
+	examples of this approach consist of the well known Wilson-Cowan equations
+	\cite{Wilson_1973}. Nevertheless, there are important differences in the
+	the assumptions and goals from modeling of individual neurons, where the
+	goal may be to reproduce correct spike timing or predict the effect of 
+	a specific neurotransmitter. A second difference lies in coupling:
+	chemical coupling is often assumed to be pulsatile, or discrete, between neurons, whereas
+	it is considered continuous.
+	Typically the goal of neural mass modeling
+	is to study the dynamics that emerge from the interaction of two
+	or more neural masses and the network conditions required for stability
+	of a particular spatiotemporal pattern. In the following, we shall 
+	briefly discuss some of the models available in TVB.
 
-	\note[mw] {Highlight use of statistical mode models?}
+	As we have noted, many neural mass models have been developed. One of
+	the more prominent examples in the systems neuroscience literature is 
+	that the Jansen-Rit model of rhythms and evoked responses arising from
+	coupled cortical column \cite{Jansen_1995}. 
+	\note[mw]{Continue description}.
+	Advantages of the Jansen-Rit model stem from the connection made
+	between empirical studies of neural tissue and the model's parameters, 
+	making it easier in certain cases to make concrete predictions about
+	the relation between a dynamical regime and its neurobiological 
+	mechanism. However, because the form of the model used often employs
+	at least six dimensions, it is not always clear how to analyze or
+	visualize. Lastly, the model requires frequent computation of exponentials,
+	requiring considerable computational time. 
 
-	\note[sk]{I'd suggest focusing on different models. The implementation
-	    of the mode decomposition, which is based on the papers, isn't 
-	    functional as a generic decomposition -- it lacks a proper 
-	    normalisation. Done properly you should be able to vary the number of 
-	    modes and in doing so not qualitatively alter the dynamics but rather 
-	    approach the ``true'' ensemble dynamics as you increase the number of 
-	    modes, but this isn't possible as the equations stand, which in reality 
-	    means that these models are actually just static high dimensional 
-	    models -- that is, without an ability to modify the number of modes 
-	    meaningfully, they could be equivalently recast as models with 3 times
-	    the number of state variables.}
+	For these reasons, it is often desirable to have a simpler mathematical 
+	model, which may be reproduce the same qualitative phenomena as other 
+	models, implemented with fewer and simpler equations. Such is the motivation
+	for the generic two-dimensional oscillator model provided by TVB. 
+	\note[mw]{Continue}. Model produces oscillations, damped, spike-like or 
+	sinusoidal activations, while requiring less time to solve.
 
+	However, the modeler's goals may not lead to either the Jansen-Rit or 
+	generic 2D oscillator, and several other mass models are provided by TVB:
+	the previously mentioned Wilson-Cowan description of functional dynamics of
+	neural tissue, the Kuramoto model describing synchronization, two and 
+	three dimensional mode-level models describing populations with 
+	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008} are
+	among the available models in TVB. 
 
-	\note[mw]{Discuss the differing assumption sof mass models. Discuss how
-		the goal is not to reproduce precise traces of neurons (like in the
-		case of Brett's adaptive exponential model) but rather reproduce
-	mass-scale phenomena (oscillation) and network phenomena. }
+	Again, should any of these be insufficient, a new model can be implemented
+	with minimal effort by subclassing a base \texttt{Model} class and providing a 
+	\texttt{dfun} method to compute the right hand sides of the differential 
+	equations. Please refer to the \texttt{tvb.simulator.models} module for 
+	examples.
+	
 
 \subsection{Network structure}
 
