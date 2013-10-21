@@ -1,4 +1,4 @@
-The \TVB simulator resembles popular neural network simulators in 
+The TVB simulator resembles popular neural network simulators in 
 many fundamental ways, both mathematically and in terms of informatics 
 structures, however we have found it necessary to introduce auxiliary
 concepts particularly useful in the modeling of large scale brain 
@@ -8,7 +8,7 @@ networks.
 
 \subsection{Node dynamics}
 
-	In \TVB, nodes are not considered to be abstract neurons nor necessarily 
+	In TVB, nodes are not considered to be abstract neurons nor necessarily 
 	small groups thereof, but rather large populations of neurons. Concretely, 
 	the main assumption of the neural mass modeling approach in TVB is that
 	large pools of neurons on the millimeter scale are strongly approximated
@@ -92,7 +92,7 @@ networks.
 	role. 
 
 	It is often seen in the literature that the inter-node coupling functions
-	\textit{are} part of the node model itself. In \TVB, we have instead 
+	\textit{are} part of the node model itself. In TVB, we have instead 
 	chosen to factor such models into the intrinsic neural mass dynamics, where each 
 	neural mass's equations specify how connectivity contributes to the
 	node dynamics, and the coupling function, which specifies how the activity
@@ -105,7 +105,7 @@ networks.
 	The local connectivity of the cortex at the scale of millimeters provides
 	a continuous 2D surface along horizontal projections connect 
 	cortical columns. Such a structure has previously been modeled by
-	neural fields \cite{Amari_1977,Jirsa_1997}. In \TVB, a cortical mesh, 
+	neural fields \cite{Amari_1977,Jirsa_1997}. In TVB, a cortical mesh, 
 	as obtained from structural MRI and simplified, provides a spatial 
 	discretization on which neural masses are placed and connected with a
 	connectivity kernel, itself only a function of the geodesic distance
@@ -118,7 +118,7 @@ networks.
 	allowing for the implementation of true neural-field models that 
 	use a second-order spatial derivative as their explicit spatial term.}
 
-	\TVB currently provides several connectivity kernels, among others, 
+	TVB currently provides several connectivity kernels, among others, 
 	the Laplacian and Gaussian kernels. Once a cortical surface mesh 
 	and connectivity kernel and its parameters are chosen, the geodesic
 	distance (i.e. the distance along the cortical surface) is evaluated
@@ -129,7 +129,7 @@ networks.
 \subsection{Integration of stochastic delay differential equations}
 
 	In order to obtain numerical approximations of the neural model 
-	described above, \TVB provides several integrators. For
+	described above, TVB provides several integrators. For
 	deterministic simulations, the well-known Euler, 
 	Heun and Runge-Kutta 4th order 
     \note[sk]{Probably best not to mention rk4 as it's only available 
@@ -141,10 +141,10 @@ networks.
 
 	While the literature on numerical treatment of delayed or 
 	stochastic systems exists, it is less well known how to treat 
-	the presence of both. For the moment, the methods implemented by \TVB
+	the presence of both. For the moment, the methods implemented by TVB
 	treat stochastic integration separately from delays. 
 	This separation conincides with a modeling assumption that in
-	\TVB the dynamical phenomena to be studied are largely determined
+	TVB the dynamical phenomena to be studied are largely determined
 	by the interaction of the network structure and neural mass dynamics, 
 	and that stochastic fluctuations do not fundamentally reorganize the
 	solutions of the system \cite{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
@@ -163,7 +163,7 @@ networks.
 
 \subsection{Forward solutions}
 
-	A primary goal of \TVB is not only to model neural activity itself
+	A primary goal of TVB is not only to model neural activity itself
 	but just as importantly the imaging modalities common in human 
 	neurosciences, using so-called forward solutions, which allow for
 	the projection of neural activity into sensor space. To account
@@ -194,7 +194,7 @@ networks.
 	and the locations and orientations of the neural sources and the locations
 	and orientions of the EEG electrodes and MEG gradiometers and magnetometers. 
 	As the development and implementation of such lead-fields is well developed
-	elsewhere \cite{Jirsa_2002,Nolte2003,Gramfort_2010}, \TVB provides access
+	elsewhere \cite{Jirsa_2002,Nolte2003,Gramfort_2010}, TVB provides access
 	to the well-known OpenMEEG package, however, the user is free to provide 
 	his or her own.
 
@@ -207,7 +207,7 @@ networks.
 	or as CUDA kernels accessed via the PyCUDA \cite{PyCUDA}.
 	While such an approach may provide speed ups, they depend on the
 	presence of a C compiler and, in the case of GPU, the CUDA toolkit and
-	a compatible graphics card, and in the future, prepackaged versions of \TVB
+	a compatible graphics card, and in the future, prepackaged versions of TVB
 	will include precompiled objects for most kinds of simulations. 
 
 	The approach used in compiling a simulation to native code takes advantage
@@ -332,7 +332,7 @@ networks.
 
 
 
-\subsection{Other simulators compared to \TVB}
+\subsection{Other simulators compared to TVB}
 
 	Brian should be a particular focus in this section, as it may
 	be one of the closest. 

@@ -1,23 +1,23 @@
 
-\TVB is logically and technically divided at deploy time into a scientific library and a framework package, 
+TVB is logically and technically divided at deploy time into a scientific library and a framework package, 
 where the scientific library includes datatypes, basic analyses and the simulator as its central piece,
 while the framework handles execution infrastructure, the web-based user interface and data storage. 
- \TVB Scientific Library can function independently, as a Python module, but \TVB Framework needs 
+ TVB Scientific Library can function independently, as a Python module, but TVB Framework needs 
 the scientific library to wrap around it at runtime.
 
-\TVB source code is available for download on Github at \url{https://github.com/the-virtual-brain/}. 
+TVB source code is available for download on Github at \url{https://github.com/the-virtual-brain/}. 
 Previous Git and Python knowledge is required for contributing.
-Although you could independently install Python and the rest of \TVB dependencies on your machine, 
+Although you could independently install Python and the rest of TVB dependencies on your machine, 
 and then use the Github code as a simple local clone, we recommend you to download \emph{TVB\_ Distribution}
 from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on Github and further use
 \emph{contributor\_setup} script, from inside \emph{TVB\_ Distribution} folder, to link the two. 
-In this recommended use-case, you will have all \TVB dependencies already prepared and at your disposal, 
+In this recommended use-case, you will have all TVB dependencies already prepared and at your disposal, 
 as part of \emph{TVB\_Distribution}.
 
  \begin{figure*}
         \centering
         \includegraphics[width=0.90\textwidth]{images/architecture.jpg}
-        \caption{\TVB architecture: 
+        \caption{TVB architecture: 
         Yellow blocks are part of the Scientific Library of TVB, while the green blocks are part of TVB Framework.
         TVB provides two independent interfaces, depending on the interaction type wanted by the end-user (web or console).
         TVB Storage layer is compulsory for the web interface, but it can be switched on/off for the console interface.
@@ -27,26 +27,26 @@ as part of \emph{TVB\_Distribution}.
 
 	\subsection{Basic Concepts}
 
-\TVB has been developed with generality and modularity in mind. The central idea is data-oriented in a sense that
+TVB has been developed with generality and modularity in mind. The central idea is data-oriented in a sense that
 data is fed and stored into the system and can be transformed into another type
 of data (including visualization) through operations provided by an external
-library (including \TVB scientific library, but not restricted to it) that have
-been \emph{adapted} to the framework. As a consequence, central concepts in \TVB
+library (including TVB scientific library, but not restricted to it) that have
+been \emph{adapted} to the framework. As a consequence, central concepts in TVB
 are \emph{datatypes} i.e. types of data that can be handled in the framework and
 \emph{adapters} i.e. classes that allow to interface/adapt external libraries
 to  the datatypes handled by within the framework.
 
-	\subsubsection{\TVB Traits}
+	\subsubsection{TVB Traits}
 
 System is inspired by the traiting module developed by Enthought \cite{Enthought_2001}.
-Out traiting system offers a way to annotate fields and classes from inside \TVB, with specific trait-attributes,
+Out traiting system offers a way to annotate fields and classes from inside TVB, with specific trait-attributes,
 which will be further used in different layers of the application.
-Trait-attributes are synonym with meta-data for \TVB classes and their fields.
+Trait-attributes are synonym with meta-data for TVB classes and their fields.
 
-Because an explicit goal of \TVB was to provide a user interface to each of the
+Because an explicit goal of TVB was to provide a user interface to each of the
 entities and algorithms contained within, it is necessary at some point to
 provide metadata on how to built that interface. A \texttt{traits} system was developed, similar to that of
-IPython or EPD, was developed, allowing for fields on a \TVB class to
+IPython or EPD, was developed, allowing for fields on a TVB class to
 be written out with full metadata on it. An extensive set of  building 
 blocks are already implements from numeric types and arrays to lists, tuples, 
 string, and dictionaries.
@@ -104,23 +104,23 @@ The complete list of currently supported traited-attributes is described in Tabl
 
 	\subsubsection{DataTypes}
 
-In \TVB, DataTypes represent the common language, to be used between different other application parts: 
+In TVB, DataTypes represent the common language, to be used between different other application parts: 
 like uploaders, analyzers, simulator and visualizers.
 Some of the algorithms are producing these DataTypes, while others are reading them as input. 
 In order to decouple the definition and several usages of such entities, DataTypes are declared outside the algorithms 
 and shared between them. For example an instance of datatype TimeSeriesRegion is created by the Simulator, 
 and it can be accepted as input for several visualizers or analyzed by PCA and Cross Coherence algorithms.
 
-In a more technical definition, \TVB DataTypes are annotated structures (Python classes), which
+In a more technical definition, TVB DataTypes are annotated structures (Python classes), which
 contain one or more fields and associated descriptive information, as
 well as methods for operating on the data they contain. The definition of a
-DataType is achieved using \TVB's traiting system, mentioned in previous section.
+DataType is achieved using TVB's traiting system, mentioned in previous section.
 
 In scientific Python code, it is conventional to provide arguments
 of an algorithm as a ``bare'' array or collection there of, and sanity
 checks of arguments proceed on the basis of array geometry, for example.
-In \TVB, we consider a \textit{DataType} to be a full, formal description of 
-an entity involved in an algorithm that would be part of \TVB. 
+In TVB, we consider a \textit{DataType} to be a full, formal description of 
+an entity involved in an algorithm that would be part of TVB. 
 For example, the \texttt{Connectivity} DataType, which may elsewhere
 be represented by a simple $N$ by $N$ NumPy array, is written as a class
 in which one of the attributes, \texttt{weights}, is a explicitly typed 
@@ -155,26 +155,26 @@ class ConnectivityData(MappedType):
 
 	\subsubsection{Profile}
 
-\TVB uses the notion of \emph{profile} to identify in what context the application is currently running,
+TVB uses the notion of \emph{profile} to identify in what context the application is currently running,
 and thus what components are expected to be plugged and how.
 
-For example, when \TVB scientific library is used alone, a specific profile (\emph{library profile}) class 
+For example, when TVB scientific library is used alone, a specific profile (\emph{library profile}) class 
 gets linked as current profile, which, in this case, disables data storage and the web interface. Other profiles available
-in \TVB are: \emph{command profile}, \emph{deployment profile} (with web interface), and \emph{test profiles}.
+in TVB are: \emph{command profile}, \emph{deployment profile} (with web interface), and \emph{test profiles}.
 
-	\subsection{\TVB Scientific Library}
+	\subsection{TVB Scientific Library}
 
 	\subsubsection{General description}
 
-	\subsubsection{\TVB Specific Datatypes}
+	\subsubsection{TVB Specific Datatypes}
 
 \note[lp]{Table 2 ``TVB datatypes'' of FIN article might be interesting here?}
 
-	\subsection{\TVB Framework}
+	\subsection{TVB Framework}
 
 	\subsubsection{General description}
 
-\TVB framework provides a storage back-end, workflow management and a number of features to
+TVB framework provides a storage back-end, workflow management and a number of features to
 support collaborative work. The framework supports two user interfaces: web-based graphical interface or the
 console interface for advanced user and developers.
 
@@ -191,7 +191,7 @@ and storing entities which are used at display time in the web interface.
 
 The relational database management is done from the code by using \emph{SQLAlchemy} \texttt{http://www.sqlalchemy.org/}, 
 which offers a transparent manner to connect underneath to either: SQLite or PostgreSQL, as the user chooses at install time.
-When choosing PostgreSQL, the end-user needs to separately install and configure the database, and provide in \TVB
+When choosing PostgreSQL, the end-user needs to separately install and configure the database, and provide in TVB
 interface only the URL for connection.
 
 \note[ld]{Write more details here. E.g. about GIDs}
@@ -201,7 +201,7 @@ interface only the URL for connection.
 
 While DataTypes provide a way of description what data do algorithms work with, 
 sufficing for the typical user looking to write scripts against the
-available libraries, \TVB framework requires algorithms to adhere to 
+available libraries, TVB framework requires algorithms to adhere to 
 a generic interface, which is elsewhere referred to as the Adapter pattern.
 Typically, this implies that a class is written that is able to describe
 the collection to datatypes required and a single method to invoke the
@@ -233,21 +233,21 @@ class ABCAdapter(object):
   def launch(self):
 \end{lstlisting}
 
-Several categories of adapters have been defined in \TVB: 
+Several categories of adapters have been defined in TVB: 
 
 \begin{itemize}
 	\item \textit{creators} which are internal algorithms for producing DataType instances. 
 		Each creator has one or multiple pages in the web interface, in which the user
 		 configures input parameters and chooses from the available options for computing a particular DataType.
 
-	\item \textit{uploaders}: allow the upload into \TVB framework of external data, 
+	\item \textit{uploaders}: allow the upload into TVB framework of external data, 
     		such as \emph{gifti} files of plain \emph{csv} files.
 
-	\item \textit{simulator} is an adapter wrapping over \TVB simulator library, and adjusting it to fit
-		the workflow mechanisms inside \TVB framework .
+	\item \textit{simulator} is an adapter wrapping over TVB simulator library, and adjusting it to fit
+		the workflow mechanisms inside TVB framework .
 
 	\item \textit{analyzers} which offer the interface between libraries containing algorithms 
-		for the analysis of the data (wavelets, FastICA, BCT, etc.) and the \TVB framework and datatypes.
+		for the analysis of the data (wavelets, FastICA, BCT, etc.) and the TVB framework and datatypes.
 
 	\item \textit{visualizers} are derived from the \emph{ABCDisplayer} abstract class, and are preparing  
 		a DataType instance for display. Each Visualizer (Python adapter class) requires a complementary set
@@ -268,7 +268,7 @@ It is reasonable to ask what such a scheme offers over the more
 conventional approach of Python, where presumably it would have been
 sufficient that each adapter consist of a class with an \texttt{\_\_init\_\_}
 and \texttt{\_\_call\_\_} method, in the case of a function type. 
-We note that because in the case of \TVB, the context in which an object
+We note that because in the case of TVB, the context in which an object
 is used is more varied, e.g. not simply initialized but loaded through 
 SqlAlchemy's ORM, and that the adapter is required to perform more tasks
 than just initialization and invocation, e.g. provide expected shape of 
