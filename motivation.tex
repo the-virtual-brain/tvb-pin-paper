@@ -11,8 +11,8 @@ empirical results has remained a challenge due to several factors:
 	\item The forward solutions required to obtain simulated M/EEG \& fMRI
 	data are non trivial, requiring interaction with several pieces of software
 
-	\item Published simulation methods for stochastic, delayed systems on
-		surfaces are almost non existent (XPPAUT is a notable exception).
+	\item Published simulation methods for stochastic, delayed systems 
+		are almost non existent (XPPAUT \cite{XPPAUT} is a notable exception).
 		Efficient handling of $N^2$ delays requires custom routines.
 
 	\item Managing all of the different computational pieces is typically
@@ -84,9 +84,8 @@ descriptors, which were extensively used in \TVB's architecture.
 
 The architecture of \TVB had been prototyped in Python, and in turn, both the
 language and the scientific ecosystem were more than rich enough to support
-continued developed entirely within Python, of both the architecutre and the
-simulator, in addition to it being a general purpose language. 
-\note[sk]{Perhaps: The benifits gained, when dealing with contributors of, 
-shall we say, varying backgrounds, by Python's strong focus on style 
-conventions.}
+continued developed entirely within Python, of both the architecture and the
+simulator, in addition to it being a general purpose language. Lastly, Python's
+emphasis on readability and idiomatic style facilitates integration of 
+code contributions from programmers with disparate backgrounds.
 
