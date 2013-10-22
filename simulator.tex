@@ -47,40 +47,41 @@ networks.
 	model, which may be reproduce the same qualitative phenomena as other 
 	models, implemented with fewer and simpler equations. Such is the motivation
 	for the generic two-dimensional oscillator model provided by TVB. 
-	\note[mw]{Continue}. Model produces oscillations, damped, spike-like or 
+	\note[mw]{Continue, expand:} Model produces oscillations, damped, spike-like or 
 	sinusoidal activations, while requiring less time to solve.
 
 	However, the modeler's goals may not lead to either the Jansen-Rit or 
 	generic 2D oscillator, and several other mass models are provided by TVB:
 	the previously mentioned Wilson-Cowan description of functional dynamics of
-	neural tissue, the Kuramoto model describing synchronization, two and 
+	neural tissue \cite{Wilson_1972}, the Kuramoto model of synchronization \cite{Kuramoto1975}, two and 
 	three dimensional mode-level models describing populations with 
 	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008} are
-	among the available models in TVB. 
-
+	among the available models in TVB.  
 	Again, should any of these be insufficient, a new model can be implemented
 	with minimal effort by subclassing a base \texttt{Model} class and providing a 
 	\texttt{dfun} method to compute the right hand sides of the differential 
 	equations. Please refer to the \texttt{tvb.simulator.models} module for 
 	examples.
-	
+
+	Because not all of the state variables of a model have the same meaning,
+	for each of the models, we note two sets of variables, 
+	coupling variables, which must be propagated by the connectivity to 
+	provide input, and variables of interest whose values are recorded by
+	monitors and saved for further analysis. 
 
 \subsection{Network structure}
 
 	The network of neural masses in TVB simulations directly follows from 
 	a pair of 
 	geometrical constraints on cortical dynamics. The first is the 
-	large-scale white matter fibers that form a non-local and hetergeneous
+	large-scale white matter fibers that form a non-local and heterogeneous
 	(translation variant) connectivity, either measured by anatomical
 	tracing (CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging. The second
-	is that of horizontal projections along the surface, which are modeled
-	through a translation invarient
-	\note[sk]{Not technically true, using singular parameters will produce 
-	this but that's only a limited subset of the capability, spatially 
-	inhomogeneous parameters are supported -- thus being more general than
-	the restricted case of translational invariance} 
-	connectivity kernel, approximating a 
-	neural field. 
+	is that of horizontal projections along the surface, which are 
+	usually modeled through a translationally invariant connectivity kernel
+	though as with most parameters in TVB, spatially inhomogeneity
+	is supported as well due to the use of generic NumPy operations which
+	broadcast dimensions automatically. 
 
 	\subsubsection{Large-scale connectivity}
 
@@ -128,14 +129,9 @@ networks.
 
 \subsection{Integration of stochastic delay differential equations}
 
-	In order to obtain numerical approximations of the neural model 
-	described above, TVB provides several integrators. For
-	deterministic simulations, the well-known Euler, 
-	Heun and Runge-Kutta 4th order 
-    \note[sk]{Probably best not to mention rk4 as it's only available 
-    for isolated model integration, ie no networked delays...}
-	algorithms are available. For stochastic
-	simulations, stochastic Euler and Heun integrators are available, 
+	In order to obtain numerical approximations of the network model 
+	described above, TVB provides both deterministic and stochastic
+	Euler and Heun integrators,
 	following recent literature on numerical solutions to stochastic
 	differential equations \cite{Kloeden_1995,Mannella_2002,Mannella_1989}.
 
@@ -154,12 +150,13 @@ networks.
 	by indexing a circular buffer containing the recent simulation 
 	history, and providing a matrix of delayed state data to the 
 	network of neural masses. While the number of pairwise
-	connections rises with $N^2$, only one buffer per region 
-	is stored with a length corresponding to the longest projection
-	from that region.
-	\note[sk]{Unless something has changed, I'm fairly sure the 
-	length of the history is set based on the longest projection
-	of the whole network and not specific per region...}
+	connections rises with $n_{region}^2$, where $n_{region}$ is
+	the number of regions in the large-scale connectivity, 
+	a single buffer is used, with a shape
+	$(horizon, n_{cvar}, n_{region})$ where $horizon = max(delay) + 1$,
+	and
+	$n_{cvar}$ is the number of coupling variables. Such a scheme helps 
+	lower the memory requirements of integrated the delay equations.
 
 \subsection{Forward solutions}
 
@@ -198,7 +195,7 @@ networks.
 	to the well-known OpenMEEG package, however, the user is free to provide 
 	his or her own.
 
-\subsection{Native code generation for C \& GPU}
+\subsection{Performance}
 
 	Several of the core components (integrators, mass models, coupling
 	functions) have targeted towards a C source code backend, which has
@@ -337,7 +334,3 @@ networks.
 	Brian should be a particular focus in this section, as it may
 	be one of the closest. 
 
-	- several spiking models in the literature use the notain of a reset
-		condition and potential, for which Brian provides explicit
-		functionality. TVB does not because typically the deterministic
-		dynamics of neural mass models are continuous.
