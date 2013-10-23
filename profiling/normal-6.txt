@@ -1,0 +1,12 @@
+0.000	sid=6 use_surf=4 use_jr=2 use_slow_vc=0
+0.000	import simulator
+22.182	common components
+22.185	connectivity
+22.186	model
+22.190	surface
+26.632	simulator
+26.645	configure
+87.050	create generator
+87.050	first step
+91.045	begin integration loop
+246.701	StopIteration()
