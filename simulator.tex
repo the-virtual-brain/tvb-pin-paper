@@ -2,9 +2,9 @@ The TVB simulator resembles popular neural network simulators in
 many fundamental ways, both mathematically and in terms of informatics 
 structures, however we have found it necessary to introduce auxiliary
 concepts particularly useful in the modeling of large scale brain 
-networks.
-
-% need to cite Andreas' work and 
+networks. In the following, we will highlight some of the interesting
+principles and capabilities of TVB's simulator and give rough characterization
+of the execution time and memory required in typical simulations.
 
 \subsection{Node dynamics}
 
@@ -33,7 +33,6 @@ networks.
 	the more prominent examples in the systems neuroscience literature is 
 	that the Jansen-Rit model of rhythms and evoked responses arising from
 	coupled cortical column \cite{Jansen_1995}. 
-	\note[mw]{Continue description}.
 	Advantages of the Jansen-Rit model stem from the connection made
 	between empirical studies of neural tissue and the model's parameters, 
 	making it easier in certain cases to make concrete predictions about
@@ -47,8 +46,10 @@ networks.
 	model, which may be reproduce the same qualitative phenomena as other 
 	models, implemented with fewer and simpler equations. Such is the motivation
 	for the generic two-dimensional oscillator model provided by TVB. 
-	\note[mw]{Continue, expand:} Model produces oscillations, damped, spike-like or 
-	sinusoidal activations, while requiring less time to solve.
+	Model produces oscillations, damped, spike-like or 
+	sinusoidal activations. While these alone are not interesting, they 
+	permit the study of network phenomena, such as synchronization of rhythms
+	or propagation of evoked potentials, while requiring less time to simulate.
 
 	However, the modeler's goals may not lead to either the Jansen-Rit or 
 	generic 2D oscillator, and several other mass models are provided by TVB:
@@ -183,7 +184,7 @@ networks.
 	64 kHz, and the haemodynamic response function may last several seconds, 
 	requiring many gigabytes of memory for the fMRI monitor alone. Given that 
 	the time-scale of simulation and fMRI differ by several orders of magnitude, 
-	the subsequent averaging and downsampling is entirely justified. 
+	the subsequent averaging and downsampling is justified. 
 
 	In the cases of the EEG and MEG monitors, $K$ implements a simple
 	temporal average, and $W$ consists of a so-called lead-field matrix as typically
@@ -197,8 +198,41 @@ networks.
 
 \subsection{Performance}
 
-	Several of the core components (integrators, mass models, coupling
-	functions) have targeted towards a C source code backend, which has
+	A primary goal of the simulator is to be available as a pure Python package,
+	and secondarily, to be fast enough. We have not found it useful to 
+	develop theoretical estimates of the time and space complexity of the 
+	algorithms, given that much of the heavy lifting is already done in native
+	code by NumPy and other standard libraries. Instead, 
+	in the following, we profile a set of eight characteristic simulations
+	on both memory use, specifically the heap size as measured by Valgrind's 
+	\texttt{massif} tool \cite{valgrind2007}, and function timing as measured by the 
+	\texttt{cProfile} module of the standard library. 
+	
+	Measurements were
+	performed on an HP Z420 workstation, with a single Xeon E5-1650
+	six-core CPU running at 3.20 GHz, L1-3 cache sizes 384 KB, 1536 KB
+	and 12 MB respectively, with main memory 4 x 4 GB DDR3 at 1600 Mhz,
+	running Debian 7.0, with Linux kernel version 3.2.0-4-amd64. 
+	The 64-bit Anaconda Python distribution was used with additional Accelerate
+	pacakge which provides acceleration of common routines based on the 
+	Intel Math Kernel Library. A Git checkout of the trunk branch of TVB 
+	was used with SHA 6c644ab3b5.
+
+	Eight different simulations were performed corresponding to the combinations of
+	either the generic 2D oscillator or Jansen-Rit model, region-only
+	or use of cortical surface, and two conduction speeds, $v_c = 2.0$ and
+	$v_c = 20.0$ (m/s). In each case, a temporal average monitors at 512 Hz
+	is used, and the results are discarded. The region-only simulation was
+	run for a second while the surface simulation was run for 100 ms. 
+
+	
+
+\subsection{Compiling to C}
+
+	Due to the factors cited above for the deviation of Python memory
+	and execution time from any theoretical estimates, 
+	several of the core components (integrators, mass models, coupling
+	functions) have been targeted towards a C source code backend, which has
 	allowed for the compilation of simulations to native code loaded 
 	either as a shared library accessed via the \texttt{ctypes} modules
 	or as CUDA kernels accessed via the PyCUDA \cite{PyCUDA}.
@@ -328,9 +362,4 @@ networks.
 	performed simulataneously on the GPU.
 
 
-
-\subsection{Other simulators compared to TVB}
-
-	Brian should be a particular focus in this section, as it may
-	be one of the closest. 
 

@@ -1,5 +1,5 @@
 draft: *.tex
-	pdflatex main-draft.tex
+	pdflatex main.tex
 
 complete:
 	pdflatex main.tex
