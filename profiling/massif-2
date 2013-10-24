@@ -1,0 +1,2124 @@
+desc: --massif-out-file=massif-2 --time-unit=ms
+cmd: python simulation.py massif 2
+time_unit: ms
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=27254
+mem_heap_B=41100627
+mem_heap_extra_B=595365
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=47500
+mem_heap_B=85456470
+mem_heap_extra_B=653202
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=66862
+mem_heap_B=87029550
+mem_heap_extra_B=653242
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=91913
+mem_heap_B=110425966
+mem_heap_extra_B=700074
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=108445
+mem_heap_B=107160862
+mem_heap_extra_B=701250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=129736
+mem_heap_B=322969679
+mem_heap_extra_B=892321
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=144439
+mem_heap_B=331089015
+mem_heap_extra_B=922457
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=168992
+mem_heap_B=332725895
+mem_heap_extra_B=936633
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=188780
+mem_heap_B=362857007
+mem_heap_extra_B=1013329
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=217791
+mem_heap_B=334660691
+mem_heap_extra_B=886173
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=236832
+mem_heap_B=359134935
+mem_heap_extra_B=946209
+mem_stacks_B=0
+heap_tree=detailed
+n6: 359134935 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 301642607 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 288937108 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 288457116 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 288457116 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 288457116 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 288457116 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 287572476 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 287572476 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 287572476 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 197010688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 197010688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 197010688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 197010688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 125943672 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 125943672 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 125943672 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 124721496 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 124721496 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 124721496 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 124721496 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 101957796 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 71809828 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 71809828 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 71809828 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 71809828 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 71809828 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 71809828 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 71809828 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 71809828 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 71809828 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30147968 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30147968 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30147968 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30147968 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30147968 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30147968 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30147968 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30147968 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30147968 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 22763700 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 22763700 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 22763700 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 22020096 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 22020096 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 22020096 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 22020096 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 22020096 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 22020096 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 22020096 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 743604 in 1 place, below massif's threshold (01.00%)
+                 n0: 1222176 in 1 place, below massif's threshold (01.00%)
+              n2: 71067016 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 37296624 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 37296624 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 37296564 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 37296564 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 37296564 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 37296564 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 37296564 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 37296564 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 37296564 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 37296564 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 37296564 0x4F30A5E: load_source_module (import.c:1099)
+                          n1: 37296564 0x4F31217: import_submodule (import.c:2700)
+                           n1: 37296564 0x4F316B0: load_next (import.c:2515)
+                            n1: 37296564 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 37296564 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 37296564 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 60 in 1 place, below massif's threshold (01.00%)
+               n1: 33770392 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 33770392 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 33770392 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 33770392 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 33770392 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 33770392 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 33770392 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 33770392 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 33770392 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 33770392 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 23594712 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23594184 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23594184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23594184 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23594184 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23594184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n0: 528 in 1 place, below massif's threshold (01.00%)
+                         n1: 10175680 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 10175680 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 10175680 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 5087840 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5087840 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 5087840 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 0 in 1 place, below massif's threshold (01.00%)
+          n1: 90561788 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 90561788 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 90561788 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 90561228 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 90561228 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 90561228 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 90561228 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 90561228 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 90561228 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 90561228 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 90561228 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 90561228 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 90561228 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 90561228 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 90560668 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 90560668 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 90560668 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 90560668 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 90560668 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 90560668 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 90560668 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 560 in 1 place, below massif's threshold (01.00%)
+             n0: 560 in 1 place, below massif's threshold (01.00%)
+       n0: 884640 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 479992 in 3 places, all below massif's threshold (01.00%)
+  n2: 12705399 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 12705399 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 12705399 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n1: 12705239 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 12705239 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 12704707 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 12704707 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 12691346 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 12691346 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 12691346 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 12691346 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 12691346 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 12691346 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 12691346 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 12691346 0x4E9EA60: function_call (funcobject.c:526)
+                  n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 12691346 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 12691346 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 12691346 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 12691346 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 12691346 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 12691346 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 12691346 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 12691346 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 12691346 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 13361 in 1 place, below massif's threshold (01.00%)
+        n0: 0 in 1 place, below massif's threshold (01.00%)
+       n0: 532 in 1 place, below massif's threshold (01.00%)
+     n0: 160 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 5 places, all below massif's threshold (01.00%)
+  n0: 100 in 12 places, all below massif's threshold (01.00%)
+ n2: 24117248 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 18612224 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 15466496 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n2: 15466496 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n1: 12582912 0x4EA2FE2: PyList_AsTuple (listobject.c:2261)
+      n1: 12582912 0x4E746A0: PySequence_Tuple (abstract.c:2173)
+       n1: 12582912 0x4ECBF5D: tuple_new (tupleobject.c:658)
+        n1: 12582912 0x4ECD731: type_call (typeobject.c:729)
+         n1: 12582912 0x4E70B76: PyObject_Call (abstract.c:2529)
+          n1: 12582912 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+           n1: 12582912 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 12582912 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 12582912 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 12582912 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 12582912 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 12582912 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n2: 12582912 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 8126464 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n2: 8126464 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 7077888 0x4E9EA60: function_call (funcobject.c:526)
+                     n1: 7077888 0x4E70B76: PyObject_Call (abstract.c:2529)
+                      n1: 7077888 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                       n1: 7077888 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 7077888 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 7077888 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 7077888 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 7077888 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 7077888 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 7077888 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 7077888 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                    n0: 1048576 in 1 place, below massif's threshold (01.00%)
+                  n1: 4456448 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 4456448 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 4456448 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 4456448 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 4456448 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 4456448 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 4456448 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 4456448 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 4456448 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 4456448 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 4456448 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 4456448 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 4456448 0x4E70B76: PyObject_Call (abstract.c:2529)
+     n0: 2883584 in 4 places, all below massif's threshold (01.00%)
+   n0: 3145728 in 2 places, all below massif's threshold (01.00%)
+  n0: 5505024 in 7 places, all below massif's threshold (01.00%)
+ n1: 9675264 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 9675264 in 43 places, all below massif's threshold (01.00%)
+ n2: 9495992 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 6573000 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 6573000 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 6573000 in 146 places, all below massif's threshold (01.00%)
+  n0: 2922992 in 2 places, all below massif's threshold (01.00%)
+ n0: 8200240 in 162 places, all below massif's threshold (01.00%)
+ n2: 6003584 0x4E99C13: PyFloat_FromDouble (floatobject.c:43)
+  n1: 5945056 0x4E9A409: PyFloat_FromString (floatobject.c:223)
+   n1: 5945056 0x4E9A50A: float_new (floatobject.c:1814)
+    n1: 5945056 0x4ECD731: type_call (typeobject.c:729)
+     n1: 5945056 0x4E70B76: PyObject_Call (abstract.c:2529)
+      n1: 5945056 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+       n1: 5945056 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+        n1: 5945056 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+         n1: 5945056 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 5945056 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n2: 5945056 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 5944064 0x4E9EA60: function_call (funcobject.c:526)
+             n1: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+              n1: 5944064 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+               n1: 5944064 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 5944064 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 5944064 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 5944064 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 5944064 0x4E8122D: instancemethod_call (classobject.c:2602)
+                     n1: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+                      n1: 5944064 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                       n1: 5944064 0x4ECD776: type_call (typeobject.c:743)
+                        n1: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+                         n1: 5944064 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                          n1: 5944064 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 5944064 0x4E9EA60: function_call (funcobject.c:526)
+                            n1: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+                             n1: 5944064 0x4E8122D: instancemethod_call (classobject.c:2602)
+                              n0: 5944064 0x4E70B76: PyObject_Call (abstract.c:2529)
+            n0: 992 in 1 place, below massif's threshold (01.00%)
+  n0: 58528 in 5 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=12
+#-----------
+time=255934
+mem_heap_B=358569447
+mem_heap_extra_B=941273
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=280067
+mem_heap_B=379521111
+mem_heap_extra_B=985305
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=310044
+mem_heap_B=454035816
+mem_heap_extra_B=1136760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=328815
+mem_heap_B=441723104
+mem_heap_extra_B=1039168
+mem_stacks_B=0
+heap_tree=detailed
+n6: 441723104 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 379984688 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 367276202 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 366796210 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 366796210 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 366796210 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 366796210 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 366796210 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 366796210 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 366796210 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 255403310 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 255403310 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 255403310 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 255403310 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 157695453 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 157695453 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 157695453 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 156473277 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 156473277 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 156473277 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 156473277 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 128597509 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 98450833 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 98450833 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 98450833 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 98450833 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 98450833 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 98450833 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 98450833 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 98450833 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 98450833 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146676 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146676 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146676 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146676 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146676 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146676 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146676 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146676 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146676 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 27875768 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 27875768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 27875768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 27131904 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 27131904 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 27131904 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 27131904 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 27131904 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 27131904 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 27131904 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 743864 in 1 place, below massif's threshold (01.00%)
+                 n0: 1222176 in 1 place, below massif's threshold (01.00%)
+              n2: 97707857 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 63937169 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 63937169 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 63937169 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 63937169 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 63937169 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 63937169 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 63937169 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 63937169 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 63937169 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 63937169 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 63937169 0x4F30A5E: load_source_module (import.c:1099)
+                          n1: 63937169 0x4F31217: import_submodule (import.c:2700)
+                           n1: 63937169 0x4F316B0: load_next (import.c:2515)
+                            n1: 63937169 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 63937169 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 63937169 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 0 in 1 place, below massif's threshold (01.00%)
+               n1: 33770688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 33770688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 33770688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 33770688 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 33770688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 33770688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 33770688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 33770688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 33770688 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 33770688 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 23595008 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23594448 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23594448 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23594448 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23594448 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23594448 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n0: 560 in 1 place, below massif's threshold (01.00%)
+                         n1: 10175680 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 10175680 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 10175680 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 5087840 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5087840 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 5087840 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 5087840 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 0 in 1 place, below massif's threshold (01.00%)
+          n1: 111392900 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 111392900 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 111392900 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 111392340 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 111392340 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 111392340 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 111392340 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 111392340 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 111392340 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 111392340 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 111392340 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 111392340 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 111392340 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 111392340 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 111391780 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 111391780 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 111391780 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 111391780 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 111391780 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 111391780 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 111391780 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 560 in 1 place, below massif's threshold (01.00%)
+             n0: 560 in 1 place, below massif's threshold (01.00%)
+       n0: 0 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 479992 in 3 places, all below massif's threshold (01.00%)
+  n2: 12708386 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 12708386 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 12708386 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n1: 12708226 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 12708226 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 12707694 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 12707694 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 12694333 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 12694333 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 12694333 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 12694333 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 12694333 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 12694333 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 12694333 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 12694333 0x4E9EA60: function_call (funcobject.c:526)
+                  n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 12694333 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 12694333 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 12694333 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 12694333 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 12694333 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 12694333 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 12694333 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 12694333 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 13361 in 1 place, below massif's threshold (01.00%)
+        n0: 0 in 1 place, below massif's threshold (01.00%)
+       n0: 532 in 1 place, below massif's threshold (01.00%)
+     n0: 160 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 5 places, all below massif's threshold (01.00%)
+  n0: 100 in 12 places, all below massif's threshold (01.00%)
+ n2: 23855104 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 18350080 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 15204352 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n2: 15204352 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n1: 12320768 0x4EA2FE2: PyList_AsTuple (listobject.c:2261)
+      n1: 12320768 0x4E746A0: PySequence_Tuple (abstract.c:2173)
+       n1: 12320768 0x4ECBF5D: tuple_new (tupleobject.c:658)
+        n1: 12320768 0x4ECD731: type_call (typeobject.c:729)
+         n1: 12320768 0x4E70B76: PyObject_Call (abstract.c:2529)
+          n1: 12320768 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+           n1: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 12320768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 12320768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 12320768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n2: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 7077888 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n2: 7077888 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 6029312 0x4E9EA60: function_call (funcobject.c:526)
+                     n1: 6029312 0x4E70B76: PyObject_Call (abstract.c:2529)
+                      n1: 6029312 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                       n1: 6029312 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 6029312 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 6029312 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 6029312 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 6029312 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 6029312 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 6029312 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 6029312 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                    n0: 1048576 in 1 place, below massif's threshold (01.00%)
+                  n1: 5242880 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 5242880 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 5242880 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 5242880 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 5242880 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 5242880 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 5242880 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 5242880 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 5242880 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 5242880 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 5242880 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 5242880 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 5242880 0x4E70B76: PyObject_Call (abstract.c:2529)
+     n0: 2883584 in 4 places, all below massif's threshold (01.00%)
+   n0: 3145728 in 2 places, all below massif's threshold (01.00%)
+  n0: 5505024 in 7 places, all below massif's threshold (01.00%)
+ n0: 11322816 in 162 places, all below massif's threshold (01.00%)
+ n2: 10744592 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 7520800 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 7520800 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 7520800 in 146 places, all below massif's threshold (01.00%)
+  n0: 3223792 in 2 places, all below massif's threshold (01.00%)
+ n1: 10140672 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 10140672 in 43 places, all below massif's threshold (01.00%)
+ n2: 5675232 0x4E99C13: PyFloat_FromDouble (floatobject.c:43)
+  n1: 5616704 0x4E9A409: PyFloat_FromString (floatobject.c:223)
+   n1: 5616704 0x4E9A50A: float_new (floatobject.c:1814)
+    n1: 5616704 0x4ECD731: type_call (typeobject.c:729)
+     n1: 5616704 0x4E70B76: PyObject_Call (abstract.c:2529)
+      n1: 5616704 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+       n1: 5616704 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+        n1: 5616704 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+         n1: 5616704 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 5616704 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n2: 5616704 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 5615712 0x4E9EA60: function_call (funcobject.c:526)
+             n1: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+              n1: 5615712 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+               n1: 5615712 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 5615712 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 5615712 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 5615712 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 5615712 0x4E8122D: instancemethod_call (classobject.c:2602)
+                     n1: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+                      n1: 5615712 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                       n1: 5615712 0x4ECD776: type_call (typeobject.c:743)
+                        n1: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+                         n1: 5615712 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                          n1: 5615712 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 5615712 0x4E9EA60: function_call (funcobject.c:526)
+                            n1: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+                             n1: 5615712 0x4E8122D: instancemethod_call (classobject.c:2602)
+                              n0: 5615712 0x4E70B76: PyObject_Call (abstract.c:2529)
+            n0: 992 in 1 place, below massif's threshold (01.00%)
+  n0: 58528 in 5 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=16
+#-----------
+time=347931
+mem_heap_B=445571776
+mem_heap_extra_B=1081368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=378404
+mem_heap_B=457793352
+mem_heap_extra_B=1089776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=398661
+mem_heap_B=507983397
+mem_heap_extra_B=1190227
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=417755
+mem_heap_B=498082173
+mem_heap_extra_B=1094163
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=439506
+mem_heap_B=523628005
+mem_heap_extra_B=1177531
+mem_stacks_B=0
+heap_tree=detailed
+n7: 523628005 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 439893256 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 423252418 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 422772426 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 422772426 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 422772426 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 422772426 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 422680026 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 422680026 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 422680026 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 304718958 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 304718958 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 304718958 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 304718958 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 183139901 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 183139901 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 183139901 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 181917661 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 181917661 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 181917661 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 181917661 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 152468949 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 122322161 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 122322161 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 122322161 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 122322161 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 122322161 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 122322161 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 122322161 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 122322161 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 122322161 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146788 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146788 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146788 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146788 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146788 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146788 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146788 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146788 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146788 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 29448712 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 29448712 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 29448712 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 28704768 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 28704768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 28704768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 28704768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 28704768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 28704768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 28704768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 743944 in 1 place, below massif's threshold (01.00%)
+                 n0: 1222240 in 1 place, below massif's threshold (01.00%)
+              n2: 121579057 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 87808193 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 87808193 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 87808177 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 87808177 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 87808177 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 87808177 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 87808177 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 87808177 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 87808177 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 87808177 0x4F30A5E: load_source_module (import.c:1099)
+                          n1: 87808177 0x4F31217: import_submodule (import.c:2700)
+                           n1: 87808177 0x4F316B0: load_next (import.c:2515)
+                            n1: 87808177 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 87808177 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 16 in 1 place, below massif's threshold (01.00%)
+               n1: 33770864 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 33770864 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 33770864 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 33770864 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 33770864 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 33770864 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 33770864 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 33770864 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 33770864 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 33770864 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 23595184 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23594600 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23594600 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23594600 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23594600 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23594600 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n0: 584 in 1 place, below massif's threshold (01.00%)
+                         n1: 10175680 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 10175680 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 10175680 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n0: 10175680 in 2 places, all below massif's threshold (01.00%)
+           n0: 0 in 1 place, below massif's threshold (01.00%)
+          n1: 117961068 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 117961068 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 117961068 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 117960508 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 117960508 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 117960508 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 117960508 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 117960508 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 117960508 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 117960508 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 117960508 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 117960508 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 117960508 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 117960508 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 117959948 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 117959948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 117959948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 117959948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 117959948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 117959948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 117959948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 560 in 1 place, below massif's threshold (01.00%)
+             n0: 560 in 1 place, below massif's threshold (01.00%)
+       n0: 92400 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 479992 in 3 places, all below massif's threshold (01.00%)
+  n2: 16640738 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 16640738 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 16640738 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n1: 16640578 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 16640578 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 16640046 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 16640046 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 16626685 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 16626685 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 16626685 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 16626685 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 16626685 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 16626685 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 16626685 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 16626685 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 16626685 0x4E9EA60: function_call (funcobject.c:526)
+                  n2: 16626685 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 12694333 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 12694333 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 12694333 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 12694333 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 12694333 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 12694333 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 12694333 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 12694333 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 12694333 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+                   n0: 3932352 in 1 place, below massif's threshold (01.00%)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 13361 in 1 place, below massif's threshold (01.00%)
+        n0: 0 in 1 place, below massif's threshold (01.00%)
+       n0: 532 in 1 place, below massif's threshold (01.00%)
+     n0: 160 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 5 places, all below massif's threshold (01.00%)
+  n0: 100 in 12 places, all below massif's threshold (01.00%)
+ n2: 33816576 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 28311552 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 24641536 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n2: 24641536 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n1: 21757952 0x4EA2FE2: PyList_AsTuple (listobject.c:2261)
+      n1: 21757952 0x4E746A0: PySequence_Tuple (abstract.c:2173)
+       n1: 21757952 0x4ECBF5D: tuple_new (tupleobject.c:658)
+        n1: 21757952 0x4ECD731: type_call (typeobject.c:729)
+         n1: 21757952 0x4E70B76: PyObject_Call (abstract.c:2529)
+          n1: 21757952 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+           n1: 21757952 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 21757952 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 21757952 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 21757952 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 21757952 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 21757952 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n2: 21757952 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 13369344 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n2: 13369344 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 12320768 0x4E9EA60: function_call (funcobject.c:526)
+                     n1: 12320768 0x4E70B76: PyObject_Call (abstract.c:2529)
+                      n1: 12320768 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                       n1: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 12320768 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 12320768 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 12320768 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 12320768 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 9437184 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                             n1: 9437184 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 9437184 0x4E9EA60: function_call (funcobject.c:526)
+                            n0: 2883584 in 1 place, below massif's threshold (01.00%)
+                    n0: 1048576 in 1 place, below massif's threshold (01.00%)
+                  n1: 8388608 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 8388608 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 8388608 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 8388608 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 8388608 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 8388608 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 8388608 0x4E9EA60: function_call (funcobject.c:526)
+                         n2: 8388608 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 7864320 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                           n1: 7864320 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 7864320 0x4E9EA60: function_call (funcobject.c:526)
+                             n1: 7864320 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 7864320 0x4E8122D: instancemethod_call (classobject.c:2602)
+                          n0: 524288 in 1 place, below massif's threshold (01.00%)
+     n0: 2883584 in 4 places, all below massif's threshold (01.00%)
+   n0: 3670016 in 2 places, all below massif's threshold (01.00%)
+  n0: 5505024 in 7 places, all below massif's threshold (01.00%)
+ n0: 11810669 in 161 places, all below massif's threshold (01.00%)
+ n2: 11401168 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 8018640 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 8018640 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 8018640 in 146 places, all below massif's threshold (01.00%)
+  n0: 3382528 in 2 places, all below massif's threshold (01.00%)
+ n1: 10382976 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 10382976 in 43 places, all below massif's threshold (01.00%)
+ n2: 10318784 0x4E9FF64: PyInt_FromLong (intobject.c:52)
+  n1: 6838848 0x4E99B03: float_trunc (floatobject.c:1050)
+   n1: 6838848 0x4E76666: PyNumber_Int (abstract.c:1634)
+    n1: 6838848 0x4EA0978: int_new (intobject.c:1085)
+     n1: 6838848 0x4ECD731: type_call (typeobject.c:729)
+      n1: 6838848 0x4E70B76: PyObject_Call (abstract.c:2529)
+       n1: 6838848 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+        n1: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 6838848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n1: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 6838848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n1: 6838848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n2: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 6838848 0x4E9EA60: function_call (funcobject.c:526)
+                n1: 6838848 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 6838848 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                  n1: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 6838848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 6838848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 6838848 0x4E9EA60: function_call (funcobject.c:526)
+                      n2: 6838848 0x4E70B76: PyObject_Call (abstract.c:2529)
+                       n1: 6835872 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                        n1: 6835872 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                         n1: 6835872 0x4E9EA60: function_call (funcobject.c:526)
+                          n1: 6835872 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 6835872 0x4E8122D: instancemethod_call (classobject.c:2602)
+                            n1: 6835872 0x4E70B76: PyObject_Call (abstract.c:2529)
+                             n1: 6835872 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                              n0: 6835872 0x4ECD776: type_call (typeobject.c:743)
+                       n0: 2976 in 1 place, below massif's threshold (01.00%)
+               n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 3479936 in 10 places, all below massif's threshold (01.00%)
+ n2: 6004576 0x4E99C13: PyFloat_FromDouble (floatobject.c:43)
+  n1: 5946048 0x4E9A409: PyFloat_FromString (floatobject.c:223)
+   n1: 5946048 0x4E9A50A: float_new (floatobject.c:1814)
+    n1: 5946048 0x4ECD731: type_call (typeobject.c:729)
+     n1: 5946048 0x4E70B76: PyObject_Call (abstract.c:2529)
+      n1: 5946048 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+       n1: 5946048 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+        n1: 5946048 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+         n1: 5946048 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 5946048 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n2: 5946048 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 5945056 0x4E9EA60: function_call (funcobject.c:526)
+             n1: 5945056 0x4E70B76: PyObject_Call (abstract.c:2529)
+              n1: 5945056 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+               n1: 5945056 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 5945056 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 5945056 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 5945056 0x4E9EA60: function_call (funcobject.c:526)
+                   n2: 5945056 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 5942080 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 5942080 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 5942080 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 5942080 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 5942080 0x4E8122D: instancemethod_call (classobject.c:2602)
+                         n1: 5942080 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 5942080 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                           n1: 5942080 0x4ECD776: type_call (typeobject.c:743)
+                            n1: 5942080 0x4E70B76: PyObject_Call (abstract.c:2529)
+                             n1: 5942080 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                              n0: 5942080 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n0: 2976 in 1 place, below massif's threshold (01.00%)
+            n0: 992 in 1 place, below massif's threshold (01.00%)
+  n0: 58528 in 5 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=21
+#-----------
+time=458663
+mem_heap_B=524804909
+mem_heap_extra_B=1190171
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=476853
+mem_heap_B=557803057
+mem_heap_extra_B=1188759
+mem_stacks_B=0
+heap_tree=peak
+n6: 557803057 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 497968292 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 484080246 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 483600254 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 483600254 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 483600254 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 483600254 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 474201790 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 474201790 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 474201790 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 346866098 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 346866098 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 346866098 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 346866098 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 205557265 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 205557265 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 205557265 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 204269473 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 204269473 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 204269473 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 204269473 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 172788901 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 142642113 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 142642113 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 142642113 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 142642113 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 142642113 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 142642113 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 142642113 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 142642113 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 142642113 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146788 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146788 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146788 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146788 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146788 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146788 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146788 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146788 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146788 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 31480572 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 31480572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 31480572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 30670848 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 809724 in 1 place, below massif's threshold (01.00%)
+                 n0: 1287792 in 1 place, below massif's threshold (01.00%)
+              n2: 141308833 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 96485857 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 96485857 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 96420177 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 96420177 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 96420177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 96420177 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 96420177 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 96420177 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 96420177 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 96420177 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 96420177 0x4F30A5E: load_source_module (import.c:1099)
+                          n2: 96420177 0x4F31217: import_submodule (import.c:2700)
+                           n1: 87808177 0x4F316B0: load_next (import.c:2515)
+                            n1: 87808177 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 87808177 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 8612000 0x4F3147F: ensure_fromlist (import.c:2606)
+                            n1: 8612000 0x4F31ADB: PyImport_ImportModuleLevel (import.c:2269)
+                             n1: 8612000 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 8612000 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 65680 in 1 place, below massif's threshold (01.00%)
+               n1: 44822976 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 44822976 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 44822976 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 44822976 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 44822976 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 44822976 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 44822976 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 44822976 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 44822976 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 44822976 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 30831416 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 24932144 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 24932144 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23660184 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23660184 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 1271960 in 1 place, below massif's threshold (01.00%)
+                          n1: 5899272 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 5899272 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5899272 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 5899272 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                              n0: 5899272 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                         n1: 13991560 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 13991560 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 13991560 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 7631760 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 6359800 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 6359800 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 6359800 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 0 in 1 place, below massif's threshold (01.00%)
+          n1: 127335692 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 127335692 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 127335692 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 127335068 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 127335068 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 127335068 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 127335068 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 127335004 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 127335004 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 127335004 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 127335004 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 127335004 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 127335004 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 127335004 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 127334380 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 127334380 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 127334380 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 127334380 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 127334380 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 127334380 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 127334380 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 624 in 1 place, below massif's threshold (01.00%)
+                 n0: 64 in 1 place, below massif's threshold (01.00%)
+             n0: 624 in 1 place, below massif's threshold (01.00%)
+       n1: 9398464 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+        n1: 9398464 0x4E9EA60: function_call (funcobject.c:526)
+         n1: 9398464 0x4E70B76: PyObject_Call (abstract.c:2529)
+          n1: 9398464 0x4E8122D: instancemethod_call (classobject.c:2602)
+           n1: 9398464 0x4E70B76: PyObject_Call (abstract.c:2529)
+            n1: 9398464 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+             n1: 9398464 0x4E70B76: PyObject_Call (abstract.c:2529)
+              n1: 9398464 0x4F13F40: PyEval_EvalFrameEx (ceval.c:4239)
+               n2: 9398464 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 9398464 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 9398464 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 9398464 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                   n1: 9398464 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                    n1: 9398464 0x4F30A5E: load_source_module (import.c:1099)
+                     n2: 9398464 0x4F31217: import_submodule (import.c:2700)
+                      n1: 9398464 0x4F3147F: ensure_fromlist (import.c:2606)
+                       n1: 9398464 0x4F31ADB: PyImport_ImportModuleLevel (import.c:2269)
+                        n1: 9398464 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                         n1: 9398464 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 9398464 0x4F12124: PyEval_CallObjectWithKeywords (ceval.c:3890)
+                           n1: 9398464 0x4F166CA: PyEval_EvalFrameEx (ceval.c:2333)
+                            n1: 9398464 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 9398464 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                              n0: 9398464 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                      n0: 0 in 1 place, below massif's threshold (01.00%)
+                n0: 0 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 479992 in 3 places, all below massif's threshold (01.00%)
+  n2: 13887946 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 13887946 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 13887946 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n1: 13887778 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 13887778 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 13887246 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 13887246 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                  n2: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 13873885 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 13873885 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 13873885 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+                   n0: 0 in 1 place, below massif's threshold (01.00%)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 13361 in 1 place, below massif's threshold (01.00%)
+        n0: 0 in 1 place, below massif's threshold (01.00%)
+       n0: 532 in 2 places, all below massif's threshold (01.00%)
+     n0: 168 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 5 places, all below massif's threshold (01.00%)
+  n0: 100 in 12 places, all below massif's threshold (01.00%)
+ n2: 17039360 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 11534336 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 8126464 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n1: 8126464 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n0: 8126464 in 5 places, all below massif's threshold (01.00%)
+   n0: 3407872 in 2 places, all below massif's threshold (01.00%)
+  n0: 5505024 in 7 places, all below massif's threshold (01.00%)
+ n2: 12601176 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 8979320 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 8979320 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 8979320 in 146 places, all below massif's threshold (01.00%)
+  n0: 3621856 in 2 places, all below massif's threshold (01.00%)
+ n2: 11701761 0x4EC215D: PyString_FromStringAndSize (stringobject.c:88)
+  n1: 8126501 0x1E4AD23D: __pyx_f_5scipy_2io_6matlab_7streams_13GenericStream_read_string (streams.c:3291)
+   n1: 8126501 0x1E286B14: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_element (mio5_utils.c:3429)
+    n1: 8126501 0x1E28C8BB: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_numeric (mio5_utils.c:3704)
+     n1: 8126501 0x1E28B5FD: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_real_complex (mio5_utils.c:6134)
+      n1: 8126501 0x1E2A0C5D: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_array_from_header (mio5_utils.c:5147)
+       n1: 8126501 0x1E28AC30: __pyx_pw_5scipy_2io_6matlab_10mio5_utils_10VarReader5_13array_from_header (mio5_utils.c:5717)
+        n1: 8126501 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+         n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 8126501 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 8126501 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 8126501 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 8126501 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+  n0: 3575260 in 27 places, all below massif's threshold (01.00%)
+ n1: 11250816 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 11250816 in 43 places, all below massif's threshold (01.00%)
+ n0: 7241652 in 167 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=23
+#-----------
+time=492765
+mem_heap_B=557913370
+mem_heap_extra_B=1501998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=516635
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=detailed
+n6: 558216978 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 487472953 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 472531206 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 471854078 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 471854078 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 471854078 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 471854078 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 471761590 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 471761590 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 471761590 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 345370426 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 345370330 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 204612737 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 204612737 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 204612737 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 171844373 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 141697565 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146808 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146808 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146808 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146808 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146808 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146808 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146808 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 31480572 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 31480572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 31480572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 30670848 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 809724 in 1 place, below massif's threshold (01.00%)
+                 n0: 1287792 in 1 place, below massif's threshold (01.00%)
+              n2: 140757593 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 97206633 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 97206633 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 97206633 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 97206633 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 97206633 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 97206633 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 97206633 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 97206633 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 97206633 0x4F30A5E: load_source_module (import.c:1099)
+                          n2: 97206633 0x4F31217: import_submodule (import.c:2700)
+                           n1: 87808177 0x4F316B0: load_next (import.c:2515)
+                            n1: 87808177 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 87808177 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 9398456 0x4F3147F: ensure_fromlist (import.c:2606)
+                            n1: 9398456 0x4F31ADB: PyImport_ImportModuleLevel (import.c:2269)
+                             n1: 9398456 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 9398456 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 0 in 1 place, below massif's threshold (01.00%)
+               n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 43550960 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 29559400 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23660184 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23660184 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23660184 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 5899216 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                              n0: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                         n1: 13991560 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 13991560 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 13991560 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 7631760 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 6359800 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 6359800 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 6359800 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 96 in 1 place, below massif's threshold (01.00%)
+          n1: 126391164 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 126391164 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 126391164 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 126390540 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 126389948 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 592 in 1 place, below massif's threshold (01.00%)
+                 n0: 32 in 1 place, below massif's threshold (01.00%)
+             n0: 592 in 1 place, below massif's threshold (01.00%)
+       n0: 92488 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 677128 in 3 places, all below massif's threshold (01.00%)
+  n2: 13892543 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 13892543 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 13892543 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n2: 13891434 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 13891402 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 13890846 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 13890846 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                  n2: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 13873885 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 13873885 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 13873885 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+                   n0: 0 in 1 place, below massif's threshold (01.00%)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 16961 in 1 place, below massif's threshold (01.00%)
+        n0: 0 in 1 place, below massif's threshold (01.00%)
+       n0: 556 in 2 places, all below massif's threshold (01.00%)
+      n0: 32 in 1 place, below massif's threshold (01.00%)
+     n0: 1109 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 10 places, all below massif's threshold (01.00%)
+  n0: 1049204 in 21 places, all below massif's threshold (01.00%)
+ n2: 21495808 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 14680064 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 8912896 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n1: 8912896 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n0: 8912896 in 6 places, all below massif's threshold (01.00%)
+   n0: 5767168 in 2 places, all below massif's threshold (01.00%)
+  n0: 6815744 in 7 places, all below massif's threshold (01.00%)
+ n1: 15997056 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 15997056 in 51 places, all below massif's threshold (01.00%)
+ n2: 13893640 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 9576560 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 9576560 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 9576560 in 150 places, all below massif's threshold (01.00%)
+  n0: 4317080 in 2 places, all below massif's threshold (01.00%)
+ n2: 13123473 0x4EC215D: PyString_FromStringAndSize (stringobject.c:88)
+  n1: 8126501 0x1E4AD23D: __pyx_f_5scipy_2io_6matlab_7streams_13GenericStream_read_string (streams.c:3291)
+   n1: 8126501 0x1E286B14: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_element (mio5_utils.c:3429)
+    n1: 8126501 0x1E28C8BB: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_numeric (mio5_utils.c:3704)
+     n1: 8126501 0x1E28B5FD: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_real_complex (mio5_utils.c:6134)
+      n1: 8126501 0x1E2A0C5D: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_array_from_header (mio5_utils.c:5147)
+       n1: 8126501 0x1E28AC30: __pyx_pw_5scipy_2io_6matlab_10mio5_utils_10VarReader5_13array_from_header (mio5_utils.c:5717)
+        n1: 8126501 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+         n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 8126501 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 8126501 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 8126501 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 8126501 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+  n0: 4996972 in 29 places, all below massif's threshold (01.00%)
+ n0: 6234048 in 378 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=25
+#-----------
+time=532547
+mem_heap_B=557913370
+mem_heap_extra_B=1501966
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=552440
+mem_heap_B=558216978
+mem_heap_extra_B=1501654
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=576311
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=608135
+mem_heap_B=557917026
+mem_heap_extra_B=1501982
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=639959
+mem_heap_B=557903860
+mem_heap_extra_B=1501844
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=671783
+mem_heap_B=557909570
+mem_heap_extra_B=1501894
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=687695
+mem_heap_B=557910394
+mem_heap_extra_B=1501830
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=711564
+mem_heap_B=558216978
+mem_heap_extra_B=1501670
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=727476
+mem_heap_B=557909666
+mem_heap_extra_B=1501982
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=751346
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=775216
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=791128
+mem_heap_B=557917050
+mem_heap_extra_B=1501998
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=807040
+mem_heap_B=557908364
+mem_heap_extra_B=1501876
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=822952
+mem_heap_B=557906172
+mem_heap_extra_B=1501724
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=838864
+mem_heap_B=557917050
+mem_heap_extra_B=1501950
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=854777
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=870689
+mem_heap_B=558129266
+mem_heap_extra_B=1501606
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=886601
+mem_heap_B=557911922
+mem_heap_extra_B=1501918
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=910473
+mem_heap_B=558216978
+mem_heap_extra_B=1501670
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=926385
+mem_heap_B=557905452
+mem_heap_extra_B=1501732
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=942297
+mem_heap_B=557917050
+mem_heap_extra_B=1502046
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=958209
+mem_heap_B=557913322
+mem_heap_extra_B=1501934
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=974121
+mem_heap_B=557909618
+mem_heap_extra_B=1501886
+mem_stacks_B=0
+heap_tree=detailed
+n6: 557909618 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 487178145 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 472355974 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 471854078 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 471854078 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 471854078 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 471854078 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 471761590 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 471761590 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 471761590 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 345370426 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 345370330 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 204612737 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 204612737 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 204612737 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 171844373 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 141697565 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146808 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146808 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146808 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146808 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146808 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146808 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146808 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 31480572 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 31480572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 31480572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 30670848 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 809724 in 1 place, below massif's threshold (01.00%)
+                 n0: 1287792 in 1 place, below massif's threshold (01.00%)
+              n2: 140757593 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 97206633 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 97206633 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 97206633 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 97206633 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 97206633 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 97206633 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 97206633 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 97206633 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 97206633 0x4F30A5E: load_source_module (import.c:1099)
+                          n2: 97206633 0x4F31217: import_submodule (import.c:2700)
+                           n1: 87808177 0x4F316B0: load_next (import.c:2515)
+                            n1: 87808177 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 87808177 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 9398456 0x4F3147F: ensure_fromlist (import.c:2606)
+                            n1: 9398456 0x4F31ADB: PyImport_ImportModuleLevel (import.c:2269)
+                             n1: 9398456 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 9398456 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 0 in 1 place, below massif's threshold (01.00%)
+               n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 43550960 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 29559400 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23660184 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23660184 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23660184 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 5899216 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                              n0: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                         n1: 13991560 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 13991560 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 13991560 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 7631760 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 6359800 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 6359800 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 6359800 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 96 in 1 place, below massif's threshold (01.00%)
+          n1: 126391164 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 126391164 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 126391164 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 126390540 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 126389948 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 592 in 1 place, below massif's threshold (01.00%)
+                 n0: 32 in 1 place, below massif's threshold (01.00%)
+             n0: 592 in 1 place, below massif's threshold (01.00%)
+       n0: 92488 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 501896 in 3 places, all below massif's threshold (01.00%)
+  n2: 13896095 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 13896095 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 13896095 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n2: 13894986 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 13894954 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 13894398 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 13890846 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                  n2: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 13873885 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 13873885 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 13873885 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+                   n0: 0 in 1 place, below massif's threshold (01.00%)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 16961 in 1 place, below massif's threshold (01.00%)
+        n0: 3552 in 1 place, below massif's threshold (01.00%)
+       n0: 556 in 2 places, all below massif's threshold (01.00%)
+      n0: 32 in 1 place, below massif's threshold (01.00%)
+     n0: 1109 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 10 places, all below massif's threshold (01.00%)
+  n0: 926076 in 21 places, all below massif's threshold (01.00%)
+ n2: 21495808 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 14680064 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 8912896 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n1: 8912896 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n0: 8912896 in 6 places, all below massif's threshold (01.00%)
+   n0: 5767168 in 2 places, all below massif's threshold (01.00%)
+  n0: 6815744 in 7 places, all below massif's threshold (01.00%)
+ n1: 15997056 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 15997056 in 51 places, all below massif's threshold (01.00%)
+ n2: 13893640 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 9576560 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 9576560 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 9576560 in 150 places, all below massif's threshold (01.00%)
+  n0: 4317080 in 2 places, all below massif's threshold (01.00%)
+ n2: 13123473 0x4EC215D: PyString_FromStringAndSize (stringobject.c:88)
+  n1: 8126501 0x1E4AD23D: __pyx_f_5scipy_2io_6matlab_7streams_13GenericStream_read_string (streams.c:3291)
+   n1: 8126501 0x1E286B14: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_element (mio5_utils.c:3429)
+    n1: 8126501 0x1E28C8BB: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_numeric (mio5_utils.c:3704)
+     n1: 8126501 0x1E28B5FD: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_real_complex (mio5_utils.c:6134)
+      n1: 8126501 0x1E2A0C5D: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_array_from_header (mio5_utils.c:5147)
+       n1: 8126501 0x1E28AC30: __pyx_pw_5scipy_2io_6matlab_10mio5_utils_10VarReader5_13array_from_header (mio5_utils.c:5717)
+        n1: 8126501 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+         n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 8126501 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 8126501 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 8126501 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 8126501 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+  n0: 4996972 in 29 places, all below massif's threshold (01.00%)
+ n0: 6221496 in 378 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=48
+#-----------
+time=990040
+mem_heap_B=558216978
+mem_heap_extra_B=1501638
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=1013908
+mem_heap_B=557903626
+mem_heap_extra_B=1501766
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=1028611
+mem_heap_B=557904362
+mem_heap_extra_B=1501750
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=1043314
+mem_heap_B=558129266
+mem_heap_extra_B=1501654
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=1058017
+mem_heap_B=557909642
+mem_heap_extra_B=1501886
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=1072720
+mem_heap_B=557909618
+mem_heap_extra_B=1501902
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=1087423
+mem_heap_B=557909666
+mem_heap_extra_B=1501950
+mem_stacks_B=0
+heap_tree=detailed
+n6: 557909666 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 487178145 0x6C8E8D4: PyArray_NewFromDescr (multiarraymodule.c:3492)
+  n2: 472355974 0x6C9294E: PyArray_NewLikeArray (ctors.c:1098)
+   n2: 471854078 0x6CC234F: array_deepcopy (convert.c:503)
+    n1: 471854078 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+     n1: 471854078 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+      n2: 471854078 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+       n1: 471761590 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+        n1: 471761590 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n2: 471761590 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 345370426 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+            n1: 345370330 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+             n2: 345370330 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+              n1: 204612737 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+               n1: 204612737 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 204612737 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                   n1: 203324945 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n2: 203324945 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n2: 171844373 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n1: 141697565 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 141697565 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 141697565 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 30146808 0x4E9EA60: function_call (funcobject.c:526)
+                       n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 30146808 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                         n1: 30146808 0x4ECD731: type_call (typeobject.c:729)
+                          n1: 30146808 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 30146808 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                            n1: 30146808 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                             n1: 30146808 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30146808 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                     n1: 31480572 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                      n1: 31480572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 31480572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 30670848 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 30670848 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 30670848 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 809724 in 1 place, below massif's threshold (01.00%)
+                 n0: 1287792 in 1 place, below massif's threshold (01.00%)
+              n2: 140757593 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 97206633 0x4E9EA60: function_call (funcobject.c:526)
+                n2: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n1: 97206633 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                  n1: 97206633 0x4ECD731: type_call (typeobject.c:729)
+                   n1: 97206633 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 97206633 0x4E72E6F: PyObject_CallFunctionObjArgs (abstract.c:2760)
+                     n1: 97206633 0x4F14337: PyEval_EvalFrameEx (ceval.c:4632)
+                      n1: 97206633 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n1: 97206633 0x4F1AC20: PyEval_EvalCode (ceval.c:667)
+                        n1: 97206633 0x4F2E4A0: PyImport_ExecCodeModuleEx (import.c:709)
+                         n1: 97206633 0x4F30A5E: load_source_module (import.c:1099)
+                          n2: 97206633 0x4F31217: import_submodule (import.c:2700)
+                           n1: 87808177 0x4F316B0: load_next (import.c:2515)
+                            n1: 87808177 0x4F31A1A: PyImport_ImportModuleLevel (import.c:2232)
+                             n1: 87808177 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 87808177 0x4E70B76: PyObject_Call (abstract.c:2529)
+                           n1: 9398456 0x4F3147F: ensure_fromlist (import.c:2606)
+                            n1: 9398456 0x4F31ADB: PyImport_ImportModuleLevel (import.c:2269)
+                             n1: 9398456 0x4F11ADB: builtin___import__ (bltinmodule.c:49)
+                              n0: 9398456 0x4E70B76: PyObject_Call (abstract.c:2529)
+                 n0: 0 in 1 place, below massif's threshold (01.00%)
+               n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                  n1: 43550960 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                   n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                    n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                     n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 43550960 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n2: 43550960 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                         n2: 29559400 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 23660184 0x4E9EA60: function_call (funcobject.c:526)
+                           n2: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 23660184 0x4ECDB33: slot_tp_new (typeobject.c:5735)
+                             n1: 23660184 0x4ECD731: type_call (typeobject.c:729)
+                              n0: 23660184 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n0: 0 in 1 place, below massif's threshold (01.00%)
+                          n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 5899216 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 5899216 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                              n0: 5899216 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                         n1: 13991560 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                          n1: 13991560 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                           n2: 13991560 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                            n1: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                             n1: 7631760 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                              n0: 7631760 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 6359800 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                             n1: 6359800 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 6359800 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n0: 96 in 1 place, below massif's threshold (01.00%)
+          n1: 126391164 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+           n1: 126391164 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n2: 126391164 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 126390572 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n2: 126390572 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 126390540 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                  n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                   n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                    n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                     n1: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                      n1: 126390540 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                       n2: 126390540 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n1: 126389948 0x4F19DE6: PyEval_EvalFrameEx (ceval.c:4107)
+                         n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                           n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                            n1: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                             n1: 126389948 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                              n0: 126389948 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                        n0: 592 in 1 place, below massif's threshold (01.00%)
+                 n0: 32 in 1 place, below massif's threshold (01.00%)
+             n0: 592 in 1 place, below massif's threshold (01.00%)
+       n0: 92488 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 501896 in 3 places, all below massif's threshold (01.00%)
+  n2: 13896095 0x6CC8A4B: PyArray_FromAny (ctors.c:1649)
+   n1: 13896095 0x6CDDAB9: PyArray_CheckFromAny (ctors.c:1757)
+    n2: 13896095 0x6CDDF16: _array_fromobject (multiarraymodule.c:1656)
+     n2: 13894986 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+      n2: 13894954 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+       n2: 13894398 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+        n2: 13890846 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+         n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+          n2: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+           n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+            n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+             n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+              n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+               n1: 13873885 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                 n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                  n2: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                   n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                    n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                     n1: 13873885 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                      n1: 13873885 0x4ECD776: type_call (typeobject.c:743)
+                       n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                        n1: 13873885 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                         n1: 13873885 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                          n1: 13873885 0x4E9EA60: function_call (funcobject.c:526)
+                           n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 13873885 0x4E8122D: instancemethod_call (classobject.c:2602)
+                             n1: 13873885 0x4E70B76: PyObject_Call (abstract.c:2529)
+                              n0: 13873885 0x4ED3C38: slot_tp_call (typeobject.c:5432)
+                   n0: 0 in 1 place, below massif's threshold (01.00%)
+           n0: 0 in 2 places, all below massif's threshold (01.00%)
+         n0: 16961 in 1 place, below massif's threshold (01.00%)
+        n0: 3552 in 1 place, below massif's threshold (01.00%)
+       n0: 556 in 2 places, all below massif's threshold (01.00%)
+      n0: 32 in 1 place, below massif's threshold (01.00%)
+     n0: 1109 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 10 places, all below massif's threshold (01.00%)
+  n0: 926076 in 21 places, all below massif's threshold (01.00%)
+ n2: 21495808 0x4EBA15B: PyObject_Malloc (obmalloc.c:580)
+  n2: 14680064 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+   n1: 8912896 0x4F5255E: _PyObject_GC_NewVar (gcmodule.c:1531)
+    n1: 8912896 0x4ECBC1A: PyTuple_New (tupleobject.c:90)
+     n0: 8912896 in 6 places, all below massif's threshold (01.00%)
+   n0: 5767168 in 2 places, all below massif's threshold (01.00%)
+  n0: 6815744 in 7 places, all below massif's threshold (01.00%)
+ n1: 15997056 0x4EB0A80: dictresize (dictobject.c:643)
+  n0: 15997056 in 51 places, all below massif's threshold (01.00%)
+ n2: 13893640 0x4F52427: _PyObject_GC_Malloc (gcmodule.c:1499)
+  n1: 9576560 0x4F5259B: _PyObject_GC_New (gcmodule.c:1521)
+   n1: 9576560 0x4EB1DAB: PyDict_New (dictobject.c:277)
+    n0: 9576560 in 150 places, all below massif's threshold (01.00%)
+  n0: 4317080 in 2 places, all below massif's threshold (01.00%)
+ n2: 13123473 0x4EC215D: PyString_FromStringAndSize (stringobject.c:88)
+  n1: 8126501 0x1E4AD23D: __pyx_f_5scipy_2io_6matlab_7streams_13GenericStream_read_string (streams.c:3291)
+   n1: 8126501 0x1E286B14: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_element (mio5_utils.c:3429)
+    n1: 8126501 0x1E28C8BB: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_numeric (mio5_utils.c:3704)
+     n1: 8126501 0x1E28B5FD: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_read_real_complex (mio5_utils.c:6134)
+      n1: 8126501 0x1E2A0C5D: __pyx_f_5scipy_2io_6matlab_10mio5_utils_10VarReader5_array_from_header (mio5_utils.c:5147)
+       n1: 8126501 0x1E28AC30: __pyx_pw_5scipy_2io_6matlab_10mio5_utils_10VarReader5_13array_from_header (mio5_utils.c:5717)
+        n1: 8126501 0x4F19297: PyEval_EvalFrameEx (ceval.c:4021)
+         n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+          n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+           n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+            n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+             n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+              n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+               n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                 n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                  n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                   n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                    n1: 8126501 0x4F16533: PyEval_EvalFrameEx (ceval.c:4334)
+                     n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                      n1: 8126501 0x4F18953: PyEval_EvalFrameEx (ceval.c:4117)
+                       n1: 8126501 0x4F1ABA7: PyEval_EvalCodeEx (ceval.c:3253)
+                        n1: 8126501 0x4E9EA60: function_call (funcobject.c:526)
+                         n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                          n1: 8126501 0x4E8122D: instancemethod_call (classobject.c:2602)
+                           n1: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+                            n1: 8126501 0x4ED383A: slot_tp_init (typeobject.c:5692)
+                             n1: 8126501 0x4ECD776: type_call (typeobject.c:743)
+                              n0: 8126501 0x4E70B76: PyObject_Call (abstract.c:2529)
+  n0: 4996972 in 29 places, all below massif's threshold (01.00%)
+ n0: 6221544 in 378 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=55
+#-----------
+time=1102126
+mem_heap_B=557905274
+mem_heap_extra_B=1501886
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=1116829
+mem_heap_B=557901860
+mem_heap_extra_B=1501724
+mem_stacks_B=0
+heap_tree=empty
