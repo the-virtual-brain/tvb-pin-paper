@@ -99,6 +99,8 @@
     Via this column, users have access to all the configurable components that might
     be used in a simulation, namely:
 
+    {\small
+
     \begin{itemize}
       \item long range connectivity (i.e., the connectome or connectvity matrix);
       \item long range coupling function (to scale the weights in the connectivity matrix);
@@ -124,6 +126,7 @@
       \item simulation length
       \end{itemize}
     \end{itemize}
+    }
 
  \note[psl] Explain continuation feature.  
 
@@ -225,7 +228,7 @@
   \end{enumerate}
 
 
-\subsubsection{Connectivity Tool}
+\subsubsection{Connectivity Tools}
 
     \emph{Connectivity} in the context of \TVB is a DataType, mapping structural
     information about a subject (a real single individual or an average template). For
@@ -250,6 +253,29 @@
         \label{fig:connectivity}
 \end{figure}
 
+\subsubsection{Stimulus Editor}
+
+  In the \emph{Stimulus} area, an interactive environment assists users to
+  generate stimulation patterns (e.g., a modeling study about TMS) that maybe be
+  later included in a simulation.Similarly to the mechanism employed to vary
+  model parameters from node to node, stimulation patterns are generated
+  independently for region-based and surface-based simulations. In the former, a
+  unique temporal profile can be specified for each node, although the amplitude
+  of the stimulation can be modulated individually for each node. In the latter,
+  in addition to the temporal profile, it is possible to select several vertices
+  on the surface to define the foci around which a spatial pattern is centered
+  (Fig. \ref{fig:stimulus}). A stimulation profile in \TVB is a Pattern
+  datatype, and it can be either temporal or spatiotemporal depending the
+  spatial support of the network.
+
+  \begin{figure}[!htbp]
+    \centering
+    \subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_stimulus.png}}
+    \caption{Stimulus Editor for a surface-based simulation.}
+        \label{fig:stimulus}
+  \end{figure}
+
+  \note[psl] added the image for the sake of completeness, but maybe remove.  
 
 
 \subsection{Python Scripting}

@@ -5,6 +5,8 @@ concepts particularly useful in the modeling of large scale brain
 networks.
 
 % need to cite Andreas' work and 
+\note[psl] {just being picky... In other works of large scale brain modeling, the network structure is described before the node dynamics.} 
+
 
 \subsection{Node dynamics}
 
@@ -13,7 +15,7 @@ networks.
 	the main assumption of the neural mass modeling approach in TVB is that
 	large pools of neurons on the millimeter scale are strongly approximated
 	by population level equations describing the major statistical modes of 
-	neural dynamics. Often, averaging techniques are employed, though techniques
+	neural dynamics \cite{Freeman_1975book}. Often, averaging techniques are employed, though techniques
 	retaining several modes have been developed \cite{Stefanescu_2008, Stefanescu_2011}.
 	Such an approach is certainly not new; one of the early
 	examples of this approach consist of the well known Wilson-Cowan equations
@@ -34,6 +36,7 @@ networks.
 	that the Jansen-Rit model of rhythms and evoked responses arising from
 	coupled cortical column \cite{Jansen_1995}. 
 	\note[mw]{Continue description}.
+    \note[psl]{maybe see David et al, 2004 for better description of local connectivity in the Jansen and Rit model}
 	Advantages of the Jansen-Rit model stem from the connection made
 	between empirical studies of neural tissue and the model's parameters, 
 	making it easier in certain cases to make concrete predictions about
@@ -87,7 +90,7 @@ networks.
     neural space is discrete,  each node corresponding to a neuroanatomical
     region of interest, such as V1, etc. It is at this level that inter-
     regional time delays play a large role.
-    \note[PSL]{In the case of neural field modelling, time delays at the local level would also play a role} 
+    \note[psl]{In the case of neural field modelling, time delays at the local level would also play a role} 
 
 	It is often seen in the literature that the inter-node coupling functions
 	\textit{are} part of the node model itself. In TVB, we have instead 
@@ -123,7 +126,7 @@ networks.
 	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
 	past which the kernel falls to 0. This results in a sparse matrix that 
 	is used during integration to implement the approximate neural field. 
-	\note[psl] The Laplacian kernel is not implemented yet.
+	\note[psl]{The Laplacian kernel is not implemented yet.}
 
 \subsection{Integration of stochastic delay differential equations}
 
@@ -328,7 +331,6 @@ networks.
 	In Fig \ref{fig:gpu_acceleration}, we plot the speedup brought by the GPU
 	over the Python NumPy simulator as a function of the number of simulations 
 	performed simulataneously on the GPU.
-
 
 
 \subsection{Other simulators compared to TVB}
