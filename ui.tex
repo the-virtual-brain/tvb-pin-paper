@@ -1,7 +1,7 @@
 \subsection{Graphical Interface Interaction}
 
     A graphical web interface was chosen as solution to give users a quick
-    interaction with \TVB  . The web interface is easy to access (local or
+    interaction with \TVB . The web interface is easy to access (local or
     remotely) through a web browser, it can be used by different types of
     users, including those without programming knowledge, and it offers
     great support while learning about \TVB concepts and workflow
@@ -16,9 +16,10 @@
 
     \subsubsection{Projects, Accounts, Operations \& Data}
 
-\TVB uses entities like: Account, Project, Operation, DataType and Workflow, for modeling G-User actions and artifacts. 
+TVB uses entities like: Account, Project, Operation, DataType and Workflow, for modeling G-User actions and artifacts. 
 
  \begin{figure}[!htbp]
+
     \centering
     \subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_projects.png}}
     \\
@@ -74,8 +75,8 @@
 
 \TVB does not aim to compete at the analysis level with other tools in
 Neuroscience,  highly specialized and with great history in data
-analysis, like  FSL or SPM.  What we offer is a minimalist set or
-algorithms to post-process your  simulated results (or even process
+analysis, like  FSL, SPM, FieldTrip and Brainstorm.  What we offer is a minimalist set or
+algorithms to post-process your simulated results (or even process
 imported patient measured scans) inside \TVB, mainly for quick
 validations.
 
@@ -103,10 +104,78 @@ specific requirements for the visualization in course:
     (B) SVG: Cross Coherence
     (C) MPLH5:  Topograhic view with Connectivity in/out strength measures
     (D) FLOT: Parameter Space Exploration results grid}
+=======
+ 	\centering
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_projects.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_graph.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_operations.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_datatype_details.png}}
+	\caption{TVB Data Organization
+	(A) View all Projects
+	(B) 2D graph display of Operations with their input and output DataTypes 
+	(C) View all Operations in current project with their status, duration, results, etc
+	(D) DataType details and further available operations for it. This menu becomes available after clicking a DataType result from several places in TVB }
+        \label{fig:project}
+\end{figure}
+
+ An \emph{Account} or \emph{User} is needed for accessing  TVB through the web interface. 
+ When TVB web interface is fired for the first time, the G-User is requested to set the username and password for the first account.
+Later on, people can \emph{register} for other accounts, but for using these new accounts they will need first to get validated by the 
+initial account (which acts under \emph{admin} role).
+
+A \emph{Project} in TVB is a logical grouping entity, which  can be used in several ways by the end-user; 
+for example one could choose to create a project for each experiment in TVB, while others might create projects for each subject they simulate.
+Each project has a single User (or Account) as owner, but a project can be shared with multiple other users.
+
+Any execution of an Adapter results into an \emph{Operation} in the context of a project. Multiple operations will be executed under the same project.
+For example we will have operations created for each execution of a simulation, each run of a Fourier analyzer, or launch of a Brain Visualizer.
+An operation changes status over time, from \emph{started} into \emph{canceled}, \emph{finished successfully} or \emph{finished with error}.
+One operation can have multiple input and output parameters and parameters can be scalars or DataTypes.
+
+A \emph{Workflow} in TVB is a set of operations with they artifacts, and wraps around a simulation as leading component.
+A workflow can be seen as a default \emph{tag} placed by the system on Operations and DataTypes 
+which are logically connected, as resulting one after the other.
+Custom tags can also be added by the end-user both on DataTypes and Operations, for tracking entities inside a Project.
+
+	\subsubsection{Simulator Interface}
+	
+\note[ld]{Fill description for this}
+	
+	\subsubsection{Analysis \& Visualizers}
+
+TVB does not aim to compete at the analysis level with other tools in Neuroscience, 
+highly specialized and with great history in data analysis, like  FSL or SPM. 
+What we offer is a minimalist set or algorithms to post-process your 
+simulated results (or even process imported patient measured scans) inside TVB, mainly for quick validations.
+
+We have created inside TVB adapters for \emph{Fast ICA} from the python library \emph{sklearn}, 
+we've implemented a python version of \emph{Fourier Spectral Analysis}, 
+we have even wrapped the Matlab library \emph{BCT} \url{https://sites.google.com/site/bctnet/}, and others as analyzers.
+
+For each of the DataTypes produced in TVB, one or multiple visualizers are available.	
+TVB has couple of  visualizer types, each developed with the technology providing better support on the specific requirements for the visualization in course:
+
+ \begin{figure}[!htbp]
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_brain.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_coherence.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_topo.png}}
+	\\
+	\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_pse.png}}
+	\caption{TVB visualizers: 
+	(A) WebGL: 3D display of region level simulated signal, mapped on a brain cortical surface
+	(B) SVG: Cross Coherence
+	(C) MPLH5:  Topograhic view with Connectivity in/out strength measures
+	(D) FLOT: Parameter Space Exploration results grid}
         \label{fig:viewers}
 \end{figure}
 
 \begin{enumerate}
+
 
     \item \emph{WebGL viewers:} are based on \emph{HTML 5 Canvas} element
     and the \emph{gl} context. These viewers offer 3D nice display,
@@ -128,7 +197,6 @@ specific requirements for the visualization in course:
     \url{http://philogb.github.io/jit/} or FLOT
     \url{http://www.flotcharts.org/} - JS libraries. These are mainly
     2D graph displayers for some simple \TVB generated data.
-
 \end{enumerate}
 
 
@@ -162,7 +230,7 @@ specific requirements for the visualization in course:
 \subsection{Python Scripting}
 
 \texttt{hello\_brain.py}
-To give a basic feel for scripting \TVB simulations, we will 
+To give a basic feel for scripting TVB simulations, we will 
 walk through a simple example of a region-level simulation. We 
 start with
 
@@ -172,7 +240,7 @@ from tvb.simulator.lab import *
 
 \noindent which is an all-in-one module making writing scripts
 shorter, in the style of \texttt{pylab}, as it imports everything
-from \texttt{pylab}, \texttt{numpy} and most of \TVB's simulator
+from \texttt{pylab}, \texttt{numpy} and most of TVB's simulator
 modules. Next, we build a simulator object:
 
 \begin{lstlisting}
@@ -193,7 +261,7 @@ coupling function with a slope of $1e-2$, and deterministic
 Heun integrator and a monitor that temporally averages the 
 network dynamics before providing output.
 
-While \TVB strives to keep modules independent of one another,
+While TVB strives to keep modules independent of one another,
 it is typical for mathematical dependencies to arise between, 
 for example, the mass model and the integration time step, so
 after configuring a simulator object, it is necessary to invoke
@@ -241,7 +309,7 @@ dimension is time, and the plot here is of each node's first state
 variable, over time.
 
 Many more demonstrations of the various features of the simulator
-can been found in scripts distributed with the sources of \TVB, or 
+can been found in scripts distributed with the sources of TVB, or 
 browsed online at \url{https://github.com/the-virtual-brain/scientific_library/tree/trunk/tvb/simulator/demos}.
 In the next section, we will go into detail about the different
 components of the simulator.
@@ -350,7 +418,4 @@ extends to work over the network, should TVB be running on another machine.
 
 \paragraph{Manuals}
 \pargraph{Tutorials}
-
-
-
 
