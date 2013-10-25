@@ -46,7 +46,7 @@ components['connectivity'] = \
 
 LOG('model')
 components['model'] = \
-        (models.JansenRit if use_jr else models.Generic2dOscillator)()
+        (models.JRFast if use_jr else models.Generic2dOscillator)()
 
 if use_surface:
     LOG('surface')
