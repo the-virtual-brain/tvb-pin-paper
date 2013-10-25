@@ -1,0 +1,10 @@
+0.000	sid=7 use_surf=4 use_jr=2 use_slow_vc=1
+0.000	import simulator
+27.139	common components
+27.146	connectivity
+27.146	model
+27.151	surface
+31.445	simulator
+31.464	configure
+106.992	create generator
+106.992	first step
