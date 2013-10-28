@@ -2,9 +2,9 @@ The TVB simulator resembles popular neural network simulators in
 many fundamental ways, both mathematically and in terms of informatics 
 structures, however we have found it necessary to introduce auxiliary
 concepts particularly useful in the modeling of large scale brain 
-networks. In the following, we will highlight some of the interesting
-principles and capabilities of TVB's simulator and give rough characterization
-of the execution time and memory required in typical simulations.
+networks.
+
+% need to cite Andreas' work and 
 
 \subsection{Node dynamics}
 
@@ -33,6 +33,7 @@ of the execution time and memory required in typical simulations.
 	the more prominent examples in the systems neuroscience literature is 
 	that the Jansen-Rit model of rhythms and evoked responses arising from
 	coupled cortical column \cite{Jansen_1995}. 
+	\note[mw]{Continue description}.
 	Advantages of the Jansen-Rit model stem from the connection made
 	between empirical studies of neural tissue and the model's parameters, 
 	making it easier in certain cases to make concrete predictions about
@@ -46,10 +47,8 @@ of the execution time and memory required in typical simulations.
 	model, which may be reproduce the same qualitative phenomena as other 
 	models, implemented with fewer and simpler equations. Such is the motivation
 	for the generic two-dimensional oscillator model provided by TVB. 
-	Model produces oscillations, damped, spike-like or 
-	sinusoidal activations. While these alone are not interesting, they 
-	permit the study of network phenomena, such as synchronization of rhythms
-	or propagation of evoked potentials, while requiring less time to simulate.
+	\note[mw]{Continue, expand:} Model produces oscillations, damped, spike-like or 
+	sinusoidal activations, while requiring less time to solve.
 
 	However, the modeler's goals may not lead to either the Jansen-Rit or 
 	generic 2D oscillator, and several other mass models are provided by TVB:
@@ -184,7 +183,7 @@ of the execution time and memory required in typical simulations.
 	64 kHz, and the haemodynamic response function may last several seconds, 
 	requiring many gigabytes of memory for the fMRI monitor alone. Given that 
 	the time-scale of simulation and fMRI differ by several orders of magnitude, 
-	the subsequent averaging and downsampling is justified. 
+	the subsequent averaging and downsampling is entirely justified. 
 
 	In the cases of the EEG and MEG monitors, $K$ implements a simple
 	temporal average, and $W$ consists of a so-called lead-field matrix as typically
@@ -198,30 +197,138 @@ of the execution time and memory required in typical simulations.
 
 \subsection{Performance}
 
-	A primary goal of the simulator is to be available as a pure Python package,
-	and secondarily, to be fast enough. We have not found it useful to 
-	develop theoretical estimates of the time and space complexity of the 
-	algorithms, given that much of the heavy lifting is already done in native
-	code by NumPy and other standard libraries. Instead, 
-	in the following, we profile a set of eight characteristic simulations
-	on both memory use, specifically the heap size as measured by Valgrind's 
-	\texttt{massif} tool \cite{valgrind2007}, and function timing as measured by the 
-	\texttt{cProfile} module of the standard library. 
-	
-	Measurements were
-	performed on an HP Z420 workstation, with a single Xeon E5-1650
-	six-core CPU running at 3.20 GHz, L1-3 cache sizes 384 KB, 1536 KB
-	and 12 MB respectively, with main memory 4 x 4 GB DDR3 at 1600 Mhz,
-	running Debian 7.0, with Linux kernel version 3.2.0-4-amd64. 
-	The 64-bit Anaconda Python distribution was used with additional Accelerate
-	pacakge which provides acceleration of common routines based on the 
-	Intel Math Kernel Library. A Git checkout of the trunk branch of TVB 
-	was used with SHA 6c644ab3b5.
+	Several of the core components (integrators, mass models, coupling
+	functions) have targeted towards a C source code backend, which has
+	allowed for the compilation of simulations to native code loaded 
+	either as a shared library accessed via the \texttt{ctypes} modules
+	or as CUDA kernels accessed via the PyCUDA \cite{PyCUDA}. \note[lp]{WHy not
+    Cython?}
+	While such an approach may provide speed ups, they depend on the
+	presence of a C compiler and, in the case of GPU, the CUDA toolkit and
+	a compatible graphics card, and in the future, prepackaged versions of TVB
+	will include precompiled objects for most kinds of simulations. 
 
-	Eight different simulations were performed corresponding to the combinations of
-	either the generic 2D oscillator or Jansen-Rit model, region-only
-	or use of cortical surface, and two conduction speeds, $v_c = 2.0$ and
-	$v_c = 20.0$ (m/s). In each case, a temporal average monitors at 512 Hz
-	is used, and the results are discarded. The region-only simulation was
-	run for a second while the surface simulation was run for 100 ms. 
+	The approach used in compiling a simulation to native code takes advantage
+	of the fact that CUDA is quite similar to C, and thus a generic template
+	abstracts much of the boilerplate between the two. For each part of the 
+	simulator, a generic function is customized with a class specific kernel;
+	for example, in the case of a neural mass model, we have in the Python class
+
+    \begin{lstlisting}[caption={The Generic2dOscillator listing},
+                       label={lst:g2dOscil}]
+	class Generic2dOscillator(Model):
+	    tau = FloatArray(...)
+	    # etc.
+
+	    device_info = model_device_info(
+		pars=[tau, a, b, c, d, I],
+		kernel="""
+		float tau  = P(0)
+		    , a    = P(1) ; // etc
+
+		// state variables
+		    , v    = X(0)
+		    , w    = X(1)
+
+		// aux variables
+		    , c_0  = I(0)   ;
+
+		// derivatives
+		DX(0) = d * 
+		(tau * (w - v*v*v + 3.0*v*v + I + c_0));
+		DX(1) = d * 
+		((a + b*v + c*v*v - w) / tau);
+		"""
+	    )
+	\end{lstlisting}
+
+	\noindent where the device\_info attribute is used to specify how the
+	class's mathematical description fits into the general model function:
+
+    \begin{lstlisting}[caption={The Listing},label={lst:wrapper}]
+	/* wrapper for model specific code computing RHSs of diff-eqs */
+	__device__
+	void model_dfun(
+	  float * _dx, float *_x, float *mmpr, float *input)
+	{
+	#define X(i) _x[n_thr*i]
+	#define DX(i) _dx[n_thr*i]
+	#define P(i) mmpr[n_thr*i]
+	#define I(i) input[i]
+
+	    // begin model code
+	    \$model_dfun
+	    // end model specific code
+
+	#undef X
+	#undef DX
+	#undef P
+	#undef I
+	\end{lstlisting}
+
+	\noindent where the C preprocessor defines allow the model specific
+	kernel to easily reference the correct parts of the multidimensional 
+	per-thread arrays (in the case of the GPU). 
+
+	 \begin{figure}
+		{\includegraphics[width=0.48\textwidth]{images/gpu_dxdt.png}}
+		\caption{
+		Right A typical parameter space exploration, 32 x 32 grid of
+		coupling strength (y-axis) v. neural excitability (x-axis).
+		This grid of simulations was run on both TVB's Python/NumPy
+		implementation and the new GPU backend for 200 ms simulation
+		time with otherwise default parameters. The former took ~2
+		hours and the latter ~ 1 min. Left Quantitative comparison of
+		solutions and instantaneous derivatives is shown for an even
+		sampling of the parameter space across k where a = -2, because
+		this slice showed the most error on the GPU. 	
+		}
+		\label{fig:gpu_dxdt}
+	\end{figure}
+
+	 \begin{figure}
+		{\includegraphics[width=0.48\textwidth]{images/gpu_pse.png}}
+		\caption{}
+		\label{fig:gpu_pse}
+	\end{figure}
+
+	\note[sk]{One figure or two, re captions}
+
+	\note[sk]{Specify hardware (GPU/CPU) and whether Numpy is mkl-linked, to 
+	    provide a more solid foundation for timing comparisons...}
+
+	\note[sk]{It would be interesting to see a longer run (say a few seconds)
+	    to show if/how-quickly the error grows...}
+
+	As can be seen in the listing \note[sk]{can listings be numbered and
+    labelled...}\note[lp]{Done see example and edit}, the calculations
+	in native code are performed with 32-bit floating point numbers, and it
+	is reasonable to ask if this is numerically accurate. In Fig 
+	\ref{fig:gpu_pse}, we present a parameter space exploration performed with
+	both the pure Python NumPy simulator and the GPU simulator, showing the 
+	isocontours of average standard deviation in the parameter space. Some
+	deviation can be identified visually in parts of the parameter space, and
+	in in Fig \ref{fig:gpu_dxdt}, we show in more detail time series of 
+	the Python and GPU solutions.
+
+	 \begin{figure}
+		{\includegraphics[width=0.48\textwidth]{images/gpu_acceleration.png}}
+		\caption{}
+		\label{fig:gpu_acceleration}
+	\end{figure}
+
+	This approach allows significant acceleration of parameter sweeps in the
+	case of the GPU by taking
+	advantage of the fact that in many cases, only numerical values vary
+	between different threads and not memory access patterns. Where one of the
+	dimensions of a parameter sweep implies changing memory access patterns, 
+	for example conduction speed, it is advantageous to reorder the parameters,
+	so that such memory varying parameters only change between grids of GPU
+	threads and not within.
+
+	In Fig \ref{fig:gpu_acceleration}, we plot the speedup brought by the GPU
+	over the Python NumPy simulator as a function of the number of simulations 
+	performed simulataneously on the GPU.
+
+
 

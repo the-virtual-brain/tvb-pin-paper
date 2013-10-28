@@ -28,6 +28,8 @@
 \usepackage{courier}
 \usepackage[scaled]{beramono}
 
+\usepackage{fancyvrb}
+
 \usetikzlibrary{shapes,arrows}
 \usetikzlibrary{arrows,positioning}
 \usepackage{xcolor}
@@ -102,7 +104,7 @@
 \newcommand*{\tvbattribute}[1]{{\ttfamily{#1}}}     % attributes
 \newcommand*{\tvbtrait}[1]{{\ttfamily{#1}}}         % traited types
 
-
+\newcommand{\matlab}{MatLab}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                            Colors and graphics                             %%
@@ -125,6 +127,7 @@
 	keepspaces=true,
 	numbers=none,
 	showspaces=false,
+    float=*,
 	basicstyle=\fontsize{8pt}{8}\ttfamily
 	} 
 
@@ -143,7 +146,8 @@
         Viktor Jirsa\,$^{1}$\footnote{to whom correspondence should be addressed: marmaduke.woodman@univ-amu.fr,
         viktor.jirsa@univ-amu.fr}}
 
-\address{$^{1}$ Institut de Neurosciences des Syst{\`e}mes, 27, Bd. Jean Moulin, 13005, Marseille, France.\\
+\address{$^{1}$ Institut de Neurosciences des Syst{\`e}mes, Aix-Marseille
+    Universit\'e,  27, Bd. Jean Moulin, 13005, Marseille, France.\\
          $^{3}$ Codemart, 13, Petofi Sandor, 400610, Cluj-Napoca, Romania.\\
          $^{2}$ CodeBox GmbH, Hugo Eckener Str. 7, 70184 Stuttgart, Germany.\\
          $^{4}$ Rotman Research Institute at Baycrest, Toronto, M6A 2E1, Ontario, Canada\\
@@ -201,25 +205,37 @@ performance, recent advances thereupon with native code compilation and GPUs,
 and the role of Python and its rich scientific ecosystem in TVB. 
 
   
-\section{Keywords:} connectivity, connectome, neural mass, neural field, 
-time delays, full-brain network model, Python, virtual brain, large-scale 
-simulation,  web platform, GPUs
+\section{Keywords:} large-scale simulation,  web platform, Python, vitrual
+brain, connectivity, connectome, neural mass, neural field, time delays,
+full-brain network model, GPUs
+
 \end{abstract}
 
-\section{Motivation}
+%\tableofcontents
+
+\note[lp]{Emphasize the process of integrating new tools in TVB? This is not
+completely clear for me now.}
+
+\section{Motivations}
 \input{motivation.tex}
 
 \section{Architecture}
 \input{architecture.tex}
 
-\section{User Interaction}
-\input{ui.tex}
-
 \section{Simulator}
 \input{simulator.tex}
 
+\section{User Interaction}
+\input{ui.tex}
+
 \section{Future Work}
 \input{future.tex}
+
+\section*{Acknowledgments}
+LP whishes to thank specifically Y.~Manhoun for his implication in the
+conception and development of the first prototype of the architecture. Several
+authors have also participated in the development of TVB. They are cited in the
+\texttt{AUTHORS} file in TVB distribution and deserve also our warm acknowlegments.
 
 \bibliographystyle{apalike}
 \bibliography{bib}

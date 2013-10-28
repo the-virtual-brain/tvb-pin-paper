@@ -1,31 +1,14 @@
+TVB is logically and technically divided at deploy time into a scientific
+library and a framework package, where the scientific library includes
+datatypes, basic analyses and the simulator as its central piece, while the
+framework handles execution infrastructure, the web-based user interface and
+data storage.  TVB Scientific Library can function independently, as a Python
+module, but TVB Framework needs the scientific library to wrap around it at
+runtime. \note[lp]{How is it possible to add extensions to the current version
+of TVB?}
 
-TVB is logically and technically divided at deploy time into a scientific library and a framework package, 
-where the scientific library includes datatypes, basic analyses and the simulator as its central piece,
-while the framework handles execution infrastructure, the web-based user interface and data storage. 
- TVB Scientific Library can function independently, as a Python module, but TVB Framework needs 
-the scientific library to wrap around it at runtime.
 
-TVB source code is available for download on Github at \url{https://github.com/the-virtual-brain/}. 
-Previous Git and Python knowledge is required for contributing.
-Although you could independently install Python and the rest of TVB dependencies on your machine, 
-and then use the Github code as a simple local clone, we recommend you to download \emph{TVB\_ Distribution}
-from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on Github and further use
-\emph{contributor\_setup} script, from inside \emph{TVB\_ Distribution} folder, to link the two. 
-In this recommended use-case, you will have all TVB dependencies already prepared and at your disposal, 
-as part of \emph{TVB\_Distribution}.
-
- \begin{figure*}
-        \centering
-        \includegraphics[width=0.90\textwidth]{images/architecture.jpg}
-        \caption{TVB architecture: 
-        Yellow blocks are part of the Scientific Library of TVB, while the green blocks are part of TVB Framework.
-        TVB provides two independent interfaces, depending on the interaction type wanted by the end-user (web or console).
-        TVB Storage layer is compulsory for the web interface, but it can be switched on/off for the console interface.
-         }
-        \label{fig:architecture}
- \end{figure*}
-
-	\subsection{Basic Concepts}
+\subsection{Basic Concepts}
 
 TVB has been developed with generality and modularity in mind. The central idea is data-oriented in a sense that
 data is fed and stored into the system and can be transformed into another type
@@ -35,6 +18,53 @@ been \emph{adapted} to the framework. As a consequence, central concepts in TVB
 are \emph{datatypes} i.e. types of data that can be handled in the framework and
 \emph{adapters} i.e. classes that allow to interface/adapt external libraries
 to  the datatypes handled by within the framework.
+
+TVB framework provides a storage back-end, workflow management and a number of features to
+support collaborative work. The framework supports two user interfaces: web-based graphical interface or the
+console interface for advanced user and developers.
+
+Due to the generality of the framework, it relies on the Python \emph{abstract classes} mechanism.
+\note[lp]{From Python glossary:}
+Abstract base classes complement duck-typing by providing a way to define
+interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
+   
+%\begin{verbatim}
+%    def configure(self, **kwargs):
+%        To be implemented in each Adapter that requires any specific configurations
+%        before the actual launch.
+%
+%    def get_input_tree(self):
+%        Describes inputs and outputs of the launch method.
+%
+%    def get_output(self):
+%        Describes inputs and outputs of the launch method.
+%
+%    def get_required_memory_size(self, **kwargs):
+%        Abstract method to be implemented in each adapter. Should return the required memory
+%        for launching the adapter.
+%
+%    def get_required_disk_size(self, **kwargs):
+%        Abstract method to be implemented in each adapter. Should return the required memory
+%        for launching the adapter in kilo-Bytes.
+%
+%    def get_execution_time_approximation(self, **kwargs):
+%        Method should approximate based on input arguments, the time it will take for the operation 
+%        to finish (in seconds).
+%
+%    def launch(self):
+%         To be implemented in each Adapter.
+%         Will contain the logic of the Adapter.
+%         Any returned DataType will be stored in DB, by the Framework.
+%\end{verbatim}
+
+
+\subsection{Data: types and storage}
+
+
+\note[lp]{datatypes were first defined in the "architecture" why did it moved to
+the scientific library?}
+\note[lp]{Is there an "abstract datatype" defined? What is the process to add
+new datatype?}
 
 	\subsubsection{TVB Traits}
 
@@ -103,31 +133,35 @@ The complete list of currently supported traited-attributes is described in Tabl
 
 
 	\subsubsection{DataTypes}
-
-In TVB, DataTypes represent the common language, to be used between different other application parts: 
-like uploaders, analyzers, simulator and visualizers.
-Some of the algorithms are producing these DataTypes, while others are reading them as input. 
-In order to decouple the definition and several usages of such entities, DataTypes are declared outside the algorithms 
-and shared between them. For example an instance of datatype TimeSeriesRegion is created by the Simulator, 
-and it can be accepted as input for several visualizers or analyzed by PCA and Cross Coherence algorithms.
-
-In a more technical definition, TVB DataTypes are annotated structures (Python classes), which
-contain one or more fields and associated descriptive information, as
-well as methods for operating on the data they contain. The definition of a
-DataType is achieved using TVB's traiting system, mentioned in previous section.
-
 In scientific Python code, it is conventional to provide arguments
 of an algorithm as a ``bare'' array or collection there of, and sanity
 checks of arguments proceed on the basis of array geometry, for example.
 In TVB, we consider a \textit{DataType} to be a full, formal description of 
 an entity involved in an algorithm that would be part of TVB. 
+
+In TVB, DataTypes represent the common language, to be used between different
+application parts: like uploaders, analyzers, simulator and visualizers.
+Some of the algorithms are producing these DataTypes, while others are reading
+them as input.  In order to decouple the definition and several usages of such
+entities, DataTypes are declared outside the algorithms and shared between them.
+For example an instance of datatype TimeSeriesRegion is created by the
+Simulator, and it can be accepted as input for several visualizers or analyzed
+by PCA and Cross Coherence algorithms.
+
+In a more technical definition, TVB DataTypes are annotated Python classes, which
+contain one or more fields and associated descriptive information, as
+well as methods for operating on the data they contain. The definition of a
+DataType is achieved using TVB's traiting system, mentioned in previous section.
+
 For example, the \texttt{Connectivity} DataType, which may elsewhere
 be represented by a simple $N$ by $N$ NumPy array, is written as a class
 in which one of the attributes, \texttt{weights}, is a explicitly typed 
 \texttt{FloatArray}, and the declaration of this type is complemented by
-explicit label, default values, and documentation strings. 
+explicit label, default values, and documentation strings. See
+Code~\ref{lst:ConnectivityData}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={The COnnectivityData listing},
+                   label={lst:ConnectivityData}]
 class ConnectivityData(MappedType):
 
   region_labels = arrays.StringArray( 
@@ -152,36 +186,9 @@ class ConnectivityData(MappedType):
 	label="Region centres",
         doc="""... locations for the region centers""")
 \end{lstlisting}
-
-	\subsubsection{Profile}
-
-TVB uses the notion of \emph{profile} to identify in what context the application is currently running,
-and thus what components are expected to be plugged and how.
-
-For example, when TVB scientific library is used alone, a specific profile (\emph{library profile}) class 
-gets linked as current profile, which, in this case, disables data storage and the web interface. Other profiles available
-in TVB are: \emph{command profile}, \emph{deployment profile} (with web interface), and \emph{test profiles}.
-
-	\subsection{TVB Scientific Library}
-
-	\subsubsection{General description}
-
-	\subsubsection{TVB Specific Datatypes}
+	
 
 \note[lp]{Table 2 ``TVB datatypes'' of FIN article might be interesting here?}
-
-	\subsection{TVB Framework}
-
-	\subsubsection{General description}
-
-TVB framework provides a storage back-end, workflow management and a number of features to
-support collaborative work. The framework supports two user interfaces: web-based graphical interface or the
-console interface for advanced user and developers.
-
-Due to the generality of the framework, it relies on the Python \emph{abstract classes} mechanism.
-\note[lp]{From Python glossary:}
-Abstract base classes complement duck-typing by providing a way to define
-interfaces when other techniques like hasattr() would be clumsy or subtly wrong.
 
 \subsubsection{Data Storage}
 
@@ -196,8 +203,7 @@ interface only the URL for connection.
 
 \note[ld]{Write more details here. E.g. about GIDs}
 
-
-\subsubsection{Adapters}
+\subsection{Adapters}
 
 While DataTypes provide a way of description what data do algorithms work with, 
 sufficing for the typical user looking to write scripts against the
@@ -210,7 +216,8 @@ algorithm.
 Adapters are derived from the abstract class named \texttt{ABCAdapter} which
 defines the common interface for the adapters with compulsory methods to be implemented like:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={The ABCAdapter listing},
+                   label={lst:ABCAdapter}]
 class ABCAdapter(object):
 
   @abstractmethod
@@ -280,6 +287,9 @@ the abstract base class framework provided by Python's standard library.
 
 \note[mw]{Show the adapter for FastICA}
 
+\lstinputlisting[caption={ICA adapter for FastICA library},
+                 label={lst:ica}]{ica_adapter.py}
+
 \paragraph{Interfacing with MATLAB}
 
 One of the well-known libraries for characterizing anatomical 
@@ -300,4 +310,14 @@ user situation, and where Octave is available, it is quite fast. In the
 case that many operations are necessary, they can be batched into the 
 same run.
 
+\subsection{Other concepts}
+
+	\subsubsection{Profile}
+
+TVB uses the notion of \emph{profile} to identify in what context the application is currently running,
+and thus what components are expected to be plugged and how.
+
+For example, when TVB scientific library is used alone, a specific profile (\emph{library profile}) class 
+gets linked as current profile, which, in this case, disables data storage and the web interface. Other profiles available
+in TVB are: \emph{command profile}, \emph{deployment profile} (with web interface), and \emph{test profiles}.
 
