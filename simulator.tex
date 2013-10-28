@@ -1,4 +1,4 @@
-The TVB simulator resembles popular neural network simulators in 
+The simulator in TVB resembles popular neural network simulators in 
 many fundamental ways, both mathematically and in terms of informatics 
 structures, however we have found it necessary to introduce auxiliary
 concepts particularly useful in the modeling of large scale brain 
@@ -8,31 +8,33 @@ of the execution time and memory required in typical simulations.
 
 \subsection{Node dynamics}
 
-	In TVB, nodes are not considered to be abstract neurons nor necessarily 
-	small groups thereof, but rather large populations of neurons. Concretely, 
+	In TVB, nodes are not considered to be abstract neurons nor necessarily
+	small groups thereof, but rather large populations of neurons. Concretely,
 	the main assumption of the neural mass modeling approach in TVB is that
 	large pools of neurons on the millimeter scale are strongly approximated
-	by population level equations describing the major statistical modes of 
-	neural dynamics. Often, averaging techniques are employed, though techniques
-	retaining several modes have been developed \cite{Stefanescu_2011}.
-	Such an approach is certainly not new; one of the early
-	examples of this approach consist of the well known Wilson-Cowan equations
-	\cite{Wilson_1973}. Nevertheless, there are important differences in the
-	the assumptions and goals from modeling of individual neurons, where the
-	goal may be to reproduce correct spike timing or predict the effect of 
-	a specific neurotransmitter. A second difference lies in coupling:
-	chemical coupling is often assumed to be pulsatile, or discrete, between neurons, whereas
-	it is considered continuous.
-	Typically the goal of neural mass modeling
-	is to study the dynamics that emerge from the interaction of two
-	or more neural masses and the network conditions required for stability
-	of a particular spatiotemporal pattern. In the following, we shall 
-	briefly discuss some of the models available in TVB.
+	by population level equations describing the major statistical modes of
+	neural dynamics \cite{Freeman_1975book}. Often, averaging techniques are
+	employed, though techniques retaining several modes have been developed
+	\cite{Stefanescu_2008, Stefanescu_2011}. Such an approach is certainly not
+	new; one of the early examples of this approach consist of the well known
+	Wilson-Cowan equations \cite{Wilson_1973}. Nevertheless, there are
+	important differences in the the assumptions and goals from modeling of
+	individual neurons, where the goal may be to reproduce correct spike
+	timing or predict the effect of  a specific neurotransmitter. A second
+	difference lies in coupling: chemical coupling is often assumed to be
+	pulsatile, or discrete, between neurons, whereas it is considered
+	continuous. Typically the goal of neural mass modeling is to study the
+	dynamics that emerge from the interaction of two or more neural masses and
+	the network conditions required for stability of a particular
+	spatiotemporal pattern. In the following, we shall  briefly discuss some
+	of the models available in TVB.
 
 	As we have noted, many neural mass models have been developed. One of
 	the more prominent examples in the systems neuroscience literature is 
 	that the Jansen-Rit model of rhythms and evoked responses arising from
-	coupled cortical column \cite{Jansen_1995}. 
+	coupled cortical column \cite{Zetterberg_1978, Jansen_1995, Spiegler_2010}. 
+	\note[mw]{Continue description}.
+	\note[psl]{maybe see David et al, 2004 for better description of local connectivity in the Jansen and Rit model}
 	Advantages of the Jansen-Rit model stem from the connection made
 	between empirical studies of neural tissue and the model's parameters, 
 	making it easier in certain cases to make concrete predictions about
@@ -51,47 +53,51 @@ of the execution time and memory required in typical simulations.
 	permit the study of network phenomena, such as synchronization of rhythms
 	or propagation of evoked potentials, while requiring less time to simulate.
 
-	However, the modeler's goals may not lead to either the Jansen-Rit or 
-	generic 2D oscillator, and several other mass models are provided by TVB:
-	the previously mentioned Wilson-Cowan description of functional dynamics of
-	neural tissue \cite{Wilson_1972}, the Kuramoto model of synchronization \cite{Kuramoto1975}, two and 
-	three dimensional mode-level models describing populations with 
-	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008} are
-	among the available models in TVB.  
-	Again, should any of these be insufficient, a new model can be implemented
-	with minimal effort by subclassing a base \texttt{Model} class and providing a 
-	\texttt{dfun} method to compute the right hand sides of the differential 
-	equations. Please refer to the \texttt{tvb.simulator.models} module for 
-	examples.
+	However, the modeler's goals may not lead to either the Jansen-Rit
+	\cite{Jansen_1995, David_2003, David_2004} or generic 2D oscillator
+	\cite{FitzHugh_1961, Nagumo_1962}, and several other mass models are
+	provided by TVB: the previously mentioned Wilson-Cowan description of
+	functional dynamics of neural tissue \cite{Wilson_1972}, the Kuramoto
+	model describing synchronization \cite{Kuramoto_1975, Cabral_2011}, two
+	and three dimensional mode-level models describing populations with
+	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008}, a
+	reduction of the Wong and Wang model \cite{Wong_2006} as presented in
+	\cite{Deco_2013} and a lumped version of Liley's model \cite{Liley_1999,
+	Steyn-Ross_1999} model are among the available models in TVB.
 
-	Because not all of the state variables of a model have the same meaning,
-	for each of the models, we note two sets of variables, 
-	coupling variables, which must be propagated by the connectivity to 
-	provide input, and variables of interest whose values are recorded by
-	monitors and saved for further analysis. 
+	Again, should any of these be insufficient, a new model can be implemented
+	with minimal effort by subclassing a base \texttt{Model} class and
+	providing a  \texttt{dfun} method to compute the right hand sides of the
+	differential  equations. Please refer to the \url{https://github.com/the-
+	virtual-brain/scientific_library/tree/trunk/contrib/simulator/models} for
+	examples. In here, models found in the work of \cite{Larter_1999,
+	Breakspear_2003, Morris_1981, Hindmarsh_1984, Brunel_2001} have been implemented.
+
+	
 
 \subsection{Network structure}
 
-	The network of neural masses in TVB simulations directly follows from 
-	a pair of 
-	geometrical constraints on cortical dynamics. The first is the 
+	The network of neural masses in TVB simulations directly follows from  a
+	pair of geometrical constraints on cortical dynamics. The first is the
 	large-scale white matter fibers that form a non-local and heterogeneous
-	(translation variant) connectivity, either measured by anatomical
-	tracing (CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging. The second
-	is that of horizontal projections along the surface, which are 
-	usually modeled through a translationally invariant connectivity kernel
-	though as with most parameters in TVB, spatially inhomogeneity
-	is supported as well due to the use of generic NumPy operations which
-	broadcast dimensions automatically. 
+	(translation variant) connectivity, either measured by anatomical tracing
+	(CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging \cite{Hagmann_2008,
+	Honey_2009, Bastiani_2012}. The second is that of horizontal projections
+	along the surface, which are modeled through a translation invariant
+	\note[sk]{Not technically true, using singular parameters will produce
+	this but that's only a limited subset of the capability, spatially
+	inhomogeneous parameters are supported -- thus being more general than the
+	restricted case of translational invariance} connectivity kernel,
+	approximating a neural field.
 
 	\subsubsection{Large-scale connectivity}
 
 	The large-scale region level connectivity at the scale of centimeters,
-	resembles more a traditional
-	neural network than a neural field in that neural space is discrete, 
-	each node corresponding to a neuroanatomical region of interest, such
-	as V1, etc. It is at this level that inter-regional delays play a large
-	role. 
+	resembles more a traditional neural network than a neural field in that
+	neural space is discrete,  each node corresponding to a neuroanatomical
+	region of interest, such as V1, etc. It is at this level that inter-
+	regional time delays play a large role.
+	\note[psl]{In the case of neural field modelling, time delays at the local level would also play a role} 
 
 	It is often seen in the literature that the inter-node coupling functions
 	\textit{are} part of the node model itself. In TVB, we have instead 
@@ -107,12 +113,12 @@ of the execution time and memory required in typical simulations.
 	The local connectivity of the cortex at the scale of millimeters provides
 	a continuous 2D surface along horizontal projections connect 
 	cortical columns. Such a structure has previously been modeled by
-	neural fields \cite{Amari_1977,Jirsa_1997}. In TVB, a cortical mesh, 
-	as obtained from structural MRI and simplified, provides a spatial 
+	neural fields \cite{Amari_1977, Jirsa_1997, Liley_1999}. In TVB, a cortical mesh, 
+	as obtained from structural MRI data and simplified, provides a spatial 
 	discretization on which neural masses are placed and connected with a
-	connectivity kernel, itself only a function of the geodesic distance
+	local connectivity kernel, itself only a function of the geodesic distance
 	between the two masses, and this is considered to provide an
-	adequate approximation of a neural field, depending on the properties
+	approximation of a neural field, depending on the properties
 	of the mesh and the imaging modalities that sample the activity simulated
 	on the mesh \cite{Spiegler_2013}. 
 	\note[sk]{The implementation of the local connectivity kernel is such
@@ -127,6 +133,7 @@ of the execution time and memory required in typical simulations.
 	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
 	past which the kernel falls to 0. This results in a sparse matrix that 
 	is used during integration to implement the approximate neural field. 
+	\note[psl]{The Laplacian kernel is not implemented yet.}
 
 \subsection{Integration of stochastic delay differential equations}
 

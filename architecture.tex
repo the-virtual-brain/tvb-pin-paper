@@ -38,7 +38,7 @@ to  the datatypes handled by within the framework.
 
 	\subsubsection{TVB Traits}
 
-System is inspired by the traiting module developed by Enthought \cite{Enthought_2001}.
+System is inspired by the traiting module developed by Enthought \cite{EnthoughtTraits}.
 Out traiting system offers a way to annotate fields and classes from inside TVB, with specific trait-attributes,
 which will be further used in different layers of the application.
 Trait-attributes are synonym with meta-data for TVB classes and their fields.
@@ -299,5 +299,25 @@ Despite invocation of MATLAB being a relatively slow operation, this works fine 
 user situation, and where Octave is available, it is quite fast. In the 
 case that many operations are necessary, they can be batched into the 
 same run.
+
+\subsection{Documentation}
+
+We provide an API doc, built from the docs strings using Sphinx.
+Users, Contributors and Developers manuals are also provided with TVB
+distributions in pdf format. The source files (in .rst) are available
+through the github repository \url{https://github.com/the-virtual-brain/docs}.  
+In addition, IPython \cite{PerezGranger_2007} notebooks
+for interactive tutorials are provided. These are based on the
+demonstration scripts provided with the scientific library, and
+include a more detailed description of what the scientific goal is (if
+applicable), the components and stages of a simulation as well as a
+brief description in the case of reproducing previous work. Users
+interacting with \TVB GUI may also benefit from these tutorials
+(\url{links: https://github.com/the-virtual-
+brain/scientific_library/wiki/Tutorials}) when displayed as snippets
+with Ipython nbviewer. 
+
+The user interface provides an online help overlay, that pulls
+information from the Users manual.
 
 
