@@ -70,10 +70,9 @@ of the execution time and memory required in typical simulations.
 	providing a  \texttt{dfun} method to compute the right hand sides of the
 	differential  equations. Please refer to the \url{https://github.com/the-
 	virtual-brain/scientific_library/tree/trunk/contrib/simulator/models} for
-	examples. In here, models found in the work of \cite{Larter_1999,
-	Breakspear_2003, Morris_1981, Hindmarsh_1984, Brunel_2001} have been implemented.
-
-	
+	examples. There, models found in the work of 
+	\cite{Larter_1999, Breakspear_2003, Morris_1981, Hindmarsh_1984, Brunel_2001}
+	have been implemented.
 
 \subsection{Network structure}
 
@@ -95,9 +94,9 @@ of the execution time and memory required in typical simulations.
 	The large-scale region level connectivity at the scale of centimeters,
 	resembles more a traditional neural network than a neural field in that
 	neural space is discrete,  each node corresponding to a neuroanatomical
-	region of interest, such as V1, etc. It is at this level that inter-
-	regional time delays play a large role.
-	\note[psl]{In the case of neural field modelling, time delays at the local level would also play a role} 
+	region of interest, such as V1, etc. It is at this level that inter-regional 
+	time delays play a large role, whereas the time delays due to 
+	lateral, local projections are subsumed under the dynamics of the node.
 
 	It is often seen in the literature that the inter-node coupling functions
 	\textit{are} part of the node model itself. In TVB, we have instead 
@@ -126,8 +125,8 @@ of the execution time and memory required in typical simulations.
 	allowing for the implementation of true neural-field models that 
 	use a second-order spatial derivative as their explicit spatial term.}
 
-	TVB currently provides several connectivity kernels, among others, 
-	the Laplacian and Gaussian kernels. Once a cortical surface mesh 
+	TVB currently provides several connectivity kernels, of which a Gaussian
+	is one. Once a cortical surface mesh 
 	and connectivity kernel and its parameters are chosen, the geodesic
 	distance (i.e. the distance along the cortical surface) is evaluated
 	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
@@ -234,3 +233,7 @@ of the execution time and memory required in typical simulations.
 
 	\note[mw]{Table of profiling results to go here. Profiling has been done, 
 	curating results now..}
+
+\subsection{Acceleration with C \& CUDA}
+
+	\input{c-cuda.tex}

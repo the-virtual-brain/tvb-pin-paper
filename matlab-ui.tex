@@ -1,88 +1,10 @@
 
-\subsection{MATLAB Scripting}
 
 Due to the popularity of MATLAB in the neuroscience community, an
 interface from MATLAB to TVB has been introduced that allows a MATLAB
 script to design a TVB simulation, run it on TVB and retrieve the 
 results. The MATLAB toolbox is provided separately from TVB, at
 \url{https://github.com/the-virtual-brain/matlab-tvb}.
-In the following, we give a short demonstration and 
-describe implementation and rationale.
-
-Because the MATLAB functions need to know the address of the server,
-so we take any of the URLs used by the Web UI (here, the one provided
-when launching TVB):
-
-\begin{lstlisting}
-sv = vb_url('http://127.0.0.1:8080/user/')
-\end{lstlisting}
-
-To run simulations without blocking MATLAB, a multiprocessing Pool
-is used. We reset the pool and change the number of processes to 6
-
-\begin{lstlisting}
-vb_reset(sv, 6)
-\end{lstlisting}
-
-Next, we can query the server for information on the classes available,
-and also get help for each of the classes
-
-\begin{lstlisting}
-info = vb_dir(sv);
-\end{lstlisting}
-
-\noindent where info is a cell array of structs, one per module (models,
-monitors, etc.) and each struct has a field per class (models.JansenRit, 
-models.Kuramoto, etc.). Each of these fields contains the details on 
-the class, including all the parameters that can be set. 
-
-To build a simulation, we start with an empty struct
-and fill in the details for each part
-
-\begin{lstlisting}
-sim = [];
-
-sim.tf = 1e3 % simulation length milliseconds
-sim.model.class = vb.models.Generic2dOscillator;
-sim.model.a = -2.1;
-
-sim.connectivity.class = 'Connectivity';
-sim.connectivity.speed = 4.0;
-
-sim.coupling.class = 'Linear';
-sim.coupling.a = 0.002;
-
-sim.integrator.class = 'HeunDeterministic';
-sim.integrator.dt = 1e-2;
-\end{lstlisting}
-
-Monitors are specified similarly but as a cell array there may be
-several of them:
-
-\begin{lstlisting}
-sim.monitors{1}.class = 'TemporalAverage';
-
-sim.monitors{2}.class = 'Raw';
-sim.monitors{2}.period = 1.0; % ms
-\end{lstlisting}
-
-\note[sk]{Raw monitor has no period, or rather the period can't be set as it is
-fixed as the integration time step...}
-
-Lastly, we submit the struct as a new simulation
-
-\begin{lstlisting}
-[id, data] = vb_new(sv, sim);
-\end{lstlisting}
-
-\noindent Lastly, results are returned in a struct, here named data
-where each field contians the output of a monitor and can be plotted
-and analyzed as a regular MATLAB dataset:
-
-\begin{lstlisting}
-plot(data.mon_0_TemporalAverage.ts,...
-     squeeze(data.mon_0_TemporalAverage.ys)')
-\end{lstlisting}
 
 The implementation of this interface is a combination of an additional
 CherryPy controller providing an HTTP/JSON API, running on the same 
@@ -96,6 +18,90 @@ advantages of an HTTP API are that most computational environments have
 the ability to connect and make HTTP requests, allowing other programs 
 like Perl or Mathematica take advantage of TVB and the approach naturally
 extends to work over the network, should TVB be running on another machine.
+
+In the following, we give a short demonstration and 
+describe implementation and rationale.
+
+\lstinputlisting[caption={Matlab lsiting}, label={lst:uimatlab}]{matlab_lst.m}
+
+Because the MATLAB functions need to know the address of the server,
+so we take any of the URLs used by the Web UI (here, the one provided
+when launching TVB):
+
+%\begin{lstlisting}[caption={ML Listing},
+%                   label={lst:ml1}]
+%sv = vb_url('http://127.0.0.1:8080/user/')
+%\end{lstlisting}
+
+To run simulations without blocking MATLAB, a multiprocessing Pool
+is used. We reset the pool and change the number of processes to 6
+
+%\begin{lstlisting}[caption={ML Listing},label={lst:ml2}]
+%vb_reset(sv, 6)
+%\end{lstlisting}
+
+Next, we can query the server for information on the classes available,
+and also get help for each of the classes
+
+%\begin{lstlisting}[caption={ML Listing},label={lst:ml2}]
+%info = vb_dir(sv);
+%\end{lstlisting}
+
+\noindent where info is a cell array of structs, one per module (models,
+monitors, etc.) and each struct has a field per class (models.JansenRit, 
+models.Kuramoto, etc.). Each of these fields contains the details on 
+the class, including all the parameters that can be set. 
+
+To build a simulation, we start with an empty struct
+and fill in the details for each part
+
+%\begin{lstlisting}[caption={ML Listing},label={lst:ml3}]
+%sim = [];
+%
+%sim.tf = 1e3 % simulation length milliseconds
+%sim.model.class = vb.models.Generic2dOscillator;
+%sim.model.a = -2.1;
+%
+%sim.connectivity.class = 'Connectivity';
+%sim.connectivity.speed = 4.0;
+%
+%sim.coupling.class = 'Linear';
+%sim.coupling.a = 0.002;
+%
+%sim.integrator.class = 'HeunDeterministic';
+%sim.integrator.dt = 1e-2;
+%\end{lstlisting}
+
+Monitors are specified similarly but as a cell array there may be
+several of them:
+
+%\begin{lstlisting}[caption={ML Listing},
+%                   label={lst:ml4}]
+%sim.monitors{1}.class = 'TemporalAverage';
+%
+%sim.monitors{2}.class = 'Raw';
+%sim.monitors{2}.period = 1.0; % ms
+%\end{lstlisting}
+
+\note[sk]{Raw monitor has no period, or rather the period can't be set as it is
+fixed as the integration time step...}
+
+Lastly, we submit the struct as a new simulation
+
+%\begin{lstlisting}[caption={ML Listing},label={lst:ml5}]
+%[id, data] = vb_new(sv, sim);
+%\end{lstlisting}
+
+\noindent Lastly, results are returned in a struct, here named data
+where each field contians the output of a monitor and can be plotted
+and analyzed as a regular MATLAB dataset:
+
+%\begin{lstlisting}[caption={ML Listing},
+%                   label={lst:ml6}]
+%plot(data.mon_0_TemporalAverage.ts,...
+%     squeeze(data.mon_0_TemporalAverage.ys)')
+%\end{lstlisting}
+
 
 
 

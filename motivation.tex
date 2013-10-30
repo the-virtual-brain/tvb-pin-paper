@@ -1,3 +1,129 @@
+Neurosciences and more generally brain and behavioral sciences imply a large
+amount of interactions between scientific disciplines to fulfill their endeavour
+in the comprehension of brain and cognition relationship\footnote{Several
+    important scientific projects such as The Human Brain Project are clear
+illustration of this.}. Nevertheless, one major drawback of this
+interdisciplinary enterprise is the necessary distribution of competences most
+frequently between individuals but also,in a non negligeable number of cases,
+between intitutes.  Moreover, the increase of technicalities for data
+analysis and brain simulation usually prevent from an optimal diffusion of these
+advances in the more experimentally oriented part of the community. 
+
+These problems appeal at least two orientations for their solution. Firstly,  the
+development of up to date computing and simulating librairies using commonly
+used languages and secondly, the development of tools for sharing
+competences and data. Due to the high pace of new developments, these solutions
+should also remain open to incoming new tools. Several projects fall in the
+first category (from SPM to connectivity toolbox, fieldtrip in the \matlab{} "galaxy"
+and from "nitime" to neo... to name only a few). In the second category CARMEN
+(http://www.carmen.org.uk/) G-Node (https://portal.g-node.org/data/)
+\note[lp]{Other projects?} are (web) plateform for collaborative work and data
+sharing. The diffusion of \matlab{} and its integrated environment also usually
+take place of the plateform / development environment.
+
+TheVirtualBrain (TVB) provides its own solutions to these two problems.  In an
+initial step, these two problems were addressed in two independent projects: one
+whole brain-simulator library developped in \matlab{} and a web plateform for
+collaborative interactions in the context of multi-purpose data analysis which
+was developped in Python.  In each case, the choice of the language was dictated
+both by the scientific context and the technical constraints. The whole brain
+simulation library was developped in \matlab{} due to the \note[lp]{unfortunate}
+important widespread of the langage in the neuroscientific community. On the
+other hand, the plateform aimed a more generic purpose, envisioned several
+interfaces for user interaction (web and console) and should be able to adapt
+with existing libraries and future ones. In that case, the programming language
+should adapt to tasks from  web development to numerical methods implementation
+and should be able to act as a "glue" language. These contraints
+\note[lp]{naturally} oriented the development of the framework in
+Python\footnote{The first issue of Python in Neurosciences also confirmed the
+choice of the Python language.}.  Moreover, Python is a language that provides
+the main blocs needed for the project: database interactions, web programming,
+object-oriented programming and abstraction. \emph{TheVirtualBrain} benefits
+from this initial development which remain in the overall organization of the
+framework: the \emph{architecture} and the \emph{scientific library}.
+
+\subsection{Why another project? (TVB compared to others)}
+
+The reasons for developing a new project are different for each component of
+TVB.
+
+\subsubsection{The architecture}
+
+In effect, we wish for a theoretician and a more experimentally-oriented
+neuroscientist to be able to collaborate; to enable such a possibility, we
+require a platform to enable such opportunity.
+To address these concerns, a flexible architecture was developed to
+allow easy integration of any computational tools along with a system
+for describing typically types of data. A web based UI was developed
+for users not comfortable with programming, 
+% as well as \matlab{} toolbox for interacting with the Python based framework,
+% given that many neuroscientists are already comfortable with the \matlab{}
+% workflow.
+
+The two mains constraints for the architecture were then to provide a web
+interface to allow remote collaboration and a data exchange system to allow the
+exchange of data (or simulation results) between scientists. Added to this that
+the user interface should have a particular design, one obtains the well-known
+"model-view-controller" design \note[lp]{detail this}. In a first step, we
+tried to develop the architecture using an existing integrated / high-level web
+framework, but we rapidly found ourselves struggling with the implementation of
+the framework that did not fit our needs. Thanks to the high availability of
+Python Packages, we then choose to use more specific blocks for each purpose and
+build the necessary interaction between them ourselves. We then happen to choose
+\textsf{CherryPy} for the web  and \textsf{SQLAlchemy} for the database
+exchanges\footnote{Other dependencies of TVB are listed in
+    \texttt{TVB\_INSTALL\_REQUIREMENTS} which currently lists
+    \texttt{"apscheduler", "beautifulsoup", "cherrypy", "cfflib", "formencode",
+        "lxml", "minixsv", "mod\_pywebsocket", "networkx", "nibabel", "numpy",
+        "numexpr", "psutil", "scikit-learn", "scipy", "simplejson",
+        "sqlalchemy", "sqlalchemy-migrate"}.}
+
+Moreover, the requirement for data visualisation impose to develop specific
+modules thanks to WebGL availability in modern browsers.
+
+The architecture of TVB had been prototyped in Python, and in turn, both the
+language and the scientific ecosystem were more than rich enough to support
+continued developed entirely within Python, of both the architecture and the
+simulator, in addition to it being a general purpose language. Lastly, Python's
+emphasis on readability and idiomatic style facilitates integration of 
+code contributions from programmers with disparate backgrounds.
+
+\note[lp]{For Lia: Was Python a "good" choice? and why? Which other language would have
+done the job?}
+
+\subsubsection{The simulator}
+
+In the case of the simulator, the situation was a little different we happened to
+have a set of \matlab{} routines that did the job but were not ready for generic
+deployment. The choice happen to be between: develop our own simulator or use
+existing ones. As in the case of the architecture, we started to use an existing
+simulator, namely Brian \note[lp]{cite BRIAN} since it has a very generic way of
+specifying models by differential equation expressions. Although we had some
+success in the implementation of several models in Brian we found ourselves in a
+similar situation to have to \note[lp]{contourner} several process to reach our
+goals. 
+
+In fact, the core simulator began in \matlab{}, however, as the needs 
+expanded, the framework quickly 
+outgrew the matrix-struct-function triumvirate that is conventional
+in \matlab{} programming. While modern \matlab{} permits advanced object-oriented
+programming, it has the disadvantages of being relatively unused, and
+largely unsupported by \matlab{}'s own IDE, the \matlab{} Compiler, and the free
+alternative Octave, lastly it provides no support for metaclasses or data
+descriptors, which were extensively used in TVB's architecture.
+
+The major constraints came from the scale of the simulation in TVB that is
+clearly different from the more usual "cellular" simulations. One needs specific
+population / field models and moreover should produce simulated experimental
+data at macroscopic levels such as EEG, MEEG and fMRI which are not usually
+simulated in the current neuronal simulators.
+
+Although the scale of simulation is clearly different and imply specific
+orientations for TVB simulator, the overall structure of neural model remains
+and we happen to borrow concepts such as \emph{monitors} (which are objects that
+record the course of a simulation) from Brian but
+implement them in the context of TVB simulations.
+
 
 While whole-brain level simulators have been developed and published for
 several years now, making the final step of connecting these simulations to
@@ -6,7 +132,8 @@ empirical results has remained a challenge due to several factors:
 \begin{enumerate}
 
 	\item Source code is typically not distributed, effectively closing
-	the behavior, black box, etc. 
+        the behavior, black box, etc. \note[lp]{Is this really true for NEURON,
+        GENESIS and others? I doubt...}
 
 	\item The forward solutions required to obtain simulated M/EEG \& fMRI
 	data are non trivial, requiring interaction with several pieces of software
@@ -19,31 +146,6 @@ empirical results has remained a challenge due to several factors:
 	challenging for those who work with empirical data.
 
 \end{enumerate}
-
-To address these concerns, a flexible architecture was developed to
-allow easy integration of any computational tools along with a system
-for describing typically types of data. A web based UI was developed
-for users not comfortable with programming, as well as MATLAB toolbox
-for interacting with the Python based framework, given that many
-neuroscientists are already comfortable with the MATLAB workflow.
-Lastly, a high performance, highly documented simulator along with
-various forward solutions have been implemented and released under a
-GPL licence to ensure universal access to high quality simulations, 
-developed on the well-known Github, making it extremely easy for 
-anyone to contribute.
-
-
-Large scale simulation implies flexible integration. We shall see
-how this is enable by the architecture..
-\note[mw]{expand}
-
-In effect, we wish for a theoretician and clinician to be able to
-collaborate; to enable such a possibility, we require a platform
-to enable such opportunity. 
-\note[mw]{expand}
-
-
-\subsection{Why another simulator?}
 
 A significant part of TVB is simulating brain-scale neural networks. While
 several existing simulators could have been adapted, we have estimated that
@@ -71,21 +173,67 @@ Several technical issues stem from this scale, e.g. efficient handling
 of dense $N^2$ delays and neural field-like connectivity, which will be
 discussed in more detail below. 
 
-\subsection{Why Python?}
+%Other simulators compared to TVB
 
-In fact, the core simulator began in MATLAB, however, as the needs 
-expanded, the architecture, detailed in the next section, quickly 
-outgrew the matrix-struct-function triumvirate that is conventional
-in MATLAB programming. While modern MATLAB permits advanced object-oriented
-programming, it has the disadvantages of being relatively unused, and
-largely unsupported by MATLAB's own IDE, the MATLAB Compiler, and the free
-alternative Octave, lastly it provides no support for metaclasses or data
-descriptors, which were extensively used in TVB's architecture.
+	Brian should be a particular focus in this section, as it may
+    be one of the closest.  \note[lp]{Dana also (but is it alive?)
+    (http://dana.loria.fr/index.html)}
 
-The architecture of TVB had been prototyped in Python, and in turn, both the
-language and the scientific ecosystem were more than rich enough to support
-continued developed entirely within Python, of both the architecture and the
-simulator, in addition to it being a general purpose language. Lastly, Python's
-emphasis on readability and idiomatic style facilitates integration of 
-code contributions from programmers with disparate backgrounds.
+Large scale simulation implies flexible integration. We shall see
+how this is enable by the architecture..
+\note[mw]{expand}
 
+\subsection{Practical informations / contributors information}
+
+To address these concerns, a flexible architecture was developed to
+allow easy integration of any computational tools along with a system
+for describing typically types of data. A web based UI was developed
+for users not comfortable with programming, as well as \matlab{} toolbox
+for interacting with the Python based framework, given that many
+neuroscientists are already comfortable with the \matlab{} workflow.
+
+Lastly, a high performance, highly documented simulator along with
+various forward solutions have been implemented and released under a
+GPL licence to ensure universal access to high quality simulations, 
+developed on the well-known Github, making it extremely easy for 
+anyone to contribute.
+
+TVB source code is available for download on Github at
+\url{https://github.com/the-virtual-brain/}.  Previous Git and Python knowledge
+is required for contributing.  Although you could independently install Python
+and the rest of TVB dependencies on your machine, and then use the Github code
+as a simple local clone, we recommend you to download \emph{TVB\_ Distribution}
+from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on
+Github and further use \emph{contributor\_setup} script, from inside \emph{TVB\_Distribution} 
+folder, to link the two.  In this recommended use-case, you will
+have all TVB dependencies already prepared and at your disposal, as part of
+\emph{TVB\_Distribution}.\note[lp]{Is there any plan for a .deb package with
+full dependencies taken into account in this context? Or Pypi?} 
+
+\note[lp]{Generic description and goal of the paper}
+
+The overall structure of TVB is depitcted on Figure~\ref{fig:architecture} where
+components of the architecture and of the scientific library are shown with
+their relationships.
+
+ \begin{figure*}
+        \centering
+        \includegraphics[width=0.90\textwidth]{images/architecture.jpg}
+        \caption{TVB architecture: Yellow blocks are part of the Scientific
+            Library of TVB, while the green blocks are part of TVB Framework.
+            TVB provides two independent interfaces, depending on the
+            interaction type wanted by the end-user (web or console).  TVB
+            Storage layer is compulsory for the web interface, but it can be
+            switched on/off for the console interface.  \note[lp]{It is said in
+                the text that "console interface" is part of the "architecture"
+            and not the "scientific library", this is the contrary on the
+        figure}
+        \note[lp]{What is a "S-User"? I missed the definition?}
+         }
+        \label{fig:architecture}
+ \end{figure*}
+
+ The goal of this article is firstly to decribre TVB framework from the
+ development point of view and demonstrates how it interacts with other tools
+ and how it can be extended (on the basis of extension already integrated in
+ TVB).
