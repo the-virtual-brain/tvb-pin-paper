@@ -32,7 +32,7 @@ exposing both a comprehensive simulator for brain dynamics and an integrative
 framework for the management, analysis simulation of structural and functional
 data in an accessible, web-based interface. The choice of Python was made based on
 the wide use of Python as the high-level language in scientific programming, 
-the unparalleled libraries and tools available and strong software engineering 
+the unparalleled libraries and tools available, and strong software engineering 
 culture.
 Two alternatives were considered, Java
 and MATLAB, where the former was rejected for a relative lack of use in the community
@@ -54,12 +54,8 @@ exchange of data (or simulation results) between users. Added to this that
 the user interface should have a particular design, one obtains the well-known
 "model-view-controller" design \note[lp]{detail this}.  We chose
 \textsf{CherryPy} for the web  and \textsf{SQLAlchemy} for the database
-exchanges\footnote{Other dependencies of TVB are listed in
-    \texttt{TVB\_INSTALL\_REQUIREMENTS} which currently lists
-    \texttt{"apscheduler", "beautifulsoup", "cherrypy", "cfflib", "formencode",
-        "lxml", "minixsv", "mod\_pywebsocket", "networkx", "nibabel", "numpy",
-        "numexpr", "psutil", "scikit-learn", "scipy", "simplejson",
-        "sqlalchemy", "sqlalchemy-migrate"}.}
+exchanges\footnote{The full list of dependencies can be found in the
+project's documentation.}
 
 Moreover, the requirement for data visualisation impose to develop specific
 modules thanks to WebGL availability in modern browsers.
