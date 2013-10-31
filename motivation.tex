@@ -104,37 +104,35 @@ done the job?}
 
 In the case of the simulator, the situation was a little different, 
 a set of \matlab{} routines had been developed that did the job but were never
-intended for generic
-deployment. The choice was between: develop our own simulator by porting the 
-existing \matlab{} routines to Python and a more generic structure, or make use
-of an existing simulation library. As in the case of the framework, we started 
-by trying to use an existing
+intended for generic deployment. The needs of the framework exceeded the 
+matrix-struct-function triumvirate that is conventional in \matlab{} 
+programming. While modern \matlab{} permits advanced object-oriented 
+programming, it has the disadvantages of being relatively unused, and 
+largely unsupported by \matlab{}'s own IDE, the \matlab{} Compiler, and the 
+free alternative Octave, lastly it provides no support for metaclasses or 
+data descriptors, which were extensively used in TVB's architecture. The choice
+was between: develop our own simulator by porting the existing \matlab{} 
+routines to Python and a more generic structure, or make use of an existing
+simulation library. 
+
+As in the case of the framework, we started by trying to use an existing 
 simulator, namely Brian \cite{Goodman_2009} since it has a very generic way of
-specifying models by differential equation expressions. Although we had some
-success in the implementation of several models in Brian we found ourselves in a
-similar situation to that with the framework, having to hack around incompatibilities
-between the purpose for which the Brian was designed and our goals. 
-
-In fact, the core simulator began in \matlab{}, however, as the needs 
-expanded, the framework quickly 
-outgrew the matrix-struct-function triumvirate that is conventional
-in \matlab{} programming. While modern \matlab{} permits advanced object-oriented
-programming, it has the disadvantages of being relatively unused, and
-largely unsupported by \matlab{}'s own IDE, the \matlab{} Compiler, and the free
-alternative Octave, lastly it provides no support for metaclasses or data
-descriptors, which were extensively used in TVB's architecture.
-
-The major constraints came from the scale of the simulation in TVB that is
-clearly different from the more usual ``cellular'' simulations. One needs specific
-population / field models and moreover should produce simulated experimental
-data at macroscopic levels such as EEG, MEEG and fMRI which are not usually
-simulated in the current neuronal simulators.
-
-Although the scale of simulation is clearly different and imply specific
-orientations for TVB simulator, the overall structure of neural model remains
-and we happen to borrow concepts such as \emph{monitors} (which are objects that
-record the course of a simulation) from Brian but
-implement them in the context of TVB simulations.
+specifying models by differential equation expressions. Although we had some 
+success in the implementation of several models in Brian we found ourselves in
+a similar situation to that with the framework, having to hack around 
+incompatibilities between the purpose for which Brian was designed and our 
+goals. The major constraint came from the scale of the simulation in 
+TVB, which is clearly different from the more usual ``cellular'' simulations.
+In addition to requiring support for neural-mass and neural-field models, the
+nature of the large-scale connectivity means the simulator needs to efficiently
+support a large number of distinct delays. Furthermore, the simulator should be
+able to produce simulated experimental data at the macroscopic level, such as 
+EEG, MEEG and fMRI, which are not usually considered in the current neuronal 
+simulators. Despite these differences, there remains much commonality between 
+design considerations for TVB's simulator and the overall structure of neuron 
+level simulators. This enabled us to borrow concepts such as \emph{monitors}
+(which are objects that record the course of a simulation) from Brian and modify
+them to the context of TVB's simulations.
 
 
 While whole-brain level simulators have been developed and published for
@@ -145,7 +143,9 @@ empirical results has remained a challenge due to several factors:
 
 	\item Source code is typically not distributed, effectively closing
         the behavior, black box, etc. \note[lp]{Is this really true for NEURON,
-        GENESIS and others? I doubt...}
+        GENESIS and others? I doubt...} \note[sk]{I think this item is valid, 
+        as it is in relation to ``whole-brain level simulators'', which 
+        NEURON and GENESIS are not.}
 
 	\item The forward solutions required to obtain simulated M/EEG \& fMRI
 	data are non trivial, requiring interaction with several pieces of software
@@ -159,13 +159,19 @@ empirical results has remained a challenge due to several factors:
 
 \end{enumerate}
 
+\note[sk]{This para should probably be dropped, as lp's contribution, which I've
+edited above, covers the same content in more detail...}
 A significant part of TVB is simulating brain-scale neural networks. While
 several existing simulators could have been adapted, we have estimated that
 TVB style simulations are far enough outside the design of other simulators to
 make starting from scratch a better idea.
 
+\note[sk]{These next two paras provide, primarily, scientific motivation,
+whereas the current first two paras provide Python and ``from-scratch''
+motivation. I'd be inclined to move the scientific stuff upfront, which will
+require minor rewording to make it flow...}
 Many neural network simulators have been developed and published, focusing
-first on abstract rate neurons (in the style of PDP), modelling neurocognitive
+first on abstract rate neurons (in the style of PDP), modeling neurocognitive
 processes, on one hand, and on the other, full multicompartmental neuron
 simulators treating complex spatial geometries, e.g. NEURON \cite{Hines_2001}.
 More recently, due to interest in the computational properties of spiking 
@@ -197,6 +203,7 @@ how this is enable by the architecture..
 
 \subsection{Practical informations / contributors information}
 
+\note[sk]{this para is repeats part of the first para of the framework section}
 To address these concerns, a flexible architecture was developed to
 allow easy integration of any computational tools along with a system
 for describing typically types of data. A web based UI was developed
@@ -204,6 +211,7 @@ for users not comfortable with programming, as well as \matlab{} toolbox
 for interacting with the Python based framework, given that many
 neuroscientists are already comfortable with the \matlab{} workflow.
 
+\note[sk]{this paras content is useful, but it seems out of place}
 Lastly, a high performance, highly documented simulator along with
 various forward solutions have been implemented and released under a
 GPL licence to ensure universal access to high quality simulations, 
@@ -213,19 +221,19 @@ anyone to contribute.
 TVB source code is available for download on Github at
 \url{https://github.com/the-virtual-brain/}.  Previous Git and Python knowledge
 is required for contributing.  Although you could independently install Python
-and the rest of TVB dependencies on your machine, and then use the Github code
-as a simple local clone, we recommend you to download \emph{TVB\_ Distribution}
+and the rest of TVB dependencies on your machine, and then use the code from our Github repository
+as a simple local clone, we recommend you download \emph{TVB\_ Distribution}
 from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on
 Github and further use \emph{contributor\_setup} script, from inside \emph{TVB\_Distribution} 
-folder, to link the two.  In this recommended use-case, you will
-have all TVB dependencies already prepared and at your disposal, as part of
-\emph{TVB\_Distribution}.\note[lp]{Is there any plan for a .deb package with
+folder, to link the two.  This recommended use-case will provide you with
+all of TVB's dependencies via \emph{TVB\_Distribution}.
+\note[lp]{Is there any plan for a .deb package with
 full dependencies taken into account in this context? Or Pypi?} 
 
 \note[lp]{Generic description and goal of the paper}
 
-The overall structure of TVB is depitcted on Figure~\ref{fig:architecture} where
-components of the architecture and of the scientific library are shown with
+The overall structure of TVB is depicted in Figure~\ref{fig:architecture} where
+components of the framework and of the scientific library are shown with
 their relationships.
 
  \begin{figure*}
@@ -245,7 +253,8 @@ their relationships.
         \label{fig:architecture}
  \end{figure*}
 
- The goal of this article is firstly to decribre TVB framework from the
- development point of view and demonstrates how it interacts with other tools
+ The goal of this article is firstly to describe TVB's architecture and 
+ implementation from the
+ development point of view and demonstrate how it interacts with other tools
  and how it can be extended (on the basis of extension already integrated in
  TVB).
