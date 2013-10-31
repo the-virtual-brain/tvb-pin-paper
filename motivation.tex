@@ -1,24 +1,30 @@
-Neurosciences and more generally brain and behavioral sciences imply a large
-amount of interactions between scientific disciplines to fulfill their endeavour
-in the comprehension of brain and behavior relationship\footnote{Several
-    important scientific projects such as The Human Brain Project are clear
-illustration thereof.}. Nevertheless, one major drawback of this
-interdisciplinary enterprise is the necessary distribution of competences most
-frequently between individuals, but also, in a non negligable number of cases,
-between institutes.  Moreover, the large increase of technical demands for data
-analysis and brain simulation usually prevents from an optimal diffusion of these
-advances in the more experimentally oriented part of the community. 
+The neurosciences, and more generally, brain and behavioral sciences, imply
+extensive interactions among disciplines to advance our 
+appreciation for the relation between brain and behavior. 
+\footnote{Several important scientific projects such as The Human Brain Project are clear
+illustration such interactions.}. 
+The inherent challenge, however, lies in bringing together the distributed competences
+of many individuals or even institutions and exchanging across interdisciplinary
+borders using common techniques.  
+This situation is excerbated by the technical sophistication of modern
+data analysis and brain simulation, which often impedes their adoption 
+in the communtiy.
 
-These problems appeal at least two orientations for their solution. Firstly,  the
-development of up to date computing and simulating librairies using commonly
-used languages and secondly, the development of tools for sharing
-competences and data. Due to the high pace of new developments, these solutions
-should also remain open to incoming new tools. Several projects fall in the
-first category (from Statistical Paramteric Mapping (SPM) to Brain Connectivity Toolbox, fieldtrip in the \matlab{} "galaxy"
-and from "nitime" to neo... to name only a few). In the second category CARMEN
-(http://www.carmen.org.uk/) G-Node (https://portal.g-node.org/data/)
-\note[lp]{Other projects?} are (web) platforms for collaborative work and data
-sharing.\note[vj]{clean up the names here and provide references please} .
+These challenges call for two kinds of solutions. First, there is a need
+for comprehensive, modern computational libraries written in a widely
+used and available programming languages, such as MNE-Python \cite{mnepython},
+a Python package for treating M/EEG data via time-frequency analyses and inverse
+solutions and the Brain Connectivity
+Toolbox \cite{rubinov2010complex} for analyzing the graph theoretic
+properties of structural and functional connectivity. Second, there is
+a need for the implementation
+of collaborative infrastructure for sharing not only data, but expertise; 
+CARMEN \cite{austin2011carmen} and G-Node \cite{herz2008g} are two such
+examples of developing platforms for collaborative work and data sharing, 
+in the domains of cellular and systems neurophysiology.
+Ideally, solutions will be easily extended by its own users, as is often
+the case in open source and scientific projects, due to the rapid 
+evolution of use cases and requirements.
 
 TheVirtualBrain (TVB) provides its own solutions to these two problems.  In an
 initial step, they were addressed in two independent developments: one whole
