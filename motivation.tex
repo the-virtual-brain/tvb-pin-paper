@@ -1,75 +1,84 @@
-Neurosciences and more generally brain and behavioral sciences imply a large
-amount of interactions between scientific disciplines to fulfill their endeavour
-in the comprehension of brain and cognition relationship\footnote{Several
-    important scientific projects such as The Human Brain Project are clear
+The advancement of neuroscience and more generally brain and behavioral sciences require
+significant interaction between scientific disciplines in order to fulfill their goal
+of understanding the relationship between brain and cognition\footnote{Several
+important scientific projects such as The Human Brain Project are clear
 illustration of this.}. Nevertheless, one major drawback of this
-interdisciplinary enterprise is the necessary distribution of competences most
-frequently between individuals but also,in a non negligeable number of cases,
-between intitutes.  Moreover, the increase of technicalities for data
-analysis and brain simulation usually prevent from an optimal diffusion of these
-advances in the more experimentally oriented part of the community. 
+interdisciplinary enterprise is the necessary distribution of competences, most
+frequently between individuals but also, in a non negligible number of cases,
+between institutes.  Moreover, the technicalities involved in data
+analysis and brain simulation usually prevents an optimal diffusion of these
+advances to the more experimentally oriented part of the community. 
 
-These problems appeal at least two orientations for their solution. Firstly,  the
-development of up to date computing and simulating librairies using commonly
-used languages and secondly, the development of tools for sharing
+These problems invite at least two approaches to their solution. Firstly,  the
+development of up to date and accessible software libraries developed in commonly
+used programming languages and secondly, the development of tools for sharing
 competences and data. Due to the high pace of new developments, these solutions
 should also remain open to incoming new tools. Several projects fall in the
-first category (from SPM to connectivity toolbox, fieldtrip in the \matlab{} "galaxy"
-and from "nitime" to neo... to name only a few). In the second category CARMEN
-(http://www.carmen.org.uk/) G-Node (https://portal.g-node.org/data/)
-\note[lp]{Other projects?} are (web) plateform for collaborative work and data
+first category (from SPM to connectivity toolbox, fieldtrip in the \matlab{} ``galaxy''
+and from ``nitime'' to neo... to name only a few). In the second category CARMEN
+(http://www.carmen.org.uk/) and G-Node (https://portal.g-node.org/data/)
+\note[lp]{Other projects?} are (web) platforms for collaborative work and data
 sharing. The diffusion of \matlab{} and its integrated environment also usually
-take place of the plateform / development environment.
+take place of the platform / development environment. 
+\note[sk]{not exactly sure what this last sentence is trying to say, so, needs rewording}
 
 TheVirtualBrain (TVB) provides its own solutions to these two problems.  In an
 initial step, these two problems were addressed in two independent projects: one
-whole brain-simulator library developped in \matlab{} and a web plateform for
+whole brain-simulator library developed in \matlab{} and a web platform for
 collaborative interactions in the context of multi-purpose data analysis which
-was developped in Python.  In each case, the choice of the language was dictated
+was developed in Python.  In each case, the choice of the language was dictated
 both by the scientific context and the technical constraints. The whole brain
-simulation library was developped in \matlab{} due to the \note[lp]{unfortunate}
-important widespread of the langage in the neuroscientific community. On the
-other hand, the plateform aimed a more generic purpose, envisioned several
-interfaces for user interaction (web and console) and should be able to adapt
-with existing libraries and future ones. In that case, the programming language
+simulation library was developed in \matlab{} due to the \note[lp]{unfortunate}
+widespread use of the language in the neuroscientific community. On the
+other hand, the platform was designed for a more generic purpose, such as providing several
+interfaces for user interaction (web and console) and the capability to adapt
+to existing and future libraries. In this latter case, the programming language
 should adapt to tasks from  web development to numerical methods implementation
-and should be able to act as a "glue" language. These contraints
-\note[lp]{naturally} oriented the development of the framework in
+and should be able to act as a ``glue'' language. These constraints
+\note[lp]{naturally} oriented the development of the framework toward
 Python\footnote{The first issue of Python in Neurosciences also confirmed the
 choice of the Python language.}.  Moreover, Python is a language that provides
-the main blocs needed for the project: database interactions, web programming,
+the main blocks needed for the project: database interactions, web programming,
 object-oriented programming and abstraction. \emph{TheVirtualBrain} benefits
-from this initial development which remain in the overall organization of the
-framework: the \emph{architecture} and the \emph{scientific library}.
+from this initial development which remain in the overall organization of TVB's
+architecture: the \emph{framework} and the \emph{scientific library}.
+
+\note[sk]{Terminology (consistency with usage in code naming, docs, previous publications):
+          Architecture => overall design (think whitepaper and Lia's diagrams of TVB's architecture;
+          Framework => the specific component/package covering database back-end, 
+            web interface, etc...)}
 
 \subsection{Why another project? (TVB compared to others)}
 
 The reasons for developing a new project are different for each component of
 TVB.
 
-\subsubsection{The architecture}
+\subsubsection{The framework}
+\note[sk]{this subsubsec repeats itself a bit, rearrange existing into 2 paras,
+ideally incorporating any comment Lia makes re lp's note}
 
 In effect, we wish for a theoretician and a more experimentally-oriented
 neuroscientist to be able to collaborate; to enable such a possibility, we
-require a platform to enable such opportunity.
+require a platform that simultaneously provides power, flexibility, and a 
+simple interface.
 To address these concerns, a flexible architecture was developed to
 allow easy integration of any computational tools along with a system
-for describing typically types of data. A web based UI was developed
-for users not comfortable with programming, 
+for describing typical types of data. A web based UI was developed
+for users not comfortable with programming.
 % as well as \matlab{} toolbox for interacting with the Python based framework,
 % given that many neuroscientists are already comfortable with the \matlab{}
 % workflow.
 
-The two mains constraints for the architecture were then to provide a web
+The two main constraints for the architecture were then to provide a web
 interface to allow remote collaboration and a data exchange system to allow the
-exchange of data (or simulation results) between scientists. Added to this that
-the user interface should have a particular design, one obtains the well-known
-"model-view-controller" design \note[lp]{detail this}. In a first step, we
-tried to develop the architecture using an existing integrated / high-level web
-framework, but we rapidly found ourselves struggling with the implementation of
-the framework that did not fit our needs. Thanks to the high availability of
+exchange of data (experimental or simulated) between scientists. To this end,
+the particular design chosen for TVB's architecture was the well-known
+``model-view-controller'' pattern \note[lp]{detail this}. Initially, an attempt 
+was made to develop the architecture using an existing integrated / high-level web
+framework, but we rapidly found ourselves struggling with the implementation, using
+a framework that did not fit our needs. Due to the availability of a wide range of
 Python Packages, we then choose to use more specific blocks for each purpose and
-build the necessary interaction between them ourselves. We then happen to choose
+build the necessary interaction between them ourselves. For this purpose, we choose
 \textsf{CherryPy} for the web  and \textsf{SQLAlchemy} for the database
 exchanges\footnote{Other dependencies of TVB are listed in
     \texttt{TVB\_INSTALL\_REQUIREMENTS} which currently lists
@@ -78,12 +87,12 @@ exchanges\footnote{Other dependencies of TVB are listed in
         "numexpr", "psutil", "scikit-learn", "scipy", "simplejson",
         "sqlalchemy", "sqlalchemy-migrate"}.}
 
-Moreover, the requirement for data visualisation impose to develop specific
-modules thanks to WebGL availability in modern browsers.
+In addition to this, to fulfill the requirement of 3D data visualization, we 
+made use of the availability of WebGL in modern browsers.
 
 The architecture of TVB had been prototyped in Python, and in turn, both the
 language and the scientific ecosystem were more than rich enough to support
-continued developed entirely within Python, of both the architecture and the
+continued developed entirely within Python, of both the framework and the
 simulator, in addition to it being a general purpose language. Lastly, Python's
 emphasis on readability and idiomatic style facilitates integration of 
 code contributions from programmers with disparate backgrounds.
@@ -93,15 +102,18 @@ done the job?}
 
 \subsubsection{The simulator}
 
-In the case of the simulator, the situation was a little different we happened to
-have a set of \matlab{} routines that did the job but were not ready for generic
-deployment. The choice happen to be between: develop our own simulator or use
-existing ones. As in the case of the architecture, we started to use an existing
-simulator, namely Brian \note[lp]{cite BRIAN} since it has a very generic way of
+In the case of the simulator, the situation was a little different, 
+a set of \matlab{} routines had been developed that did the job but were never
+intended for generic
+deployment. The choice was between: develop our own simulator by porting the 
+existing \matlab{} routines to Python and a more generic structure, or make use
+of an existing simulation library. As in the case of the framework, we started 
+by trying to use an existing
+simulator, namely Brian \cite{Goodman_2009} since it has a very generic way of
 specifying models by differential equation expressions. Although we had some
 success in the implementation of several models in Brian we found ourselves in a
-similar situation to have to \note[lp]{contourner} several process to reach our
-goals. 
+similar situation to that with the framework, having to hack around incompatibilities
+between the purpose for which the Brian was designed and our goals. 
 
 In fact, the core simulator began in \matlab{}, however, as the needs 
 expanded, the framework quickly 
@@ -113,7 +125,7 @@ alternative Octave, lastly it provides no support for metaclasses or data
 descriptors, which were extensively used in TVB's architecture.
 
 The major constraints came from the scale of the simulation in TVB that is
-clearly different from the more usual "cellular" simulations. One needs specific
+clearly different from the more usual ``cellular'' simulations. One needs specific
 population / field models and moreover should produce simulated experimental
 data at macroscopic levels such as EEG, MEEG and fMRI which are not usually
 simulated in the current neuronal simulators.
