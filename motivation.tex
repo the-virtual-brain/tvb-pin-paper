@@ -26,28 +26,20 @@ Ideally, solutions will be easily extended by its own users, as is often
 the case in open source and scientific projects, due to the rapid 
 evolution of use cases and requirements.
 
-TheVirtualBrain (TVB) provides its own solutions to these two problems.  In an
-initial step, they were addressed in two independent developments: one whole
-brain-simulator library developped in \matlab{} and a web platform for
-collaborative interactions in the context of multi-purpose data analysis which
-was developed in Python.  In each case, the choice of the language was dictated
-both by the scientific context and the technical constraints. For the
-integration of these preexistent tools and the radically new organization in
-one integrating neuroinformatics platform, TheVirtualBrain, the final choice of
-language was Python\footnote{The first issue of Python in Neurosciences also
-confirmed the choice of the Python language.}, since it provides the main
-technical elements: database interactions, web programming, object-oriented
-programming and data modeling abstractions, in addition to a rich scientific
-ecosystem.
-
-\subsection{Why another project? (TVB compared to others)}
-
-To what degree is it possible to benefit from existing simulator platforms and
-data base management architectures as opposed to developing a completely new
-neuroinformatics platform? Such was the key question posed at the conception of
-the TVB project. Finally, TVB was developed as a new neuroinformatics platform
-with a focus on simulation, but its architecture was certainly inspired by its
-predecessors.
+TheVirtualBrain (TVB), with a scope falling outside of existing projects,
+provides new tools to fire the collaboration between experimentalists by
+exposing both a comprehensive simulator for brain dynamics and an integrative 
+framework for the management, analysis simulation of structural and functional
+data in an accessible, web-based interface. The choice of Python was made based on
+the wide use of Python as the high-level language in scientific programming, 
+the unparalleled libraries and tools available and strong software engineering 
+culture.
+Two alternatives were considered, Java
+and MATLAB, where the former was rejected for a relative lack of use in the community
+and the latter rejected for its architectural constraints and license. 
+This choice was confirmed by the publication of the first issue of Python 
+in Neuroscience and has made it possible for the entirety of TVB from the 
+numerical algorithms to the web server to be written in Python.
 
 \subsubsection{The architecture}
 
