@@ -1,8 +1,7 @@
 The neurosciences, and more generally, brain and behavioral sciences, imply
 extensive interactions among disciplines to advance our 
 appreciation for the relation between brain and behavior. 
-\footnote{Several important scientific projects such as The Human Brain Project are clear
-illustration such interactions.}. 
+\footnote{The Human Brain Project one such example.} 
 The inherent challenge, however, lies in bringing together the distributed competences
 of many individuals or even institutions and exchanging across interdisciplinary
 borders using common techniques.  
@@ -41,109 +40,10 @@ This choice was confirmed by the publication of the first issue of Python
 in Neuroscience and has made it possible for the entirety of TVB from the 
 numerical algorithms to the web server to be written in Python.
 
-\subsubsection{The architecture}
+\subsubsection{The framework}
 
 \note[vj]{There is no need to describe the steps that did not work, in fact it
 is counter productive and distracting. I removed them from the paragraphs}
-
-The TVB architecture was developed to allow easy integration of any
-computational tools along with a system for describing typical types of data.
-The two main constraints for the architecture were then to provide a web
-interface to allow remote collaboration and a data exchange system to allow the
-exchange of data (or simulation results) between users. Added to this that
-the user interface should have a particular design, one obtains the well-known
-"model-view-controller" design \note[lp]{detail this}.  We chose
-\textsf{CherryPy} for the web  and \textsf{SQLAlchemy} for the database
-exchanges\footnote{The full list of dependencies can be found in the
-project's documentation.}
-
-Moreover, the requirement for data visualisation impose to develop specific
-modules thanks to WebGL availability in modern browsers.
-
-The architecture of TVB had been prototyped in Python, and in turn, both the
-language and the scientific ecosystem were more than rich enough to support
-continued developed entirely within Python, of both the architecture and the
-simulator, in addition to it being a general purpose language. Lastly, Python's
-emphasis on readability and idiomatic style facilitates integration of 
-code contributions from programmers with disparate backgrounds.
-
-\note[lp]{For Lia: Was Python a "good" choice? and why? Which other language would have
-done the job?}
-
-\subsubsection{The simulator}
-
-A significant part of TVB is simulating large-scale brain networks. While
-several existing simulators could have been adapted, we have estimated that
-TVB style simulations are far enough outside the design of other simulators to
-make a new development necessary. We discuss the reasons thereof in the following. 
-
-The existing neural network simulators focus first on abstract rate neurons (in
-the style of PDP) and modelling neurocognitive processes, on one hand, and on
-the other, full multicompartmental neuron simulators treating complex spatial
-geometries, e.g. NEURON \cite{Hines_2001}.  More recently, due to interest in
-the computational properties of spiking neurons and their relevance to
-experimental observations, simulators targeting specifically spiking neurons
-have been prominent, e.g. Brian \cite{Goodman_2009}. Initial considerations
-were given to  Brian \note[lp]{cite BRIAN} since it allows for a generic
-implementation of differential equations. However, special demands imposed on
-large scale brain network modeling, in particular spatially distributed time
-delays and stochasticity, rendered the use of BRIAN complicated and tedious.
-In TVB the network nodes are defined by neural population and neural field
-models \cite{Deco_2008a, Coombes_2010} rather than cellular models. Here, the
-spatial extent of the modeled dynamics is far larger and hence permits networks
-thereof to scale reasonably to the entire cortex, under the assumptions of the
-models, when combined with empirical measurements of cortico- cortical
-connectivity. Therefore, the physical scale modeled by the TVB simulators
-differs from that for which other simulators were designed.  Several technical
-issues stem from this scale, e.g. efficient handling of dense $N^2$ delays and
-neural field-like connectivity, which will be discussed in more detail below.
-Further TVB specific constraints are non-existent for previous simulators and
-hence no support exists. For instance the network nodes need to be positioned
-and connected within the three-dimensional physical space respecting anatomical
-geometry. The transformations from the physiological signals to the commonly
-used imaging modalities such as EEG, MEG and fMRI need to be employed. All
-these constraints originate from the "large brain network" scale of simulation
-in TVB, which is clearly different from the more usual "cellular" simulations
-as typically performed by the existing neuronal network simulators. As such,
-TheVirtualBrain represents the first simulator dedicated to modeling the brain
-network on the full-brain scale. 
-
-Large scale simulation implies flexible integration. We shall see
-how this is enable by the architecture..
-\note[mw]{expand}
-
-\subsection{Practical informations / contributors information}
-
-To address these concerns, a flexible architecture was developed to
-allow easy integration of any computational tools along with a system
-for describing typically types of data. A web based UI was developed
-for users not comfortable with programming, as well as \matlab{} toolbox
-for interacting with the Python based framework, given that many
-neuroscientists are already comfortable with the \matlab{} workflow.
-
-Lastly, a high performance, highly documented simulator along with
-various forward solutions have been implemented and released under a
-GPL licence to ensure universal access to high quality simulations, 
-developed on the well-known Github, making it extremely easy for 
-anyone to contribute.
-
-TVB source code is available for download on Github at
-\url{https://github.com/the-virtual-brain/}.  Previous Git and Python knowledge
-is required for contributing.  Although you could independently install Python
-and the rest of TVB dependencies on your machine, and then use the Github code
-as a simple local clone, we recommend you to download \emph{TVB\_ Distribution}
-from \url{http://www.thevirtualbrain.org/register/}, fork our repositories on
-Github and further use \emph{contributor\_setup} script, from inside \emph{TVB\_Distribution} 
-folder, to link the two.  In this recommended use-case, you will
-have all TVB dependencies already prepared and at your disposal, as part of
-\emph{TVB\_Distribution}.\note[lp]{Is there any plan for a .deb package with
-full dependencies taken into account in this context? Or Pypi?} 
-
-\note[lp]{Generic description and goal of the paper}
-
-The overall structure of TVB is depitcted on Figure~\ref{fig:architecture} where
-components of the architecture and of the scientific library are shown with
-their relationships.
 
  \begin{figure*}
         \centering
@@ -162,7 +62,60 @@ their relationships.
         \label{fig:architecture}
  \end{figure*}
 
- The goal of this article is firstly to decribre TVB framework from the
- development point of view and demonstrates how it interacts with other tools
- and how it can be extended (on the basis of extension already integrated in
- TVB).
+The TVB framework was developed to allow easy integration of any
+computational tools along with a system for describing typical types of data.
+Additionally, 
+two main constraints for the framework were to provide a web
+interface to allow remote collaboration and the
+exchange of data (or simulation results) between users, especially for
+users not comfortable programming. The web interface
+and database backend are built on combination of 
+the \textsf{CherryPy} and \textsf{SQLAlchemy} packages.
+\footnote{The full list of dependencies can be found in the
+project's documentation.}
+The overall structure of TVB is depicted in Figure~\ref{fig:architecture}.
+
+\subsubsection{The simulator}
+
+A significant part of TVB is simulating large-scale brain networks. While
+several existing simulators could have been adapted, we have estimated that
+TVB style simulations are far enough outside the design of other simulators to
+make a new development necessary. We discuss these reasons in the following. 
+
+Existing neural network simulators typically focus either on abstract rate neurons, 
+modelling e.g. neurocognitive processes, or 
+full multicompartmental neurons treating complex spatial
+geometries, e.g. NEURON \cite{Hines_2001}, modelling e.g. the interaction of 
+channel distributions in dendrites.  More recently, due to interest in
+the computational properties of spiking neurons and their relevance to
+experimental observations, simulators designed for spiking or oscillating neurons
+have become prominent, including Brian \cite{Goodman_2009}, which we initially 
+considered for our simulations.
+In TVB the network is defined with neural mass or field
+models \cite{Deco_2008a, Coombes_2010} rather than cellular models. The
+spatial extent of the modeled dynamics is macroscopic and scales reasonably 
+to the entire cortex, using empirical measurements of corticocortical
+connectivity. Several technical issues are unique to this scale, such
+as efficient handling of dense $N^2$ inter-regional delays and integration
+of neural field-like models and connectivity on triangular meshes in 3D.
+Additionally, comparison with experimental data requires forward solutions
+that transform physiological signals to the commonly
+used imaging modalities such as EEG, MEG and fMRI need to be employed.
+For these reasons, TVB required a new simulator, built around the paradigm
+of whole-brain scale simulation.
+
+\subsection{Obtaining and contributing to TVB}
+
+The easiest way to get started with TVB is to download a distribution
+from \url{http://www.thevirtualbrain.org}, which is available for Windows,
+Mac OS X and Linux. This distribution includes
+all of pieces, from the simulator to the web interface, and has no
+requirements other than a modern web browser supporting WebGL, SVG and
+HTML5.
+
+Alternatively, because TVB is licensed under the GPL, the sources may be
+readily obtained from the public Git repositories hosted on Github, at 
+\url{https://github.com/the-virtual-brain}. In order to use the simulator, 
+only the standard scientific Python packages are required (NumPy \& SciPy).
+The framework and web interface depend on a few more packages. 
+
