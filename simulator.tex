@@ -13,11 +13,11 @@ of the execution time and memory required in typical simulations.
 	the main assumption of the neural mass modeling approach in TVB is that
 	large pools of neurons on the millimeter scale are strongly approximated
 	by population level equations describing the major statistical modes of
-	neural dynamics \cite{Freeman_1975book}. Often, averaging techniques are
+	neural dynamics \citep{Freeman_1975book}. Often, averaging techniques are
 	employed, though techniques retaining several modes have been developed
-	\cite{Stefanescu_2008, Stefanescu_2011}. Such an approach is certainly not
+	\citep{Stefanescu_2008, Stefanescu_2011}. Such an approach is certainly not
 	new; one of the early examples of this approach consist of the well known
-	Wilson-Cowan equations \cite{Wilson_1973}. Nevertheless, there are
+	Wilson-Cowan equations \citep{Wilson_1973}. Nevertheless, there are
 	important differences in the the assumptions and goals from modeling of
 	individual neurons, where the goal may be to reproduce correct spike
 	timing or predict the effect of  a specific neurotransmitter. A second
@@ -32,9 +32,7 @@ of the execution time and memory required in typical simulations.
 	As we have noted, many neural mass models have been developed. One of
 	the more prominent examples in the systems neuroscience literature is 
 	the Jansen-Rit model of rhythms and evoked responses arising from
-	coupled cortical column \cite{Zetterberg_1978, Jansen_1995, Spiegler_2010}. 
-	\note[mw]{Continue description}.
-	\note[psl]{maybe see David et al, 2004 for better description of local connectivity in the Jansen and Rit model}
+	coupled cortical column \citep{Zetterberg_1978, Jansen_1995,David_2004, Spiegler_2010}. 
 	Advantages of the Jansen-Rit model stem from the connection made
 	between empirical studies of neural tissue and the model's parameters, 
 	making it easier in certain cases to make concrete predictions about
@@ -47,30 +45,34 @@ of the execution time and memory required in typical simulations.
 	For these reasons, it is often desirable to have a simpler mathematical 
 	model, which can reproduce the same qualitative phenomena as other 
 	models, implemented with fewer and simpler equations. Such is the motivation
-	for the generic two-dimensional oscillator model provided by TVB. 
+	for the generic two-dimensional oscillator model 
+    provided by TVB 
+    \citep{strogatz2001nonlinear, guckenheimer1983nonlinear}.
 	This model can produce oscillations which are damped, spike-like or 
 	sinusoidal in nature. While these alone are not interesting, they 
 	permit the study of network phenomena, such as synchronization of rhythms
 	or propagation of evoked potentials, while requiring less time to simulate.
 
 	However, the modeler's goals may not lead to either the Jansen-Rit
-	\cite{Jansen_1995, David_2003, David_2004} or generic 2D oscillator
-	\cite{FitzHugh_1961, Nagumo_1962}, so several other mass models are
+	 or generic 2D oscillator, so several other mass models are
 	provided by TVB: the previously mentioned Wilson-Cowan description of
-	functional dynamics of neural tissue \cite{Wilson_1972}, the Kuramoto
-	model describing synchronization \cite{Kuramoto_1975, Cabral_2011}, two
+	functional dynamics of neural tissue \citep{Wilson_1972}, the Kuramoto
+	model describing synchronization \citep{Kuramoto_1975, Cabral_2011}, two
 	and three dimensional mode-level models describing populations with
-	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008}, a
-	reduction of the Wong and Wang model \cite{Wong_2006} as presented in
-	\cite{Deco_2013} and a lumped version of Liley's model \cite{Liley_1999,
-	Steyn-Ross_1999} are among the available models in TVB.
+	excitability distributions \citep{Stefanescu_2011, Stefanescu_2008}, a
+	reduction of \citeauthor{Wong_2006}'s (\citeyear{Wong_2006}) model as presented 
+    by
+	\cite{Deco_2013} and a lumped version of 
+    Liley's model \citep{Liley_1999, Steyn-Ross_1999} 
+    are among the available models in TVB.
 
 	Again, should any of these be insufficient, a new model can be implemented
 	with minimal effort by subclassing a base \texttt{Model} class and
 	providing a  \texttt{dfun} method to compute the right hand sides of the
-	differential  equations. Please refer to the \url{https://github.com/the-
-	virtual-brain/scientific_library/tree/trunk/contrib/simulator/models} for
-	examples. There, models found in the work of 
+	differential  equations. Please refer to the \texttt{tvb.simulator.models}
+    module of the main scientific library or the \texttt{contrib} folder
+    for
+	examples. In the \texttt{contrib} folder, models from the work of 
 	\cite{Larter_1999, Breakspear_2003, Morris_1981, Hindmarsh_1984, Brunel_2001}
 	have been implemented.
 
@@ -80,14 +82,12 @@ of the execution time and memory required in typical simulations.
 	pair of geometrical constraints on cortical dynamics. The first is the
 	large-scale white matter fibers that form a non-local and heterogeneous
 	(translation variant) connectivity, either measured by anatomical tracing
-	(CoCoMac\ref{CoCoMac}) or diffusion-weighted imaging \cite{Hagmann_2008,
-	Honey_2009, Bastiani_2012}. The second is that of horizontal projections
-	along the surface, which are modeled through a translation invariant
-	\note[sk]{Not technically true, using singular parameters will produce
-	this but that's only a limited subset of the capability, spatially
-	inhomogeneous parameters are supported -- thus being more general than the
-	restricted case of translational invariance} connectivity kernel,
-	approximating a neural field.
+	(CoCoMac, \cite{Koetter_2004}) or diffusion-weighted imaging 
+    \citep{Hagmann_2008, Honey_2009, Bastiani_2012}.
+    The second is that of horizontal projections
+	along the surface, which are often modeled with a translation invariant
+    connectivity kernel, approximating a neural field; though as with other
+    parameters in the simulator, spatial inhomogeneity is supported as well.
 
 	\subsubsection{Large-scale connectivity}
 
@@ -112,27 +112,26 @@ of the execution time and memory required in typical simulations.
 	The local connectivity of the cortex at the scale of millimeters provides
 	a continuous 2D surface along horizontal projections connect 
 	cortical columns. Such a structure has previously been modeled by
-	neural fields \cite{Amari_1977, Jirsa_1997, Liley_1999}. In TVB, a cortical mesh, 
+	neural fields \citep{Amari_1977, Jirsa_1997, Liley_1999}. In TVB, a cortical mesh, 
 	as obtained from structural MRI data and simplified, provides a spatial 
 	discretization on which neural masses are placed and connected with a
 	local connectivity kernel, itself only a function of the geodesic distance
 	between the two masses. This is considered to provide a reasonable
 	approximation of a neural field, the appropriateness of which depends on the properties
 	of the mesh and the imaging modalities that sample the activity simulated
-	on the mesh \cite{Spiegler_2013}. 
-	\note[sk]{The implementation of the local connectivity kernel is such
+	on the mesh \citep{Spiegler_2013}. In fact,
+	the implementation of the local connectivity kernel is such
 	that is can be re-purposed as a discrete Laplace-Beltrami operator,
-	allowing for the implementation of true neural-field models that 
-	use a second-order spatial derivative as their explicit spatial term.}
+	allowing for the implementation of true neural field models that 
+	use a second-order spatial derivative as their explicit spatial term.
 
 	TVB currently provides several connectivity kernels, of which a Gaussian
-	is one. Once a cortical surface mesh 
+	is one commonly used. Once a cortical surface mesh 
 	and connectivity kernel and its parameters are chosen, the geodesic
 	distance (i.e. the distance along the cortical surface) is evaluated
-	between all neural masses \cite{Mitchell1987}, and a cutoff is chosen
+	between all neural masses \citep{Mitchell1987}, and a cutoff is chosen
 	past which the kernel falls to 0. This results in a sparse matrix that 
 	is used during integration to implement the approximate neural field. 
-	\note[psl]{The Laplacian kernel is not implemented yet.}
 
 \subsection{Integration of stochastic delay differential equations}
 
@@ -140,7 +139,7 @@ of the execution time and memory required in typical simulations.
 	described above, TVB provides both deterministic and stochastic
 	Euler and Heun integrators,
 	following recent literature on numerical solutions to stochastic
-	differential equations \cite{Kloeden_1995,Mannella_2002,Mannella_1989}.
+	differential equations \citep{Kloeden_1995,Mannella_2002,Mannella_1989}.
 
 	While the literature on numerical treatment of delayed or 
 	stochastic systems exists, it is less well known how to treat 
@@ -150,7 +149,7 @@ of the execution time and memory required in typical simulations.
 	TVB the dynamical phenomena to be studied are largely determined
 	by the interaction of the network structure and neural mass dynamics, 
 	and that stochastic fluctuations do not fundamentally reorganize the
-	solutions of the system \cite{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
+	solutions of the system \citep{Ghosh_2008,Deco_2009,Deco_2011,Deco_Senden_2012}.
 
 	Due to such a separation, the implementation of delays in the
 	regional coupling is performed outside the integration step,
@@ -199,7 +198,7 @@ of the execution time and memory required in typical simulations.
 	which provides the locations and orientations of the neural sources, and the locations
 	and orientations of the EEG electrodes and MEG gradiometers and magnetometers. 
 	As the development and implementation of such lead-fields is well developed
-	elsewhere \cite{Sarvas_1987,Hamalainen_1989,Jirsa_2002,Nolte2003,Gramfort_2010}, TVB provides access
+	elsewhere \citep{Sarvas_1987,Hamalainen_1989,Jirsa_2002,Nolte2003,Gramfort_2010}, TVB provides access
 	to the well-known OpenMEEG package, however, the user is free to provide 
 	their own.
 
@@ -212,7 +211,8 @@ of the execution time and memory required in typical simulations.
 	code by NumPy and other standard libraries. Instead, 
 	in the following, we profile a set of eight characteristic simulations
 	on both memory use, specifically the heap size as measured by Valgrind's 
-	\texttt{massif} tool \cite{valgrind2007}, and function timing as measured by the 
+	\texttt{massif} tool \citep{nethercote2007valgrind}, 
+    and function timing as measured by the 
 	\texttt{cProfile} module of the standard library. 
 	
 	Measurements were
@@ -221,9 +221,9 @@ of the execution time and memory required in typical simulations.
 	and 12 MB respectively, with main memory 4 x 4 GB DDR3 at 1600 Mhz,
 	running Debian 7.0, with Linux kernel version 3.2.0-4-amd64. 
 	The 64-bit Anaconda Python distribution was used with additional Accelerate
-	pacakge which provides acceleration of common routines based on the 
+	package which provides acceleration of common routines based on the 
 	Intel Math Kernel Library. A Git checkout of the trunk branch of TVB 
-	was used with SHA 6c644ab3b5.
+	was used with SHA \texttt{6c644ab3b5}.
 
 	Eight different simulations were performed corresponding to the combinations of
 	either the generic 2D oscillator or Jansen-Rit model, region-only

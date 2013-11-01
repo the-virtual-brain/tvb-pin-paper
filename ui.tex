@@ -1,18 +1,11 @@
 \subsection{Graphical Interface Interaction}
 
-		A graphical web interface was chosen as a solution to give users quick
-		interaction with \TVB . The web interface is easy to access (locally or
-		remotely) through a web browser, it can be used by different types of
+		A graphical web interface was designed for user friendly
+		interaction with TVB . The web interface is accessible locally or
+		remotely through a web browser; it can be used by different types of
 		users, including those without programming knowledge, and it offers
-		great support while learning about \TVB concepts and workflow
-		expectations.  In our architecture diagrams, the actor accessing \TVB
-		through the web interface is called a \emph{G-User}.
-
-		The http is served using \emph{Cherrypy}
-		\texttt{http://www.cherrypy.org/} which is a minimalist, object-
-		oriented web framework,  in combination with \emph{Genshi} templating
-		system, to support the separation of layers as guided by the 
-		\emph{Model View Controller (MVC)} pattern.
+		good support while the user is learning TVB concepts and workflow
+		expectations.  
 
 		\subsubsection{Projects, Accounts, Operations \& Data}
 
@@ -29,48 +22,42 @@
 		\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_operations.png}}
 		\\
 		\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_project_datatype_details.png}}
-		\caption{\TVB Data Organization
-		(A) View all Projects
-		(B) 2D graph display of Operations with their input and output DataTypes 
-		(C) View all Operations in current project with their status, duration, results, etc
-		(D) DataType details and further available operations for it. This menu becomes available after clicking a DataType result from several places in \TVB }
+		\caption{\TVB data organization
+		(A) View all projects
+		(B) 2D graph display of operations with their input and output datatypes 
+		(C) View all operations in current project with their status, duration, results, etc
+		(D) Datatype details and further available operations for it. This menu becomes available after clicking a datatype result from several places in TVB }
 				\label{fig:project}
 \end{figure}
 
-		An \emph{Account} or \emph{User} is needed for accessing \TVB through
-		the web interface.  When \TVB web interface is fired for the first
-		time, the G-User is requested to set their username and a
-		password for the first account -- which acts under an
-		\emph{administrator} role. After this, more users can \emph{register}
-		for accounts, which then need to be validated by the admin
-		account.
+		An \emph{Account} or \emph{User} is needed for accessing TVB through
+		the web interface.  When TVB web interface is started for the first
+		time, the user is requested to provide a username and 
+		password for the first account, which acts as an \emph{administrator}.
+        Thereafter, others users on the same TVB server can \emph{register}
+		for accounts, which are validated by the administrator account.
 
-		A \emph{Project} in \TVB is a logical grouping entity, which  can be
-		used in several ways by the end-user;  for example one could choose to
-		create a project for each experiment in \TVB, while others might
+		A \emph{Project} in TVB is a logical grouping of data and operations: 
+        for example, one could choose to
+		create a project for each experiment in TVB, while others might
 		create projects for each subject of a group. Each project has a single
-		\emph{User} (or \emph{Account}) as owner, but a project can be shared
-		with multiple users to allow for collaborative research.
+		user (or account) as owner, but a project may be shared
+		with other users to allow for collaboration.
 
-		Any execution of an Adapter results in an \emph{Operation} in the
-		context of a project. Multiple operations will be executed under the
-		same project. For example we will have operations created for each
-		execution of a simulation, each run of a Fourier analyzer, or launch
-		of a Brain Visualizer. An operation changes status over time, from
-		\emph{started} into \emph{canceled}, \emph{finished successfully} or
-		\emph{finished with error}. One operation can have multiple input and
-		output parameters and parameters can be scalars or DataTypes.
+		The execution of an adapter results in an operation, in the
+		context of a project. For example, operations are created for each
+		simulation, a spectral analysis or surface visualization. 
+        Operations have show their status in the user interface, changing from
+		\emph{started} to \emph{canceled}, \emph{finished successfully} or
+		\emph{finished with error}. 
 
-		A \emph{Workflow} in \TVB is a set of operations with their artifacts,
-		and wraps around a simulation as the leading component. A workflow can be
-		seen as a default \emph{tag}, placed by the system on Operations and
-		DataTypes  which are logically, sequentially, connected.
-		Custom tags can also be added by the end-user both on DataTypes
-		and Operations, for tracking entities inside a Project.
+		A \emph{workflow} in TVB is, conceptually, sequence of operations from simulation,
+        through analyses, to visualization(s). A particular workflow applies
+		 a default \emph{tag} on the associated operations and
+		datatypes.
+        The user may also add custom tags to further organize data.
 
 		\subsubsection{Simulator Interface}
-
-		The \emph{Simulator} page is a presented as a configurable multicolumn interface that combines \TVB simulation, analysis and visualization functionalities (Fig.\ref{fig:simulator} A).
 
 		\begin{figure}[!htbp]
 
@@ -83,12 +70,22 @@
 			\\
 			\subfloat[][]{\includegraphics[width=0.47\textwidth]{images/ui_simulator_setup_region_noise.png}}
 			\caption{\TVB Simulator Area: 
-			(A) View of the main interface. Left, the history column keeps the information about the simulations and their status; middle, the simulation core column is where simulations are configured (e.g., change model, parameters, simulation length); and right, the visualization column, gives the possibility to configure visualizers to display the resulting time series or visualizers that will add an analysis step before displaying the results.  
-			(B) Region-based simulation configuration area. The parameters of the local model can be set independently for each node, that is, the dynamics of each node may be different. 
-			(C) Surface-based simulation configuration area. In a similar fashion, the model parameters are \emph{spatialized} by defining them as a function of a certain kernel (e.g., Gaussian kernel).
-			(D) Noise configuration area. }
+                (A) View of the main interface. \textit{Left}, the history column displays the
+                information about the simulations and their status; \textit{middle}, the
+            simulation column is where simulations are configured,
+            change of model, parameters, simulation length; \textit{right}, the
+            visualization column, provided configurable, multipanel
+            visualizers to display the resulting time series or other visualizers
+            that will add an analysis step before displaying the results.  (B)
+            Region-based simulation configuration. The parameters of the
+            mass model can be set independently for each node.  (C) Surface-based
+            simulation configuration, allowing the user to define spatially
+            inhomogeneous parameters. (D) Define parameters of the simulation's noise. }
 		\label{fig:simulator}
 		\end{figure}
+
+		The \emph{Simulator} page is a configurable multicolumn interface 
+        that combines TVB simulation, analysis and visualization functionalities (Fig.\ref{fig:simulator} A).
 
 		On the left column, a history of all simulations is kept and can be 
 		accessed at any time. Each simulation can be renamed or deleted.
@@ -128,67 +125,55 @@
 		\end{itemize}
 		}
 
- \note[psl] Explain continuation feature.  
-
 		Additional information about the components (e.g., modules, datatypes
-		and their attributes) is available  by clicking on the interrogation
+		and their attributes) is available  by clicking on the question
 		mark icon next to each element. This documentation is pulled from the
-		annotations provided by the traits system and doc strings.
+		annotations provided by the traits system and documentation strings.
 
 		Specific pages are accessible for setting up the neural mass model
 		parameters in region-based and surface-based simulations, as well as
 		for configuring the noise amplitude in stochastic integrations (only
 		for region-based simulations) (Figs. \ref{fig:simulator} B, C and D)
-		The `Set up region Model` area consist of an interactive phase-plane
+		The ``Set up region Model'' area consist of an interactive phase-plane
 		display. This tool shows the 2-dimensional planes of the general
 		n-dimensional phase space of the local dynamic model. This tool is
 		used to observe how the dynamics of the physical model change as a
 		function of its parameters, acting as a guide to set those parameters
 		appropriately.
 
-		For surface-based simulations the model parameters are defined as
-		a function of distance from a central focal point (vertex of the
-		surface). Thus, there is an extra layer of complexity by spatially
-		varying the model parameters.
-
-		On the right column, different displays can be configured to exhibit
-		the simulated time series or to add an analysis step and see those
-		results (e.g., compute the correlation coefficients and visualize the
+		On the right column, different displays can be configured to show 
+		the simulated time series and to add an analysis step with a subsequent
+        visualization of the
+		results, for example, computing the correlation coefficients and visualizing the
 		resulting matrix).
 
-		It is possible to launch parallel simulations to systematically explore a set of
-		components (e.g., a parameter of the  the local dynamics model, coupling
-		strength, conduction speed, among others. The resulting maps will be presented
-		either in a discrete (Fig.\ref{fig:visualizers} A) or a continuous 2D plot. 
-
-		\note[psl]{Maybe mention that the value presented in the pse images is
-		a float representing a certain charactersitic of a time-series
-		collection (eg, for exploring synchronization one should use the
-		kuramoto index parameter.)}
-
+        For many of the parameters, such as 
+        a parameter of the  the local dynamics model, coupling
+		strength, conduction speed, among others, 
+        it is possible to specify a range of evenly
+        spaced values, and launch the corresponding sweep in
+        parallel, using several CPU cores. When the simulation results
+        are available, a common metric, such as average variance or 
+        degree of synchronization, is applied to the time series, and a 
+        one or two dimensional plot, determined by the number of parameters
+        for which parameter ranges were provided, is shown, allowing
+        the user to see how the simulation changes with the chosen parameters
+		(Fig.\ref{fig:visualizers} A).
 		
 		\subsubsection{Analysis \& Visualizers}
 
-			\TVB does not aim to compete at the analysis level with other tools in
-			Neuroscience that are highly specialized and with great history in data
-			analysis, like FSL \cite{Smith_2004, Woolrich_2009, Jenkinson_2012} ,
-			SPM \cite{Friston_1995}, FieldTrip \cite{Oostenveld_2011} and
-			Brainstorm \cite{Tadel_2011}.  What we offer is a minimalist set of
-			algorithms to post-process your simulated results (or even process
-			imported patient measured scans) inside \TVB, mainly for quick
-			validations.
+			TVB does not intend to provide fully featured, complex data analysis
+            techniques, which have been well covered by other packages. 
+            Instead, we offer a minimal set of standard algorithms to quickly
+            validate simulation results or compare with imported patient data; 
+            these include principal and independent component analyses, 
+            Fourier and wavelet spectral analyses, correlation and coherence
+            analyses, and for connectivity, an interface to the Brain 
+            Connectivity Toolbox \citep{Rubinov_2010}. 
 
-			Included in \TVB are adapters for \emph{Fast ICA} from the
-			python library \emph{sklearn}, a python implementation of
-			\emph{Fourier Spectral Analysis}, the, Matlab based, Brain 
-			Connectivity Toolbox \emph{BCT}  
-			\url{https://sites.google.com/site/bctnet/}, as
-			well as a range of other analyzers.
-
-			For each of the DataTypes produced in \TVB, one or more
-			visualizers are available. \TVB has a number of visualizer types,
-			each developed with the technology that provides the best support 
-			for the specific requirements of a given visualization:
+			For each of the datatypes produced in TVB, one or more
+			visualizers are available, each taking advantage of the best
+            techniques available:
 
 			 \begin{figure}[!htbp]
 					\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_brain.png}}
@@ -207,39 +192,37 @@
 			\end{figure}
 	
 	\begin{enumerate}
-		\item \emph{WebGL viewers:} are based on \emph{HTML 5 Canvas} element
-		and the \emph{gl} context. These viewers offer nice 3D display,
-		vectorial zoom support, user interaction with the scene (rotate,
-		translate), quick response (even when thousands of vertices and edges
-		are to be manipulated) and good resolution for exported images.
+		\item \emph{WebGL viewers} are based on \emph{HTML 5 Canvas} element
+		and the \emph{gl} context. These viewers offer a 3D display,
+		 user interaction with the scene (rotate,
+		translate, zoom), and high performance for complex visualizations.
+        WebGL is used primarily for visualizing cortical surfaces.
 		
-		\item \emph{SVG viewers:} offer great selection, zoom and scaling
-		effects and extraordinary quality for exported images, while
-		having a relatively low number of elements to display on the page. We
-		use such viewers for manipulating and displaying TimeSeries,
-		Covariance or Cross Coherence DataType results. These visualizers
-		were developed expressly for these data types in TVB, and provide a 
-		richer level of interaction than Canvas based visualizers.
+		\item \emph{SVG viewers} use a high-quality, highly intercative vectorial 
+            format. We
+		use such viewers for manipulating and displaying time series,
+		covariance or cross coherence datatype results. These visualizers
+		were developed specifically for these data types in TVB, and provide a 
+		richer level of interaction.
 
-		\item \emph{MPLH5 viewers:}  emph{Matplotlib} has an \emph{HTML 5}
-		backend that we use for viewing some of \TVB's DataTypes (like
-		Fourier or Wavelet) \url{https://code.google.com/p/mplh5canvas/}
+		\item \emph{MPLH5 viewers} use  emph{Matplotlib}'s \emph{HTML 5}
+		backend for viewing some of TVB's datatypes, such as
+		the Fourier and spectral analyses. 
 
-		\item \emph{Other} simpler viewers in \TVB are using JIT
+		\item \emph{Other} simpler viewers in TVB use the JIT
 		\url{http://philogb.github.io/jit/} or FLOT
-		\url{http://www.flotcharts.org/} - JS libraries. These are mainly
-		2D graph displayers for some simple \TVB generated data.
+		\url{http://www.flotcharts.org/} Javascript libraries. These are mainly
+		2D plots for simple TVB generated data.
 	\end{enumerate}
 
 \subsubsection{Connectivity Tools}
 
-		\emph{Connectivity} in the context of \TVB is a DataType, mapping structural
+		\emph{Connectivity}, in the context of TVB, is another datatype, mapping structural
 		information about a subject (a real single individual or an average template). For
-		editing and viewing a Connectivity, \TVB has a specific page, where
+		editing and viewing a connectivity, TVB has a dedicated interface, where
 		the \emph{G-User} can manipulate connectivity strength and lengths
-		starting from the granularity of an edge.
-
-		We do not store or use information about the exact anatomical path or
+		at the granularity of individual edges.
+        Note that we do not store or use information about the exact anatomical path or
 		a connection, only the region centers and connection weights and
 		lengths.
 
@@ -280,11 +263,7 @@
 
 	\note[psl] added the image for the sake of completeness, but maybe remove.  
 
-\subsection{Console and scripting interface}
-
-\note[lp]{How does it work?}
-
-\subsubsection{Python Scripting}
+\subsection{Console and scripting}
 
 The components of TVB are of course accessible from a Python
 script or, more conveniently, from any of the IPython interfaces.
@@ -292,105 +271,72 @@ For example, the tutorials for the simulator have been developed
 as IPython notebooks, due to its ability to mix text, mathematics,
 code and figures. 
 
-\texttt{hello\_brain.py}
+\subsubsection{\texttt{hello\_brain.py}}
+
 To give a basic feel for scripting TVB simulations, we will 
-walk through a simple example of a region-level simulation shown in
-Code~\ref{lst:uipython}
+walk through a simple example of a region-level simulation.
 
-\lstinputlisting[caption={Python Listing},label={lst:uipython}]{python_lst.py}
-
-\note[sk]{with inputing the code like this the listing is now disjoint from the
-associated text, one or the other needs to be modified}
-
-%\begin{lstlisting}[caption={Python Listing},label={lst:py1}]
-%from tvb.simulator.lab import *
-%\end{lstlisting}
+\begin{lstlisting}
+from tvb.simulator.lab import *
+\end{lstlisting}
 
 \noindent which is an all-in-one module making writing scripts
 shorter, in the style of \texttt{pylab}, as it imports everything
 from \texttt{pylab}, \texttt{numpy} and most of TVB's simulator
 modules. Next, we build a simulator object:
 
-%<<<<<<< HEAD
-%\begin{lstlisting}
-%sim = simulator.Simulator(
-%		model        = models.Generic2dOscillator(), 
-%		connectivity = connectivity.Connectivity(),
-%		coupling     = coupling.Linear(a=1e-2),
-%		integrator   = integrators.HeunDeterministic(),
-%		monitors     = (
-%				monitors.TemporalAverage(), 
-%		)
-%)
-%\end{lstlisting}
-%=======
-%\begin{lstlisting}[caption={Python Listing},
-%                   label={lst:py2}]
-%sim = simulator.Simulator(
-%    model        = models.Generic2dOscillator(), 
-%    connectivity = connectivity.Connectivity(),
-%    coupling     = coupling.Linear(a=1e-2),
-%    integrator   = integrators.HeunDeterministic(),
-%    monitors     = (
-%        monitors.TemporalAverage(), 
-%    )
-%)
-%\end{lstlisting}
-%>>>>>>> lp
+\begin{lstlisting}
+sim = simulator.Simulator(
+    model        = models.Generic2dOscillator(), 
+    connectivity = connectivity.Connectivity(),
+    coupling     = coupling.Linear(a=1e-2),
+    integrator   = integrators.HeunDeterministic(),
+    monitors     = (
+            monitors.TemporalAverage(), 
+    )
+)
+\end{lstlisting}
 
 \noindent where we've employed a two dimensional oscillator
 with default parameters, the default connectivity, a linear 
 coupling function with a slope of $1e-2$, and deterministic
 Heun integrator and a monitor that temporally averages the 
-network dynamics before providing output.
+network dynamics before providing output. Each of these
+components can be replaced by a user's subclass of the
+appropriate base class, e.g. the value of \texttt{model}
+should subclass \texttt{models.Model}.
 
 While TVB strives to keep modules independent of one another,
 it is typical for mathematical dependencies to arise between, 
 for example, the mass model and the integration time step, so
 after configuring a simulator object, it is necessary to invoke
 
-%\begin{lstlisting}[caption={Python Listing},label={lst:py3}]
-%sim.configure()
-%\end{lstlisting}
+\begin{lstlisting}
+sim.configure()
+\end{lstlisting}
 
-which results in walking the tree of objects, checking and 
+\noindent which results in walking the tree of objects, checking and 
 configuring the constraints among parameters recursively.
 
 The next step is to run through the simulation, collecting
 output from the simulator. In this case, it is as simple as
-%<<<<<<< HEAD
-%\begin{lstlisting}
-%ys = array([y for ((t, y),) 
-%					in  sim(simulation_length=3e2)])
-%\end{lstlisting}
-%=======
-%\begin{lstlisting}[caption={Python Listing},label={lst:py4}]
-%ys = array([y for ((t, y),) 
-%	      in  sim(simulation_length=3e2)])
-%\end{lstlisting}
-%>>>>>>> lp
+
+\begin{lstlisting}
+ys = array([y for ((t, y),) in  sim(simulation_length=3e2)])
+\end{lstlisting}
 
 \noindent where the simulator has been called, returning a 
 generator which performs the integration and returns, for each
 monitor, the current time and activity. In a case where EEG 
 and fMRI monitors, for example, were used, we might write
-%<<<<<<< HEAD
-%\begin{lstlisting}
-%eeg, mri = [], []
-%for (t_eeg, y_eeg), (t_mri, y_mri) in sim(3e2):
-%		if y_eeg is not None:
-%		eeg.append(y_eeg)
-%		...
-%\end{lstlisting}
-%=======
-%\begin{lstlisting}[caption={Python Listing},label={lst:py5}]
-%eeg, mri = [], []
-%for (t_eeg, y_eeg), (t_mri, y_mri) in sim(3e2):
-%    if y_eeg is not None:
-%	eeg.append(y_eeg)
-%    ...
-%\end{lstlisting}
-%>>>>>>> lp
+
+\begin{lstlisting}
+eeg, mri = [], []
+for (t_eeg, y_eeg), (t_mri, y_mri) in sim(3e2):
+		if y_eeg is not None:
+		eeg.append(y_eeg)
+		...
+\end{lstlisting}
 
 \noindent Because fMRI and EEG monitors have very different
 timescales, whenever one monitor return data and the others do
@@ -400,9 +346,11 @@ feedback and modification of connectivity.
 
 After the simulation loop has finished, you may wish to see the
 result, following the previous listing, 
-%\begin{lstlisting}[caption={Python Listing},label={lst:py6}]
-%plot(ys[:, 0, :, 0], 'k', alpha=0.1)
-%\end{lstlisting}
+
+\begin{lstlisting}
+plot(ys[:, 0, :, 0], 'k', alpha=0.1)
+\end{lstlisting}
+
 \noindent Here we note that \texttt{ys} is four dimensional. The 
 simulator has the convention of treating  mass model state as a
 three dimensional array of state variables by nodes by statistical

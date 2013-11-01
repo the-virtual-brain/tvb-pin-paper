@@ -11,14 +11,14 @@ in the communtiy.
 
 These challenges call for two kinds of solutions. First, there is a need
 for comprehensive, modern computational libraries written in a widely
-used and available programming languages, such as MNE-Python \cite{mnepython},
+used and available programming languages, such as MNE-Python \citep{mnepython},
 a Python package for treating M/EEG data via time-frequency analyses and inverse
 solutions and the Brain Connectivity
-Toolbox \cite{rubinov2010complex} for analyzing the graph theoretic
+Toolbox \citep{rubinov2010complex} for analyzing the graph theoretic
 properties of structural and functional connectivity. Second, there is
 a need for the implementation
 of collaborative infrastructure for sharing not only data, but expertise; 
-CARMEN \cite{austin2011carmen} and G-Node \cite{herz2008g} are two such
+CARMEN \citep{austin2011carmen} and G-Node \citep{herz2008g} are two such
 examples of developing platforms for collaborative work and data sharing, 
 in the domains of cellular and systems neurophysiology.
 Ideally, solutions will be easily extended by its own users, as is often
@@ -42,22 +42,19 @@ numerical algorithms to the web server to be written in Python.
 
 \subsubsection{The framework}
 
-\note[vj]{There is no need to describe the steps that did not work, in fact it
-is counter productive and distracting. I removed them from the paragraphs}
-
  \begin{figure*}
         \centering
         \includegraphics[width=0.90\textwidth]{images/architecture.jpg}
-        \caption{TVB architecture: Yellow blocks are part of the Scientific
-            Library of TVB, while the green blocks are part of TVB Framework.
+        \caption{TVB architecture: Yellow blocks are part of the scientific
+            library of TVB, while the green blocks are part of TVB Framework.
             TVB provides two independent interfaces, depending on the
-            interaction type wanted by the end-user (web or console).  TVB
+            interaction type desired the end-user (web or console).  TVB
             Storage layer is compulsory for the web interface, but it can be
-            switched on/off for the console interface.  \note[lp]{It is said in
-                the text that "console interface" is part of the "architecture"
-            and not the "scientific library", this is the contrary on the
-        figure}
-        \note[lp]{What is a "S-User"? I missed the definition?}
+	    switched on/off for the console interface.  The terms \textit{G-User},
+	    \textit{C-User} and \textit{S-User} refer to users of the graphical,
+	    console \& database and scripting components. Here, console interface
+	    is conceptual and refers only to existing Python command lines, IPython
+	    included. 
          }
         \label{fig:architecture}
  \end{figure*}
@@ -85,14 +82,14 @@ make a new development necessary. We discuss these reasons in the following.
 Existing neural network simulators typically focus either on abstract rate neurons, 
 modelling e.g. neurocognitive processes, or 
 full multicompartmental neurons treating complex spatial
-geometries, e.g. NEURON \cite{Hines_2001}, modelling e.g. the interaction of 
+geometries, e.g. NEURON \citep{Hines_2001}, modelling e.g. the interaction of 
 channel distributions in dendrites.  More recently, due to interest in
 the computational properties of spiking neurons and their relevance to
 experimental observations, simulators designed for spiking or oscillating neurons
-have become prominent, including Brian \cite{Goodman_2009}, which we initially 
+have become prominent, including Brian \citep{Goodman_2009}, which we initially 
 considered for our simulations.
 In TVB the network is defined with neural mass or field
-models \cite{Deco_2008a, Coombes_2010} rather than cellular models. The
+models \citep{Deco_2008a, Coombes_2010} rather than cellular models. The
 spatial extent of the modeled dynamics is macroscopic and scales reasonably 
 to the entire cortex, using empirical measurements of corticocortical
 connectivity. Several technical issues are unique to this scale, such
@@ -115,7 +112,7 @@ HTML5.
 
 Alternatively, because TVB is licensed under the GPL, the sources may be
 readily obtained from the public Git repositories hosted on Github
-\cite{dabbish2012social}, at 
+\citep{dabbish2012social}, at 
 \url{https://github.com/the-virtual-brain}. In order to use the simulator, 
 only the standard scientific Python packages are required (NumPy \& SciPy).
 The framework and web interface depend on a few more packages. 
@@ -124,7 +121,7 @@ We provide an API doc, built from the docs strings using Sphinx.
 User's, Contributor's and Developer's manuals are also provided with TVB
 distributions in PDF format. The source files (in .rst) are available
 through the Github repository \url{https://github.com/the-virtual-brain/docs}.  
-In addition, IPython notebooks\cite{PerezGranger_2007}
+In addition, IPython notebooks\citep{PerezGranger_2007}
 for interactive tutorials are provided. These are based on the
 demonstration scripts provided with the scientific library, and
 include a more detailed description of what the scientific goal is (if
