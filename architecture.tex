@@ -130,19 +130,19 @@ an entity involved in an algorithm that would be part of TVB.
 
 In TVB, datatypes represent the common language, to be used between different
 application parts: like uploaders, analyzers, simulator and visualizers.
-Some of the algorithms are producing these DataTypes, while others are reading
+Some of the algorithms are producing these datatypes, while others are reading
 them as input.  In order to decouple the definition and several usages of such
-entities, DataTypes are declared outside the algorithms and shared between them.
+entities, datatypes are declared outside the algorithms and shared between them.
 For example an instance of datatype TimeSeriesRegion is created by the
 Simulator, and it can be accepted as input for several visualizers or analyzed
-by PCA and Cross Coherence algorithms.
+by principal component analysis and cross coherence algorithms.
 
 Technically, TVB datatypes are annotated Python classes, which
 contain one or more fields and associated descriptive information, as
 well as methods for operating on the data they contain. The definition of a
 datatype is achieved using TVB's traiting system, mentioned in previous section.
 
-For example, the \texttt{Connectivity} DataType, which may elsewhere
+For example, the \texttt{Connectivity} datatype, which may elsewhere
 be represented by a simple $N$ by $N$ NumPy array, is written as a class
 in which one of the attributes, \texttt{weights}, is a explicitly typed 
 \texttt{FloatArray}, and the declaration of this type is complemented by
@@ -202,7 +202,7 @@ class AdapterExample(ABCAdapter):
 \noindent where \texttt{get\_input\_tree} builds a dictionary of input
 arguments required for the algorithm and for
 presenting menus and fields in the user interface, \texttt{configure} allows the 
-adapter to intialize itself and its algorithm based on arbitrary arguments
+adapter to initialize itself and its algorithm based on arbitrary arguments
 and \texttt{launch} invokes the algorithm.
 Additional methods include \texttt{get\_output}, \texttt{get\_required\_memory\_size},
 \texttt{get\_required\_disk\_size}, and \texttt{get\_execution\_time\_approximation}.
@@ -225,7 +225,7 @@ Several categories of adapters have been defined in TVB:
 
 	\item \textit{visualizers}, derived from the \emph{ABCDisplayer} base class, prepare a datatype
 		for display. Each visualizer (Python adapter class) requires a complementary set
-		of JS and HTML files. 
+		of Javascript and HTML files. 
 
 	\item \textit{portlets} provide a chain of analyzers leading to a visualizer.
 
@@ -244,7 +244,7 @@ sufficient that each adapter consist of a class with an \texttt{\_\_init\_\_}
 and \texttt{\_\_call\_\_} method, in the case of a function type. 
 We note that because in the case of TVB, the context in which an object
 is used is more varied, e.g. not simply initialized but loaded through 
-SqlAlchemy's ORM, and that the adapter is required to perform more tasks
+SQLAlchemy's object relational mapping, and that the adapter is required to perform more tasks
 than just initialization and invocation, e.g. provide expected shape of 
 result, estimate occupied memory and do not start if insufficient resources are found on current machine,
  it was advantageous to create a distinct set of interfaces built on top of
