@@ -87,8 +87,9 @@
 		The \emph{Simulator} page is a configurable multicolumn interface 
         that combines TVB simulation, analysis and visualization functionalities (Fig.\ref{fig:simulator} A).
 
-		On the left column, a history of all simulations is kept and can be 
-		accessed at any time. Each simulation can be renamed or deleted.
+		In the left column, a history of all simulations is kept, allowing
+        quick access to previous results and their metadata. Here, the user
+        may check metadata, add tags and rename or delete the simulation.
 
 		The middle column of the \emph{Simulator} area is where users configure their
 		large-scale brain network model. On the top of this column there is a blank
@@ -117,7 +118,7 @@
 				\end{itemize}
 			\item integration scheme;
 			\begin{itemize}
-				\item if stochastic, the seed for numpy's rand can be set as well as the type of noise (white, coloured);
+				\item if stochastic, the random seed can be set as well as the type of noise (white, coloured);
 				\item integration time step size;
 			\item monitors (you can set the monitors period to downsample the raw time-series)
 			\item simulation length
@@ -136,7 +137,7 @@
 		for region-based simulations) (Figs. \ref{fig:simulator} B, C and D)
 		The ``Set up region Model'' area consist of an interactive phase-plane
 		display. This tool shows the 2-dimensional planes of the general
-		n-dimensional phase space of the local dynamic model. This tool is
+		N-dimensional phase space of the local dynamic model. This tool is
 		used to observe how the dynamics of the physical model change as a
 		function of its parameters, acting as a guide to set those parameters
 		appropriately.
@@ -148,7 +149,7 @@
 		resulting matrix).
 
         For many of the parameters, such as 
-        a parameter of the  the local dynamics model, coupling
+        a parameter of the local dynamics model, coupling
 		strength, conduction speed, among others, 
         it is possible to specify a range of evenly
         spaced values, and launch the corresponding sweep in
@@ -198,7 +199,7 @@
 		translate, zoom), and high performance for complex visualizations.
         WebGL is used primarily for visualizing cortical surfaces.
 		
-		\item \emph{SVG viewers} use a high-quality, highly intercative vectorial 
+		\item \emph{SVG viewers} use a high-quality, highly interactive vectorial 
             format. We
 		use such viewers for manipulating and displaying time series,
 		covariance or cross coherence datatype results. These visualizers
@@ -231,37 +232,29 @@
 		\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_connectivity.png}}
 		\\
 		\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_connectivity_delays.png}}
-		\caption{Connectivity Tools: 
-		(A) Left side: Displaying weighted connections between selection of nodes, with 3D manipulation.
-		Right side: Editing weight connections, singular or bulk.
-		(B) Left side: Show effect of connectivity delays (in milliseconds) when conduction speed is 1 mm/ms.
-		Right side: Editing and displaying one quadrant from the matrix of connection tracts.}
+		\caption{Connectivity tools: 
+            (A) \textit{Left}: Displaying weighted connections between selection of nodes, with 3D manipulation.
+            \textit{Right}: Editing weight connections, one at a time, or many.
+            (B) \textit{Left}: Show effect of connectivity delays (in milliseconds) when conduction speed is 1 mm/ms.
+        \textit{Right}: Editing and displaying one quadrant from the matrix of connection tracts.}
 				\label{fig:connectivity}
 \end{figure}
 
 \subsubsection{Stimulus Editor}
 
-	In the \emph{Stimulus} area, an interactive environment assists users to
-	generate stimulation patterns (e.g., a modeling study about TMS) that maybe be
-	later included in a simulation. Similarly to the mechanism employed to vary
-	model parameters from node to node, stimulation patterns are generated
-	independently for region-based and surface-based simulations. In the former, a
-	unique temporal profile can be specified for each node, although the amplitude
-	of the stimulation can be modulated individually for each node. In the latter,
+    The \emph{Stimulus} interface assists users in generating
+	stimulation patterns that maybe be later used in a simulation, for 
+    example to model the effects of transcranial magnetic stimulation.
+    The way in which stimuli are designed depends on whether the simulation
+    will be at region-based or surface-based.
+	For region-based simulations, a
+	unique temporal profile can be specified for each node, with the amplitude
+	of the stimulation modulated individually for each node. For surfaces,
 	in addition to the temporal profile, it is possible to select several vertices
-	on the surface to define the foci around which a spatial pattern is centered
-	(Fig. \ref{fig:stimulus}). A stimulation profile in \TVB is a Pattern
-	datatype, and it can be either temporal or spatiotemporal depending the
+	on the surface to define the foci around which the spatial pattern is centered.
+    A stimulation profile in TVB is a \emph{pattern}
+	datatype, either uniquely temporal or spatiotemporal depending the
 	spatial support of the network.
-
-	\begin{figure}[!htbp]
-		\centering
-		\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_stimulus.png}}
-		\caption{Stimulus Editor for a surface-based simulation.}
-				\label{fig:stimulus}
-	\end{figure}
-
-	\note[psl] added the image for the sake of completeness, but maybe remove.  
 
 \subsection{Console and scripting}
 
