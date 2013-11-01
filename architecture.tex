@@ -14,7 +14,7 @@ derive from the metaclasses in Python's abstract base class library, and
 provide a foundation for defining any type of data from a tuple to a
 set of EEG channel labels to a simulation, each of which is defined by a class
 implemented the datatype interface and possessing one or more datatypes as 
-attributes. An operation is any algorithm that
+attributes. An operation is an execution of any algorithm that
 has been \emph{adapted} to the framework in a class implementing the abstract
 adapter interface, and range from the simulator to data importers to
 visualizers.  The goal of these twin, generic abstractions is to provide a
@@ -105,7 +105,7 @@ of a traited attribute and how they are used.
 		locked	& When present and \emph{True}, current attribute will be displayed as read-only in the web interface. \\
 
 		options	& Used for attributes of type \emph{Enumerate}, specifying the accepted options as a list of strings. \\
-		filters\_ui	& SQL filters on other attributes, to be applied in UI. \\
+		filters\_ui	& Object relational filters on attributes, to be applied before displaying data in UI. \\
 		select\_multiple & When \emph{True}, current attribute will be displayed as a select with multiple options in UI (default is single-select) \\
 		order	& Optional number identifying the index at which current attribute will be displayed in UI. \\
 				& When negative, the attribute is not displayed at all. Ascending order for indices is considered when displaying. \\
@@ -149,7 +149,7 @@ in which one of the attributes, \texttt{weights}, is a explicitly typed
 explicit label, default values, and documentation strings. See
 Code~\ref{lst:ConnectivityData}.
 
-\begin{lstlisting}[caption={The COnnectivityData listing},
+\begin{lstlisting}[caption={The Connectivity Datatype definition},
                    label={lst:ConnectivityData}]
 class ConnectivityData(MappedType):
 
@@ -204,7 +204,7 @@ arguments required for the algorithm and for
 presenting menus and fields in the user interface, \texttt{configure} allows the 
 adapter to intialize itself and its algorithm based on arbitrary arguments
 and \texttt{launch} invokes the algorithm.
-Additional methods include \texttt{get\_output}, \texttt{get\_required\_memory\_size},
+Additional usefull methods include \texttt{get\_output}, \texttt{get\_required\_memory\_size},
 \texttt{get\_required\_disk\_size}, and \texttt{get\_execution\_time\_approximation}.
 
 Several categories of adapters have been defined in TVB: 
