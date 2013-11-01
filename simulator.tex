@@ -22,7 +22,7 @@ of the execution time and memory required in typical simulations.
 	individual neurons, where the goal may be to reproduce correct spike
 	timing or predict the effect of  a specific neurotransmitter. A second
 	difference lies in coupling: chemical coupling is often assumed to be
-	pulsatile, or discrete, between neurons, whereas it is considered
+	pulsatile, or discrete, between neurons, whereas for mesoscopic models it is considered
 	continuous. Typically the goal of neural mass modeling is to study the
 	dynamics that emerge from the interaction of two or more neural masses and
 	the network conditions required for stability of a particular
@@ -31,7 +31,7 @@ of the execution time and memory required in typical simulations.
 
 	As we have noted, many neural mass models have been developed. One of
 	the more prominent examples in the systems neuroscience literature is 
-	that the Jansen-Rit model of rhythms and evoked responses arising from
+	the Jansen-Rit model of rhythms and evoked responses arising from
 	coupled cortical column \cite{Zetterberg_1978, Jansen_1995, Spiegler_2010}. 
 	\note[mw]{Continue description}.
 	\note[psl]{maybe see David et al, 2004 for better description of local connectivity in the Jansen and Rit model}
@@ -40,22 +40,22 @@ of the execution time and memory required in typical simulations.
 	making it easier in certain cases to make concrete predictions about
 	the relation between a dynamical regime and its neurobiological 
 	mechanism. However, because the form of the model used often employs
-	at least six dimensions, it is not always clear how to analyze or
-	visualize. Lastly, the model requires frequent computation of exponentials,
+	at least six dimensions, it is not always clear how it should be analyzed or
+	visualized. Lastly, the model requires frequent computation of exponentials,
 	requiring considerable computational time. 
 
 	For these reasons, it is often desirable to have a simpler mathematical 
-	model, which may be reproduce the same qualitative phenomena as other 
+	model, which can reproduce the same qualitative phenomena as other 
 	models, implemented with fewer and simpler equations. Such is the motivation
 	for the generic two-dimensional oscillator model provided by TVB. 
-	Model produces oscillations, damped, spike-like or 
-	sinusoidal activations. While these alone are not interesting, they 
+	This model can produce oscillations which are damped, spike-like or 
+	sinusoidal in nature. While these alone are not interesting, they 
 	permit the study of network phenomena, such as synchronization of rhythms
 	or propagation of evoked potentials, while requiring less time to simulate.
 
 	However, the modeler's goals may not lead to either the Jansen-Rit
 	\cite{Jansen_1995, David_2003, David_2004} or generic 2D oscillator
-	\cite{FitzHugh_1961, Nagumo_1962}, and several other mass models are
+	\cite{FitzHugh_1961, Nagumo_1962}, so several other mass models are
 	provided by TVB: the previously mentioned Wilson-Cowan description of
 	functional dynamics of neural tissue \cite{Wilson_1972}, the Kuramoto
 	model describing synchronization \cite{Kuramoto_1975, Cabral_2011}, two
@@ -63,7 +63,7 @@ of the execution time and memory required in typical simulations.
 	excitability distributions \cite{Stefanescu_2011, Stefanescu_2008}, a
 	reduction of the Wong and Wang model \cite{Wong_2006} as presented in
 	\cite{Deco_2013} and a lumped version of Liley's model \cite{Liley_1999,
-	Steyn-Ross_1999} model are among the available models in TVB.
+	Steyn-Ross_1999} are among the available models in TVB.
 
 	Again, should any of these be insufficient, a new model can be implemented
 	with minimal effort by subclassing a base \texttt{Model} class and
@@ -92,7 +92,7 @@ of the execution time and memory required in typical simulations.
 	\subsubsection{Large-scale connectivity}
 
 	The large-scale region level connectivity at the scale of centimeters,
-	resembles more a traditional neural network than a neural field in that
+	resembles more a traditional neural network than a neural field, in that,
 	neural space is discrete,  each node corresponding to a neuroanatomical
 	region of interest, such as V1, etc. It is at this level that inter-regional 
 	time delays play a large role, whereas the time delays due to 
@@ -116,8 +116,8 @@ of the execution time and memory required in typical simulations.
 	as obtained from structural MRI data and simplified, provides a spatial 
 	discretization on which neural masses are placed and connected with a
 	local connectivity kernel, itself only a function of the geodesic distance
-	between the two masses, and this is considered to provide an
-	approximation of a neural field, depending on the properties
+	between the two masses. This is considered to provide a reasonable
+	approximation of a neural field, the appropriateness of which depends on the properties
 	of the mesh and the imaging modalities that sample the activity simulated
 	on the mesh \cite{Spiegler_2013}. 
 	\note[sk]{The implementation of the local connectivity kernel is such
@@ -146,7 +146,7 @@ of the execution time and memory required in typical simulations.
 	stochastic systems exists, it is less well known how to treat 
 	the presence of both. For the moment, the methods implemented by TVB
 	treat stochastic integration separately from delays. 
-	This separation conincides with a modeling assumption that in
+	This separation coincides with a modeling assumption that in
 	TVB the dynamical phenomena to be studied are largely determined
 	by the interaction of the network structure and neural mass dynamics, 
 	and that stochastic fluctuations do not fundamentally reorganize the
@@ -163,7 +163,7 @@ of the execution time and memory required in typical simulations.
 	$(horizon, n_{cvar}, n_{region})$ where $horizon = max(delay) + 1$,
 	and
 	$n_{cvar}$ is the number of coupling variables. Such a scheme helps 
-	lower the memory requirements of integrated the delay equations.
+	lower the memory requirements of integrating the delay equations.
 
 \subsection{Forward solutions}
 
@@ -188,19 +188,20 @@ of the execution time and memory required in typical simulations.
 	one internal buffer. The fMRI monitor is one 
 	example: given a typical sampling frequency of simulation may be upward of 
 	64 kHz, and the haemodynamic response function may last several seconds, 
-	requiring many gigabytes of memory for the fMRI monitor alone. Given that 
+	using only a single buffer could require many gigabytes of memory for the 
+	fMRI monitor alone. Given that 
 	the time-scale of simulation and fMRI differ by several orders of magnitude, 
 	the subsequent averaging and downsampling is justified. 
 
 	In the cases of the EEG and MEG monitors, $K$ implements a simple
 	temporal average, and $W$ consists of a so-called lead-field matrix as typically
-	derived from a combination of structural imaging data of the patient 
-	and the locations and orientations of the neural sources and the locations
-	and orientions of the EEG electrodes and MEG gradiometers and magnetometers. 
+	derived from a combination of structural imaging data of the patient, 
+	which provides the locations and orientations of the neural sources, and the locations
+	and orientations of the EEG electrodes and MEG gradiometers and magnetometers. 
 	As the development and implementation of such lead-fields is well developed
-	elsewhere \cite{Jirsa_2002,Nolte2003,Gramfort_2010}, TVB provides access
+	elsewhere \cite{Sarvas_1987,Hamalainen_1989,Jirsa_2002,Nolte2003,Gramfort_2010}, TVB provides access
 	to the well-known OpenMEEG package, however, the user is free to provide 
-	his or her own.
+	their own.
 
 \subsection{Performance}
 
@@ -229,7 +230,7 @@ of the execution time and memory required in typical simulations.
 	or use of cortical surface, and two conduction speeds, $v_c = 2.0$ and
 	$v_c = 20.0$ (m/s). In each case, a temporal average monitors at 512 Hz
 	is used, and the results are discarded. The region-only simulation was
-	run for a second while the surface simulation was run for 100 ms. 
+	run for one second while the surface simulation was run for 100 ms. 
 
 	\note[mw]{Table of profiling results to go here. Profiling has been done, 
 	table will be added soon. Nothing surprising here.}
