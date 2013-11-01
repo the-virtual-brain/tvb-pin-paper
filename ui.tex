@@ -1,7 +1,7 @@
 \subsection{Graphical Interface Interaction}
 
-		A graphical web interface was chosen as solution to give users a quick
-		interaction with \TVB . The web interface is easy to access (local or
+		A graphical web interface was chosen as a solution to give users quick
+		interaction with \TVB . The web interface is easy to access (locally or
 		remotely) through a web browser, it can be used by different types of
 		users, including those without programming knowledge, and it offers
 		great support while learning about \TVB concepts and workflow
@@ -11,8 +11,8 @@
 		The http is served using \emph{Cherrypy}
 		\texttt{http://www.cherrypy.org/} which is a minimalist, object-
 		oriented web framework,  in combination with \emph{Genshi} templating
-		system, to support the separation of layers as guided by \emph{MVC
-		(Model View Controller)} pattern.
+		system, to support the separation of layers as guided by the 
+		\emph{Model View Controller (MVC)} pattern.
 
 		\subsubsection{Projects, Accounts, Operations \& Data}
 
@@ -39,10 +39,10 @@
 
 		An \emph{Account} or \emph{User} is needed for accessing \TVB through
 		the web interface.  When \TVB web interface is fired for the first
-		time, the G-User is requested to set his or her username and a
-		password for the first account which acts under an
-		\emph{administrator} role. Later on, more users can \emph{register}
-		for other accounts, that should be previoulsy validated by the admin
+		time, the G-User is requested to set their username and a
+		password for the first account -- which acts under an
+		\emph{administrator} role. After this, more users can \emph{register}
+		for accounts, which then need to be validated by the admin
 		account.
 
 		A \emph{Project} in \TVB is a logical grouping entity, which  can be
@@ -50,9 +50,9 @@
 		create a project for each experiment in \TVB, while others might
 		create projects for each subject of a group. Each project has a single
 		\emph{User} (or \emph{Account}) as owner, but a project can be shared
-		with multiple users to allow for collaborative reasearch.
+		with multiple users to allow for collaborative research.
 
-		Any execution of an Adapter results into an \emph{Operation} in the
+		Any execution of an Adapter results in an \emph{Operation} in the
 		context of a project. Multiple operations will be executed under the
 		same project. For example we will have operations created for each
 		execution of a simulation, each run of a Fourier analyzer, or launch
@@ -62,15 +62,15 @@
 		output parameters and parameters can be scalars or DataTypes.
 
 		A \emph{Workflow} in \TVB is a set of operations with their artifacts,
-		and wraps around a simulation as leading component. A workflow can be
-		seen as a default \emph{tag} placed by the system on Operations and
-		DataTypes  which are logically connected, as resulting one after the
-		other. Custom tags can also be added by the end-user both on DataTypes
+		and wraps around a simulation as the leading component. A workflow can be
+		seen as a default \emph{tag}, placed by the system on Operations and
+		DataTypes  which are logically, sequentially, connected.
+		Custom tags can also be added by the end-user both on DataTypes
 		and Operations, for tracking entities inside a Project.
 
 		\subsubsection{Simulator Interface}
 
-		The \emph{Simulator} page is a presented as configurable multicolumn interface that combines \TVB simulation, analysis and visualization functionalities (Fig.\ref{fig:simulator} A).
+		The \emph{Simulator} page is a presented as a configurable multicolumn interface that combines \TVB simulation, analysis and visualization functionalities (Fig.\ref{fig:simulator} A).
 
 		\begin{figure}[!htbp]
 
@@ -102,14 +102,14 @@
 		{\small
 
 		\begin{itemize}
-			\item long range connectivity (i.e., the connectome or connectvity matrix);
+			\item long range connectivity (i.e., the connectome or connectivity matrix);
 			\item long range coupling function (to scale the weights in the connectivity matrix);
 			\item conduction speed;
 			\item cortical surface;
 			\begin{itemize}
 				\item local connectivity kernel;
 				\item local connectivity strength (can be configured to be different for each vertex);
-				\item region mapping (coorepsondances between vertices of the surface and anatomical reigons in the connectome);
+				\item region mapping (correspondences between vertices of the surface and anatomical regions in the connectome);
 			\end{itemize}
 			\item stimulus
 			\item local dynamics model (i.e. neural mass model)
@@ -131,22 +131,23 @@
  \note[psl] Explain continuation feature.  
 
 		Additional information about the components (e.g., modules, datatypes
-		and their attruibutes) is available  by clicking on the interrogation
-		mark icon next to each element. This documentation are pulled from the
-		annotations from the traits system and doc strings.
+		and their attributes) is available  by clicking on the interrogation
+		mark icon next to each element. This documentation is pulled from the
+		annotations provided by the traits system and doc strings.
 
-		Specific pages are accesible for setting up the neural mass model
+		Specific pages are accessible for setting up the neural mass model
 		parameters in region-based and surface-based simulations, as well as
 		for configuring the noise amplitude in stochastic integrations (only
 		for region-based simulations) (Figs. \ref{fig:simulator} B, C and D)
 		The `Set up region Model` area consist of an interactive phase-plane
 		display. This tool shows the 2-dimensional planes of the general
-		n-dimensional phase space of the local dynamics model. This tool is
+		n-dimensional phase space of the local dynamic model. This tool is
 		used to observe how the dynamics of the physical model change as a
-		function of its parameters.
+		function of its parameters, acting as a guide to set those parameters
+		appropriately.
 
 		For surface-based simulations the model parameters are defined as
-		function of distance from a central focal point (vertex of the
+		a function of distance from a central focal point (vertex of the
 		surface). Thus, there is an extra layer of complexity by spatially
 		varying the model parameters.
 
@@ -157,8 +158,8 @@
 
 		It is possible to launch parallel simulations to systematically explore a set of
 		components (e.g., a parameter of the  the local dynamics model, coupling
-		strength, condution speed, among others. The resulting maps will be presented
-		either in a discrete (Fig.\ref{fig:visualizers} A) or a continous 2D plot. 
+		strength, conduction speed, among others. The resulting maps will be presented
+		either in a discrete (Fig.\ref{fig:visualizers} A) or a continuous 2D plot. 
 
 		\note[psl]{Maybe mention that the value presented in the pse images is
 		a float representing a certain charactersitic of a time-series
@@ -169,24 +170,25 @@
 		\subsubsection{Analysis \& Visualizers}
 
 			\TVB does not aim to compete at the analysis level with other tools in
-			Neuroscience,  highly specialized and with great history in data
+			Neuroscience that are highly specialized and with great history in data
 			analysis, like FSL \cite{Smith_2004, Woolrich_2009, Jenkinson_2012} ,
 			SPM \cite{Friston_1995}, FieldTrip \cite{Oostenveld_2011} and
-			Brainstorm \cite{Tadel_2011}.  What we offer is a minimalist set or
+			Brainstorm \cite{Tadel_2011}.  What we offer is a minimalist set of
 			algorithms to post-process your simulated results (or even process
 			imported patient measured scans) inside \TVB, mainly for quick
 			validations.
 
-			We have created inside \TVB adapters for \emph{Fast ICA} from the
-			python library \emph{sklearn},  we've implemented a python version of
-			\emph{Fourier Spectral Analysis},  we have even wrapped the Matlab
-			library \emph{BCT} \url{https://sites.google.com/site/bctnet/}, and
-			others as analyzers.
+			Included in \TVB are adapters for \emph{Fast ICA} from the
+			python library \emph{sklearn}, a python implementation of
+			\emph{Fourier Spectral Analysis}, the, Matlab based, Brain 
+			Connectivity Toolbox \emph{BCT}  
+			\url{https://sites.google.com/site/bctnet/}, as
+			well as a range of other analyzers.
 
-			For each of the DataTypes produced in \TVB, one or multiple
-			visualizers are available.   \TVB has couple of  visualizer types,
-			each developed with the technology providing better support on the
-			specific requirements for the visualization in course:
+			For each of the DataTypes produced in \TVB, one or more
+			visualizers are available. \TVB has a number of visualizer types,
+			each developed with the technology that provides the best support 
+			for the specific requirements of a given visualization:
 
 			 \begin{figure}[!htbp]
 					\subfloat[][]{\includegraphics[width=0.48\textwidth]{images/ui_view_brain.png}}
@@ -199,29 +201,29 @@
 					\caption{\TVB visualizers: 
 					(A) WebGL: 3D display of region level simulated signal, mapped on a brain cortical surface
 					(B) SVG: Cross Coherence
-					(C) MPLH5:  Topograhic view with Connectivity in/out strength measures
+					(C) MPLH5:  Topographic view with Connectivity in/out strength measures
 					(D) FLOT: Parameter Space Exploration results grid}
 				\label{fig:visualizers}
 			\end{figure}
 	
 	\begin{enumerate}
 		\item \emph{WebGL viewers:} are based on \emph{HTML 5 Canvas} element
-		and the \emph{gl} context. These viewers offer 3D nice display,
+		and the \emph{gl} context. These viewers offer nice 3D display,
 		vectorial zoom support, user interaction with the scene (rotate,
 		translate), quick response (even when thousands of vertices and edges
-		are to be manipulated) and good resolution for the images exported.
+		are to be manipulated) and good resolution for exported images.
 		
 		\item \emph{SVG viewers:} offer great selection, zoom and scaling
-		effects and extraordinary quality for the exported artifacts, while
+		effects and extraordinary quality for exported images, while
 		having a relatively low number of elements to display on the page. We
 		use such viewers for manipulating and displaying TimeSeries,
 		Covariance or Cross Coherence DataType results. These visualizers
-		were developed expressly for these data types in TVB, provided a 
-		richer level of interaction that Canvas based visualizers.
+		were developed expressly for these data types in TVB, and provide a 
+		richer level of interaction than Canvas based visualizers.
 
 		\item \emph{MPLH5 viewers:}  emph{Matplotlib} has an \emph{HTML 5}
-		backend that we use for viewing some of \TVB DataTypes (like
-		Fourier or Wavelet) url{https://code.google.com/p/mplh5canvas/}
+		backend that we use for viewing some of \TVB's DataTypes (like
+		Fourier or Wavelet) \url{https://code.google.com/p/mplh5canvas/}
 
 		\item \emph{Other} simpler viewers in \TVB are using JIT
 		\url{http://philogb.github.io/jit/} or FLOT
@@ -249,7 +251,7 @@
 		\caption{Connectivity Tools: 
 		(A) Left side: Displaying weighted connections between selection of nodes, with 3D manipulation.
 		Right side: Editing weight connections, singular or bulk.
-		(B) Left side: Show effect of connectivity delays (in milliseconds) when conductions speed is 1 mm/ms.
+		(B) Left side: Show effect of connectivity delays (in milliseconds) when conduction speed is 1 mm/ms.
 		Right side: Editing and displaying one quadrant from the matrix of connection tracts.}
 				\label{fig:connectivity}
 \end{figure}
@@ -258,7 +260,7 @@
 
 	In the \emph{Stimulus} area, an interactive environment assists users to
 	generate stimulation patterns (e.g., a modeling study about TMS) that maybe be
-	later included in a simulation.Similarly to the mechanism employed to vary
+	later included in a simulation. Similarly to the mechanism employed to vary
 	model parameters from node to node, stimulation patterns are generated
 	independently for region-based and surface-based simulations. In the former, a
 	unique temporal profile can be specified for each node, although the amplitude
@@ -284,7 +286,7 @@
 
 \subsubsection{Python Scripting}
 
-The components of TVB are of course accessible from the a Python
+The components of TVB are of course accessible from a Python
 script or, more conveniently, from any of the IPython interfaces.
 For example, the tutorials for the simulator have been developed
 as IPython notebooks, due to its ability to mix text, mathematics,
@@ -296,6 +298,9 @@ walk through a simple example of a region-level simulation shown in
 Code~\ref{lst:uipython}
 
 \lstinputlisting[caption={Python Listing},label={lst:uipython}]{python_lst.py}
+
+\note[sk]{with inputing the code like this the listing is now disjoint from the
+associated text, one or the other needs to be modified}
 
 %\begin{lstlisting}[caption={Python Listing},label={lst:py1}]
 %from tvb.simulator.lab import *
