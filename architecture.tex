@@ -74,22 +74,8 @@ attributes on a TVB class to be written out with its full metadata. An extensive
 set of building blocks are already implements from numeric types and arrays to
 lists, tuples, string, and dictionaries.
 
-When methods of such a class with annotated attributes are invoked, they may use
-the traited attributes directly, accessing either a default value or one given
-during the instantiation of the object. Additionally, this allows the web-based
-user interface to introspect a class for all of its attributes and their
-descriptions, to provide help and choose the proper display form. The explicit
-typing also allows such classes to be nearly automatically mapped to storage
-tables, providing persistence, when the storage layer is enabled.  Lastly,
-because such metadata is used to build the docstring of a class, the console
-user also may obtain extensive descriptions of class, attributes, methods and
-arguments in the usual way. Table \ref{tab:traits} lists the various parts 
-of a traited attribute and how they are used. 
-
 \begin{center}
 	\begin{table*}[ht]
-  	\label{tab:traits}
-  	\caption{TVB currently available Traited Attributes}
 
 	\begin{tabularx}{\textwidth}{lll}
       		\toprule
@@ -116,8 +102,23 @@ of a traited attribute and how they are used.
 					& When \emph{expandable\_HDF5} value is set, a H5 stored in chunks is used. \\
 		\bottomrule
     	\end{tabularx}
+  	\caption{TVB currently available Traited Attributes}
+  	\label{tab:traits}
 	\end{table*}
 \end{center}
+
+
+When methods of such a class with annotated attributes are invoked, they may use
+the traited attributes directly, accessing either a default value or one given
+during the instantiation of the object. Additionally, this allows the web-based
+user interface to introspect a class for all of its attributes and their
+descriptions, to provide help and choose the proper display form. The explicit
+typing also allows such classes to be nearly automatically mapped to storage
+tables, providing persistence, when the storage layer is enabled.  Lastly,
+because such metadata is used to build the docstring of a class, the console
+user also may obtain extensive descriptions of class, attributes, methods and
+arguments in the usual way. Table \ref{tab:traits} lists the various parts 
+of a traited attribute and how they are used. 
 
 
 \subsubsection{Datatypes}

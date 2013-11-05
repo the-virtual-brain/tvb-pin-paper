@@ -232,8 +232,18 @@ of the execution time and memory required in typical simulations.
 	is used, and the results are discarded. The region-only simulation was
 	run for one second while the surface simulation was run for 100 ms. 
 
-	\note[mw]{Table of profiling results to go here. Profiling has been done, 
-	table will be added soon. Nothing surprising here.}
+	\input{profiling/cprofsummary.tex}
+
+	As can be seen in Table \ref{tab:profiling}, the time spent during simulation
+	is dominated by numerical, built-in methods (marked by those functions surrounded by angle
+	brackets) from the NumPy and SciPy libraries, with the exception of a few
+	calls to the \texttt{loadtxt} function, which is necessary when importing TVB's
+	datatypes the first time. For the surface simulations, it is also necessary to compute
+	a local distance matrix \texttt{<gdist.local\_gdist\_matrix>}. Nevertheless, 
+	some of the time spent on array operations such as computing the right hand sides 
+	of the differential equations can be 
+	recovered by using the \texttt{numexpr} module which eliminates the 
+	use of temporary arrays. 
 
 %\subsection{Acceleration with C \& CUDA}
 
