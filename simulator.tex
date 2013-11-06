@@ -49,11 +49,11 @@ of the execution time and memory required in typical simulations.
     provided by TVB 
     \citep{strogatz2001nonlinear, guckenheimer1983nonlinear}.
 	This model can produce oscillations which are damped, spike-like or 
-	sinusoidal in nature. While these alone are not interesting, they 
+	sinusoidal in nature. While these kinds of dynamics alone are not interesting, they 
 	permit the study of network phenomena, such as synchronization of rhythms
 	or propagation of evoked potentials, while requiring less time to simulate.
 
-	However, the modeler's goals may not lead to either the Jansen-Rit
+	However, the modeler's goals may not be served by using either the Jansen-Rit
 	 or generic 2D oscillator, so several other mass models are
 	provided by TVB: the previously mentioned Wilson-Cowan description of
 	functional dynamics of neural tissue \citep{Wilson_1972}, the Kuramoto
@@ -66,7 +66,7 @@ of the execution time and memory required in typical simulations.
     Liley's model \citep{Liley_1999, Steyn-Ross_1999} 
     are among the available models in TVB.
 
-	Again, should any of these be insufficient, a new model can be implemented
+	Finally, should any of these be insufficient, a new model can be implemented
 	with minimal effort by subclassing a base \texttt{Model} class and
 	providing a  \texttt{dfun} method to compute the right hand sides of the
 	differential  equations. Please refer to the \texttt{tvb.simulator.models}
@@ -78,16 +78,17 @@ of the execution time and memory required in typical simulations.
 
 \subsection{Network structure}
 
-	The network of neural masses in TVB simulations directly follows from  a
-	pair of geometrical constraints on cortical dynamics. The first is the
+	The network of neural masses in TVB simulations directly follows from  two
+	 geometrical constraints on cortical dynamics. The first is the
 	large-scale white matter fibers that form a non-local and heterogeneous
 	(translation variant) connectivity, either measured by anatomical tracing
 	(CoCoMac, \cite{Koetter_2004}) or diffusion-weighted imaging 
     \citep{Hagmann_2008, Honey_2009, Bastiani_2012}.
     The second is that of horizontal projections
 	along the surface, which are often modeled with a translation invariant
-    connectivity kernel, approximating a neural field; though as with other
-    parameters in the simulator, spatial inhomogeneity is supported as well.
+    connectivity kernel, approximating a neural field (however, as with other
+    parameters in the simulator, connectivity kernel parameters that vary 
+	across space can also be used).
 
 	\subsubsection{Large-scale connectivity}
 
@@ -194,7 +195,7 @@ of the execution time and memory required in typical simulations.
 
 	In the cases of the EEG and MEG monitors, $K$ implements a simple
 	temporal average, and $W$ consists of a so-called lead-field matrix as typically
-	derived from a combination of structural imaging data of the patient, 
+	derived from a combination of structural imaging data, 
 	which provides the locations and orientations of the neural sources, and the locations
 	and orientations of the EEG electrodes and MEG gradiometers and magnetometers. 
 	As the development and implementation of such lead-fields is well developed
@@ -204,15 +205,13 @@ of the execution time and memory required in typical simulations.
 
 \subsection{Performance}
 
-	A primary goal of the simulator is to be available as a pure Python package,
-	and secondarily, to be fast enough. We have not found it useful to 
-	develop theoretical estimates of the time and space complexity of the 
-	algorithms, given that much of the heavy lifting is already done in native
-	code by NumPy and other standard libraries. Instead, 
-	in the following, we profile a set of eight characteristic simulations
-	on both memory use, specifically the heap size as measured by Valgrind's 
-	\texttt{massif} tool \citep{nethercote2007valgrind}, 
-    and function timing as measured by the 
+	A priority of the simulator in TVB is to attain a high level of performance
+	while remaining in pure Python. In order to see where the simulator 
+	spends most of its time, we have profiled 
+	a set of eight characteristic simulations
+	%on both memory use, specifically the heap size as measured by Valgrind's 
+	%\texttt{massif} tool \citep{nethercote2007valgrind}, 
+    	on function timing as measured by the 
 	\texttt{cProfile} module of the standard library. 
 	
 	Measurements were
@@ -238,7 +237,7 @@ of the execution time and memory required in typical simulations.
 	is dominated by numerical, built-in methods (marked by those functions surrounded by angle
 	brackets) from the NumPy and SciPy libraries, with the exception of a few
 	calls to the \texttt{loadtxt} function, which is necessary when importing TVB's
-	datatypes the first time. For the surface simulations, it is also necessary to compute
+	datatypes the first time. For surface simulations, it is also necessary to compute
 	a local distance matrix \texttt{<gdist.local\_gdist\_matrix>}. Nevertheless, 
 	some of the time spent on array operations such as computing the right hand sides 
 	of the differential equations can be 

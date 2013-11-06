@@ -14,7 +14,7 @@ derive from the metaclasses in Python's abstract base class library, and
 provide a foundation for defining any type of data from a tuple to a
 set of EEG channel labels to a simulation, each of which is defined by a class
 implemented the datatype interface and possessing one or more datatypes as 
-attributes. An operation is any algorithm that
+attributes. An operation is the execution of any algorithm that
 has been \emph{adapted} to the framework in a class implementing the abstract
 adapter interface, and range from the simulator to data importers to
 visualizers.  The goal of these twin, generic abstractions is to provide a
@@ -66,12 +66,12 @@ in TVB are: \emph{command profile}, \emph{deployment profile} (with web interfac
 
 \subsubsection{TVB Traits}
 
-Because an explicit goal of TVB was to provide a user interface to each of the
+Because an explicit goal of TVB is to provide a user interface to each of the
 entities and algorithms contained within, it is necessary at some point to
 provide metadata on how to built that interface. A traits system was
 developed, similar to that of IPython or EPD, allowing for
 attributes on a TVB class to be written out with its full metadata. An extensive
-set of building blocks are already implements from numeric types and arrays to
+set of building blocks implements from numeric types and arrays to
 lists, tuples, string, and dictionaries.
 
 \begin{center}
@@ -150,7 +150,7 @@ in which one of the attributes, \texttt{weights}, is a explicitly typed
 explicit label, default values, and documentation strings. See
 Code~\ref{lst:ConnectivityData}.
 
-\begin{lstlisting}[caption={The COnnectivityData listing},
+\begin{lstlisting}[caption={The ConnectivityData listing},
                    label={lst:ConnectivityData}]
 class ConnectivityData(MappedType):
 
@@ -181,10 +181,10 @@ class ConnectivityData(MappedType):
 \subsection{Adapters}
 
 The framework expects algorithms to be adapted by providing a class
-which inherits from the base adapter, \texttt{ABCAdapter}, implementing 
+that inherits from the base adapter, \texttt{ABCAdapter}, implementing 
 the adapter interface:
 
-\begin{lstlisting}[caption={The ABCAdapter listing},
+\begin{lstlisting}[caption={Excerpt of the ABCAdapter},
                    label={lst:ABCAdapter}]
 class AdapterExample(ABCAdapter):
 
@@ -265,9 +265,9 @@ state variables in a simulation time series is given in Code \ref{lst:ica}.
 One of the well-known libraries for characterizing anatomical 
 and functional connectivity is the \emph{Brain Connectivity Toolbox} 
 \citep{Rubinov_2010}. 
-Because it is written in MATLAB, with maintainers who prefer MATLAB, we 
+Because it is written in MATLAB, with developers who prefer MATLAB, we 
 chose not to port routines of the library to Python but instead build
-a MATLAB adapter which runs arbitrary MATLAB code. 
+a MATLAB adapter that runs arbitrary MATLAB code. 
 
 This generic Matlab adapter works by generating at runtime a script with MATLAB code, 
 wrapping the script call in Python with a try-except clause,  

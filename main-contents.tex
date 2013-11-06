@@ -169,44 +169,38 @@
 \section{}
 
 TheVirtualBrain (TVB) is a neuroinformatics Python package representing the
-convergence of clinical, systems, theoretical neuroscience in the integration,
-analysis, visualization and modeling of neural dynamics of the human brain as
-well as the imaging modalities through which these dynamics are measured.
-TVB is composed of a flexible simulator for both neural dynamics
-and modalities such as electroencephalography (EEG), magnetoencephalography
-(MEG) and functional magnetic resonance imaging (fMRI), common analysis
-techniques such as wavelet decomposition and multiscale sample entropy,
-interactive visualizers for replaying cortical time series on the 3D surface or
-editing large-scale connectivity matrices, all accessible via an 
-web browser user interface.
+convergence of clinical, systems, and theoretical neuroscience in the
+analysis, visualization and modeling of neural and neuroimaging dynamics.
+TVB is composed of a flexible simulator for neural dynamics measured across
+scales from local populations to large-scale dynamics measured by
+electroencephalography (EEG), magnetoencephalography
+(MEG) and functional magnetic resonance imaging (fMRI), and 
+core analytic and visualization functions,
+ all accessible through a web browser user interface.
 A datatype system modeling neuroscientific data ties together these pieces with
 persistent data storage, based on a combination of SQL \& HDF5.
  These datatypes combine with adapters
-allowing TVB to integrate other algorithms or computational systems,
-such as MATLAB, for which support is already provided.
+allowing TVB to integrate other algorithms or computational systems.
 TVB provides infrastructure for multiple projects and
 multiple users, possibly participating under multiple roles. For example, a
-clinician might import patient data to first identify, based on 
-electrophysiological dynamics, several potential lesion point on the patient's 
-connectome, as obtained from diffusion spectrum imaging (DSI). 
-These lesion points are picked up by a modeler, working on the same project, 
-and tested for viability through whole brain simulation, based on the 
+clinician might import patient data to identify several potential lesion points
+in the patient's connectome. 
+A modeler, working on the same project, tests these points
+for viability through whole brain simulation, based on the 
 patient's connectome, and subsequent analysis of dynamical features.
-This workflow is one of several multi-user use cases for which TVB conceived.
 TVB also drives research forward: the
-simulator itself represents the culmination of several recent yet ad-hoc
-simulations in the modeling literature on human resting state. The 
+simulator itself represents the culmination of several 
+simulation frameworks in the modeling literature on human resting state. The 
 availability of the numerical methods, set of neural mass models and 
 forward solutions allows for the construction of a wide range of 
 brain-scale simulation scenarios.
-TVB is therefore a platform for various tools and disparate expertises, supporting the
-analysis and modeling of structural and function data from the human brain.  
-We will briefly outline the history and motivation for TVB, describing the 
+This paper briefly outlines the history and motivation for TVB, describing the 
 framework and simulator, giving usage examples in the web UI
 and Python scripting.
   
-\section{Keywords:} large-scale brain network, simulation,  web platform, Python, virtual
-brain, connectivity, connectome, neural mass, time delays
+\section{Keywords:} large-scale brain network, simulation, web platform, Python,
+connectivity, connectome, neural mass, time delays, functional MRI, 
+electroencephalography, magnetoencephalography
 
 \end{abstract}
 
@@ -230,8 +224,8 @@ brain, connectivity, connectome, neural mass, time delays
 \section*{Acknowledgments}
 Several authors have also participated in the
 development of TVB. They are listed in the \texttt{AUTHORS} file 
-of the source code and deserve also our warm acknowlegments. LP whishes to thank
-specifically Y.~Manhoun for his implication in the conception and development
+of the source code and deserve our warm acknowlegments. LP wishes to thank
+specifically Y.~Mahnoun for his role in the design and development
 of the first prototype of the TVB architecture. The research reported herein
 was supported by the  Brain Network Recovery Group through the James S.
 McDonnell Foundation and the FP7-ICT BrainScales. PSL and MMW received

@@ -1,17 +1,22 @@
-The neurosciences, and more generally, brain and behavioral sciences, imply
-extensive interactions among disciplines to advance our 
-appreciation for the relation between brain and behavior. 
-\footnote{The Human Brain Project one such example.} 
-The inherent challenge, however, lies in bringing together the distributed competences
-of many individuals or even institutions and exchanging across interdisciplinary
-borders using common techniques.  
-This situation is excerbated by the technical sophistication of modern
-data analysis and brain simulation, which often impedes their adoption 
-in the communtiy.
+%The neurosciences, and more generally, brain and behavioral sciences, imply
+%extensive interactions among disciplines to advance our 
+%appreciation for the relation between brain and behavior. 
+%\footnote{The Human Brain Project one such example.} 
+%The inherent challenge, however, lies in bringing together the distributed competences
+%of many individuals or even institutions and exchanging across interdisciplinary
+%borders using common techniques.  
+%This situation is excerbated by the technical sophistication of modern
+%data analysis and brain simulation, which often impedes their adoption 
+%in the communtiy.
+%
+Neuroscience has evolved through extensive interactions among disciplines
+to advance our appreciation of the relation between brain and behavior.
+The interdisciplinary nature of the field presents formidable challenges
+for effective collaboration.
 
 These challenges call for two kinds of solutions. First, there is a need
 for comprehensive, modern computational libraries written in a widely
-used and available programming languages, such as MNE-Python \citep{mnepython},
+used and available programming languages; current examples include MNE-Python \citep{mnepython},
 a Python package for treating M/EEG data via time-frequency analyses and inverse
 solutions and the Brain Connectivity
 Toolbox \citep{rubinov2010complex} for analyzing the graph theoretic
@@ -21,26 +26,20 @@ of collaborative infrastructure for sharing not only data, but expertise;
 CARMEN \citep{austin2011carmen} and G-Node \citep{herz2008g} are two such
 examples of developing platforms for collaborative work and data sharing, 
 in the domains of cellular and systems neurophysiology.
-Ideally, solutions will be easily extended by its own users, as is often
-the case in open source and scientific projects, due to the rapid 
-evolution of use cases and requirements.
 
-TheVirtualBrain (TVB), with a scope falling outside of existing projects,
-provides new tools to fire the collaboration between experimentalists by
+TheVirtualBrain (TVB)
+provides new tools to facilitate the collaboration between experimentalists and modelers by
 exposing both a comprehensive simulator for brain dynamics and an integrative 
 framework for the management, analysis simulation of structural and functional
 data in an accessible, web-based interface. The choice of Python was made based on
-the wide use of Python as the high-level language in scientific programming, 
-the unparalleled libraries and tools available, and strong software engineering 
+its wide use as the high-level language in scientific programming, 
+the unparalleled open-source libraries and tools available, and strong software engineering 
 culture.
-Two alternatives were considered, Java
-and MATLAB, where the former was rejected for a relative lack of use in the community
-and the latter rejected for its architectural constraints and license. 
 This choice was confirmed by the publication of the first issue of Python 
 in Neuroscience and has made it possible for the entirety of TVB from the 
 numerical algorithms to the web server to be written in Python.
 
-\subsubsection{The framework}
+\subsection{The framework}
 
  \begin{figure*}
         \centering
@@ -72,7 +71,7 @@ the \textsf{CherryPy} and \textsf{SQLAlchemy} packages.
 project's documentation.}
 The overall structure of TVB is depicted in Figure~\ref{fig:architecture}.
 
-\subsubsection{The simulator}
+\subsection{The simulator}
 
 A significant part of TVB is simulating large-scale brain networks. While
 several existing simulators could have been adapted, we have estimated that
@@ -80,9 +79,9 @@ TVB style simulations are far enough outside the design of other simulators to
 make a new development necessary. We discuss these reasons in the following. 
 
 Existing neural network simulators typically focus either on abstract rate neurons, 
-modelling e.g. neurocognitive processes, or 
+modelling  neurocognitive processes, or 
 full multicompartmental neurons treating complex spatial
-geometries, e.g. NEURON \citep{Hines_2001}, modelling e.g. the interaction of 
+geometries, e.g. NEURON \citep{Hines_2001}, modelling the interaction of 
 channel distributions in dendrites.  More recently, due to interest in
 the computational properties of spiking neurons and their relevance to
 experimental observations, simulators designed for spiking or oscillating neurons
@@ -91,11 +90,11 @@ considered for our simulations.
 In TVB the network is defined with neural mass or field
 models \citep{Deco_2008a, Coombes_2010} rather than cellular models. The
 spatial extent of the modeled dynamics is macroscopic and scales reasonably 
-to the entire cortex, using empirical measurements of corticocortical
+to the entire cortex, and uses empirical measurements of corticocortical
 connectivity. Several technical issues are unique to this scale, such
 as efficient handling of dense $N^2$ inter-regional delays and integration
 of neural field-like models and connectivity on triangular meshes in 3D.
-Additionally, comparison with experimental data requires forward solutions
+Finally, comparison with experimental data requires forward solutions
 that transform physiological signals to the commonly
 used imaging modalities such as EEG, MEG and fMRI need to be employed.
 For these reasons, TVB required a new simulator, built around the paradigm
@@ -121,14 +120,14 @@ We provide an API doc, built from the docs strings using Sphinx.
 User's, Contributor's and Developer's manuals are also provided with TVB
 distributions in PDF format. The source files (in .rst) are available
 through the Github repository \url{https://github.com/the-virtual-brain/docs}.  
-In addition, IPython notebooks\citep{PerezGranger_2007}
+In addition, IPython notebooks \citep{PerezGranger_2007}
 for interactive tutorials are provided. These are based on the
 demonstration scripts provided with the scientific library, and
-include a more detailed description of what the scientific goal is (if
+include a more detailed description of the scientific goal (if
 applicable), the components and stages of a simulation as well as a
 brief description in the case of reproducing previous work. Users
 interacting with \TVB GUI may also benefit from these tutorials
-(\url{links: https://github.com/the-virtual-
+(\url{https://github.com/the-virtual-
 brain/scientific_library/wiki/Tutorials}) when displayed as snippets
 with IPython nbviewer. 
 
