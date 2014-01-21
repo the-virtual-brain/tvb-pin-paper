@@ -74,39 +74,7 @@ attributes on a TVB class to be written out with its full metadata. An extensive
 set of building blocks implements from numeric types and arrays to
 lists, tuples, string, and dictionaries.
 
-\begin{center}
-	\begin{table*}[ht]
-
-	\begin{tabularx}{\textwidth}{lll}
-      		\toprule
-      		Traited Attribute    & Description  \\ 
-      		\midrule
-		default 	& Default value for current attribute. Will be set on any new instance if not specified otherwise in the constructor.  \\
-		console\_default & Define how a default value can be computed for current attribute, when console interface is enabled. \\
-		range	& Specify the set of accepted values for current attribute. Mark that this attribute is usable for parameter space exploration. \\
-
-		label		& Short text to be displayed in UI, in front of current attribute. \\
-		doc		& Longer description for current attribute. To be displayed in UI as help-text. \\
-		required	& Mark current attribute as required for when building a new instance of the parent class. \\
-		locked	& When present and \emph{True}, current attribute will be displayed as read-only in the web interface. \\
-
-		options	& Used for attributes of type \emph{Enumerate}, specifying the accepted options as a list of strings. \\
-		filters\_ui	& SQL filters on other attributes, to be applied in UI. \\
-		select\_multiple & When \emph{True}, current attribute will be displayed as a select with multiple options in UI (default is single-select) \\
-		order	& Optional number identifying the index at which current attribute will be displayed in UI. \\
-				& When negative, the attribute is not displayed at all. Ascending order for indices is considered when displaying. \\
-
-		use\_storage	& When \emph{False}, current attribute is not stored in database or file storage. \\
-		file\_storage	& Valid values for this attribute are: \emph{None} , \emph{HDF5}, or  \emph{expandable\_HDF5}, \\
-					& When \emph{None}, current attribute is not stored in the file-storage at all. When \emph{HDF5}, we use regular H5 file storage. \\
-					& When \emph{expandable\_HDF5} value is set, a H5 stored in chunks is used. \\
-		\bottomrule
-    	\end{tabularx}
-  	\caption{TVB currently available Traited Attributes}
-  	\label{tab:traits}
-	\end{table*}
-\end{center}
-
+\input{tab-traits.tex}
 
 When methods of such a class with annotated attributes are invoked, they may use
 the traited attributes directly, accessing either a default value or one given
