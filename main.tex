@@ -318,7 +318,7 @@ all of pieces, from the simulator to the web interface, and has no
 requirements other than a modern web browser supporting WebGL, SVG and
 HTML5.
 
-Alternatively, because TVB is licensed under the GPL, the sources may be
+Alternatively, because TVB is licensed under the GPL v. 2, the sources may be
 readily obtained from the public Git repositories hosted on Github
 \citep{dabbish2012social}, at 
 \url{https://github.com/the-virtual-brain}. In order to use the simulator, 
@@ -380,37 +380,6 @@ For example, when the scientific library is used alone, a specific profile (\emp
 gets linked as current profile, which, in this case, disables data storage and the web interface. Other profiles available
 in TVB are: \emph{command profile}, \emph{deployment profile} (with web interface), and \emph{test profiles}.
 
-
-%\begin{verbatim}
-%    def configure(self, **kwargs):
-%        To be implemented in each Adapter that requires any specific configurations
-%        before the actual launch.
-%
-%    def get_input_tree(self):
-%        Describes inputs and outputs of the launch method.
-%
-%    def get_output(self):
-%        Describes inputs and outputs of the launch method.
-%
-%    def get_required_memory_size(self, **kwargs):
-%        Abstract method to be implemented in each adapter. Should return the required memory
-%        for launching the adapter.
-%
-%    def get_required_disk_size(self, **kwargs):
-%        Abstract method to be implemented in each adapter. Should return the required memory
-%        for launching the adapter in kilo-Bytes.
-%
-%    def get_execution_time_approximation(self, **kwargs):
-%        Method should approximate based on input arguments, the time it will take for the operation 
-%        to finish (in seconds).
-%
-%    def launch(self):
-%         To be implemented in each Adapter.
-%         Will contain the logic of the Adapter.
-%         Any returned DataType will be stored in DB, by the Framework.
-%\end{verbatim}
-
-
 \subsection{Datatypes and storage}
 
 \subsubsection{TVB Traits}
@@ -447,8 +416,8 @@ lists, tuples, string, and dictionaries.
 
 		use\_storage	& When \emph{False}, current attribute is not stored in database or file storage. \\
 		file\_storage	& Valid values for this attribute are: \emph{None} , \emph{HDF5}, or  \emph{expandable\_HDF5}, \\
-					& When \emph{None}, current attribute is not stored in the file-storage at all. When \emph{HDF5}, we use regular H5 file storage. \\
-					& When \emph{expandable\_HDF5} value is set, a H5 stored in chunks is used. \\
+					& When \emph{None}, current attribute is not stored in the file-storage at all. When \emph{HDF5}, we use regular HDF5 file storage. \\
+					& When \emph{expandable\_HDF5} value is set, a HDF5 stored in chunks is used. \\
 		\bottomrule
     	\end{tabularx}
   	\caption{TVB currently available Traited Attributes}
@@ -472,11 +441,10 @@ of a traited attribute and how they are used.
 
 \subsubsection{Datatypes}
 
-In scientific Python code, it is conventional to provide arguments
-of an algorithm as a ``bare'' array or collection there of, and sanity
-checks of arguments proceed on the basis of array geometry, for example.
-In TVB, we consider a \textit{DataType} to be a full, formal description of 
-an entity involved in an algorithm that would be part of TVB. 
+To allow for the handling of various kinds of data within the TVB framework, 
+the \textit{Datatype} abstraction considers a class with several 
+attributes to fully describe (expected type, short label, long
+description, order in UI, required or not, etc.) the entity. 
 
 In TVB, datatypes represent the common language, to be used between different
 application parts: like uploaders, analyzers, simulator and visualizers.
@@ -558,31 +526,8 @@ Additional methods include \texttt{get\_output}, \texttt{get\_required\_memory\_
 and
 \texttt{get\_required\_disk\_size}.
 
-Several categories of adapters have been defined in TVB: 
-
-\begin{itemize}
-	\item \textit{creators} which are internal algorithms for producing datatype instances. 
-		Each creator has one or multiple pages in the web interface, in which the user
-		 configures input parameters and chooses from the available options for computing a particular datatype.
-
-	\item \textit{uploaders}: allow the upload into TVB framework of external data, 
-    		such as \emph{gifti} files of plain \emph{csv} files.
-
-	\item \textit{simulator} is an adapter for the simulator, adjusting it to fit
-		the workflow mechanisms inside the framework .
-
-	\item \textit{analyzers} which offer the interface to libraries containing algorithms 
-		for the analysis of the data (wavelets, FastICA, BCT, etc).
-
-	\item \textit{visualizers}, derived from the \emph{ABCDisplayer} base class, prepare a datatype
-		for display. Each visualizer (Python adapter class) requires a complementary set
-		of Javascript and HTML files. 
-
-	\item \textit{portlets} provide a chain of analyzers leading to a visualizer.
-
-	\item \textit{exporters} prepare a datatype for export \& download.
-
-\end{itemize}
+TVB employs adaptors for data creation, upload, simulation, analysis, visualization
+and export. 
 
 Note that the adapters and datatypes are intended to provide full 
 power and flexibility of the framework; when the simulator is invoked from
@@ -641,7 +586,7 @@ class ICAAdapter(ABCAsynchronous):
     def get_required_memory_size(self, **kwargs):
         used_shape = (self.input_shape[0], 1, 
                 self.input_shape[2], self.input_shape[3])
-        input_size = numpy.prod(used_shape) * 8.0
+	input_size = numpy.prod(used_shape) * numpy.float64().itemsize
         output_size = self.algorithm.\
                             result_size(used_shape)
         return input_size + output_size  
@@ -785,6 +730,10 @@ of the execution time and memory required in typical simulations.
     connectivity kernel, approximating a neural field (however, as with other
     parameters in the simulator, connectivity kernel parameters that vary 
 	across space can also be used).
+
+	TVB does not assume that the network structure is constant during the
+	simulation, but does not currently implement the modeling of structural
+	modulation. This can however be added by hand during simulation.
 
 	\subsubsection{Large-scale connectivity}
 
