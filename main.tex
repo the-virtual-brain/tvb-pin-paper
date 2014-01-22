@@ -225,7 +225,7 @@ The interdisciplinary nature of the field presents formidable challenges
 for effective collaboration.
 
 These challenges call for two kinds of solutions. First, there is a need
-for comprehensive, modern computational libraries written in a widely
+for comprehensive, modern computational libraries written in widely
 used and available programming languages; current examples include MNE-Python \citep{mnepython},
 a Python package for treating M/EEG data via time-frequency analyses and inverse
 solutions and the Brain Connectivity
@@ -919,57 +919,59 @@ of the execution time and memory required in typical simulations.
 	run for one second while the surface simulation was run for 100 ms. 
 
 		%% AUTO GENERATED DO NOT MODIFY
+
+		%% round times to two digits, center on '.'
 		\begin{table}
 		{\footnotesize \begin{tabular}{r | r | l }
 		Sim. &        Time (s) &                     Module/Function \\
 		\hline \\
-		R / G2D / 20  &         11.7274 & \texttt{<numpy.core.multiarray.array>} \\
-		&          6.1415 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
-		 &         5.18777 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
-		 &         3.18454 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
-		 &          2.5699 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
+		R / G2D / 20  &         11.72 & \texttt{<numpy.core.multiarray.array>} \\
+		&          6.14 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         5.18 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         3.18 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		 &          2.56 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
 		\hline
-		2 &         11.8713 & \texttt{<numpy.core.multiarray.array>} \\
-		&         6.10448 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
-		 &         5.54546 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
-		 &         3.16143 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
-		 &         2.50565 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
+		2 &         11.87 & \texttt{<numpy.core.multiarray.array>} \\
+		&         6.10 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         5.54 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         3.16 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		 &         2.50 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
 		\hline
-		 JR / 20  &         14.2185 & \texttt{<numpy.core.multiarray.array>} \\
-		&         9.99497 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
-		 &         7.28498 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
-		 &           6.202 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
-		 &         3.24052 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		 JR / 20  &         14.21 & \texttt{<numpy.core.multiarray.array>} \\
+		&         9.99 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         7.28 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &           6.20 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         3.24 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
 		\hline
-		2 &         14.2118 & \texttt{<numpy.core.multiarray.array>} \\
-		&         10.5795 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
-		 &         7.40853 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
-		 &         6.12069 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
-		 &         3.25811 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		2 &         14.21& \texttt{<numpy.core.multiarray.array>} \\
+		&         10.57& \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         7.40& \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &         6.12& \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         3.25& \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
 		\hline
-		S / G2D / 20 &         126.618 & \texttt{<\_csc.csc\_matvec>} \\
-		&         57.5616 & \texttt{<numpy.core.multiarray.array>} \\
-		 &         56.1767 & \texttt{<gdist.local\_gdist\_matrix>} \\
-		 &           9.055 & \texttt{<numpy.core.\_dotblas.dot>} \\
-		 &         7.56356 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		S / G2D / 20 &         126.61& \texttt{<\_csc.csc\_matvec>} \\
+		&         57.56& \texttt{<numpy.core.multiarray.array>} \\
+		 &         56.17& \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &           9.05& \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         7.56& \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
 		\hline
-		2 &         125.957 & \texttt{<\_csc.csc\_matvec>} \\
-		&         57.7524 & \texttt{<numpy.core.multiarray.array>} \\
-		 &         56.1681 & \texttt{<gdist.local\_gdist\_matrix>} \\
-		 &         12.1041 & \texttt{<numpy.core.\_dotblas.dot>} \\
-		 &         7.37826 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		2 &         125.95& \texttt{<\_csc.csc\_matvec>} \\
+		&         57.75& \texttt{<numpy.core.multiarray.array>} \\
+		 &         56.16& \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &         12.10& \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         7.37& \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
 		\hline
-		JR / 20 &         126.312 & \texttt{<numpy.core.multiarray.array>} \\
-		&         56.3731 & \texttt{<gdist.local\_gdist\_matrix>} \\
-		 &         19.5234 & \texttt{<numpy.core.\_dotblas.dot>} \\
-		 &         9.47585 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
-		 &         8.87173 & \texttt{<mtrand.RandomState.normal>} \\
+		JR / 20 &         126.31& \texttt{<numpy.core.multiarray.array>} \\
+		&         56.37& \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &         19.52& \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         9.47& \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &         8.87& \texttt{<mtrand.RandomState.normal>} \\
 		\hline
-		2 &         126.098 & \texttt{<numpy.core.multiarray.array>} \\
-		&         56.7912 & \texttt{<gdist.local\_gdist\_matrix>} \\
-		 &          29.109 & \texttt{<numpy.core.\_dotblas.dot>} \\
-		 &         14.1866 & \texttt{<mtrand.RandomState.normal>} \\
-		 &         9.57245 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		2 &         126.09& \texttt{<numpy.core.multiarray.array>} \\
+		&         56.79& \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &          29.10& \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         14.18& \texttt{<mtrand.RandomState.normal>} \\
+		 &         9.57& \texttt{tvb.simulator.models}, \texttt{dfun} \\
 		\hline
 
 		\end{tabular}}
@@ -1359,7 +1361,6 @@ _Of_A_Region_Simulation/Tutorial_Anatomy_Of_A_Region_Simulation.ipynb}
 
 \section{Conclusions}
 
-
 Since the recent release of the $1.0$ version of TVB, it has been 
 officially considered \textit{feature} complete, however, in several
 cases, the development of features has outstripped documentation 
@@ -1369,23 +1370,43 @@ preparing PyPI and Debian packages. In the mean
 time, TVB's Google groups mailing list continues to
 provide an open forum for troubleshooting and sharing of user experiences.
 
-In the simulator itself, continued optimization of C and GPU code generation
-will take place to increase the rate at which parameter sweeps can be
-performed. Additionally, an interface \textit{from} MATLAB to TVB 
+The literature on network models frequently presents work in which a model
+is constructed in order to estimate structure and parameters from 
+experimental data, and the DCM framework has significantly advanced 
+methods for such estimations for both fMRI and M/EEG data. Indeed, there
+are similarities in the underlying mathematical machinery between DCM and 
+TVB. However, the estimation of parameters in the case of TVB's models
+is still a challenging question and for now is not a goal of the framework. 
+For this reason, none of the requisite estimation tools are currently 
+provided by TVB.
+
+Related to the goal of estimating model parameters for brain network models
+is the modeling of function or functional dynamics itself 
+\citep{erlhagen2002dynamic, eliasmith2012large}. TVB allows a user
+to fully specify the node dynamics and connectivity, yet no support
+is currently providing for deriving a set of parameters that leads to 
+a particular functional state. This, like the estimation problem, is 
+an open question, particularly for models as complex as those simulated 
+within TVB.
+
+While several mathematical challenges are presented by the TVB models, 
+one of the bottlenecks is the speed of the numerical simulation.
+To address this, continued optimization of C and GPU code generation
+will take place, e.g. to perform parallel parameter sweeps. 
+
+Additionally, an interface \textit{from} MATLAB to TVB 
 is being developed to allow use of the simulator through a simple
 set of MATLAB functions. As this infrastructure is based on an HTTP and 
 JSON API, it will likely enable other applications to work with TVB as well.
 
-Lastly, as TVB was originally motivated to allow a user to move from
-acquired data to simulated data as easily as possible, we will continue
-to integrate several of the requisite steps that are not currently 
-covered, such as analysis of DSI data to produce connectivity matrices,
-though in many cases, such as parcellation and labeling of 
-cortical areas, these steps may continue to require 
-intervention with other software. Nevertheless, TVB provides a promising 
-platform for integrating 
-neuroinformatics tools with an emphasis on analysis and modeling of 
-human neuroimaging data.
+Lastly, as TVB was originally motivated to allow a user to move from acquired
+data to simulated data as easily as possible, we will continue to integrate
+several of the requisite steps that are not currently covered, such as analysis
+of DSI data to produce connectivity matrices, though in many cases, such as
+parcellation and labeling of cortical areas, these steps may continue to
+require intervention with other software. Nevertheless, TVB provides a
+promising platform for integrating neuroinformatics tools with an emphasis on
+analysis and modeling of human neuroimaging data.
 
 %\begin{enumerate}
 %	\item Diffusion tensor imaging \& tractography pipeline to convert
