@@ -722,6 +722,39 @@ of the execution time and memory required in typical simulations.
 	spatiotemporal pattern. In the following, we shall  briefly discuss some
 	of the models available in TVB.
 
+	This modeling paradigm may be contrasted with ensemble models which
+	model the dynamics of large (theoretically infinite) populations of
+	single neurons with a certain number of degrees of freedom (state
+	variables) (De Groff et al 1993; Omurtag et al 2000; Knight 2000;
+	Gerstner 2000; see Deco et al 2008 for review).  Then a large number of
+	neurons populates the state space with a certain density. It is the
+	evolution of this density that is characterized by population density
+	methods through the Fokker-Planck equation (Risken 1996), which
+	comprises a flow and a dispersion term. The key assumption in the
+	population density approach is that the afferent input impinging on
+	neurons in one population are uncorrelated. Neural mass models can be
+	regarded as a special case of population density models, where we
+	summarize the population density by a single number, that is the neural
+	mass variable. In other words, the full ensemble density dynamics is
+	replaced by a mass at a particular point in state space and then its
+	dynamics is summarized by the changing location of the neural mass in
+	state space. What is lost through this approximation is the information
+	about changes of the shape of the probability distributions. In the
+	full nonlinear Fokker-Planck formulation, different probability density
+	moments could couple to each other, for instance both within and
+	between populations. This means that the average depolarisation in one
+	population could be affected by the dispersion or variance of
+	depolarisation in another. In neural mass models, we ignore this
+	possibility because we can only couple the first moments. There are
+	various means to overcome this restriction in TVB, for instance by
+	extending the neural mass models to more degrees of freedom with higher
+	coupled modes (Stefanescu Jirsa 2008, 2011; Jirsa-Stefanescu 2010). The
+	explicit implementation of population density methods via the
+	Fokker-Planck equation is currently not possible in TVB, because it
+	would require the additional computation of the necessary moments to
+	derive physiologically relevant variables (such as LFP or firing rate),
+	which adds an additional level of complexity to the TVB architecture.  
+
 	As we have noted, many neural mass models have been developed. One of
 	the more prominent examples in the systems neuroscience literature is 
 	the Jansen-Rit model of rhythms and evoked responses arising from
