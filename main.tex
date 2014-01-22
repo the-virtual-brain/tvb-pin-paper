@@ -864,7 +864,69 @@ of the execution time and memory required in typical simulations.
 	is used, and the results are discarded. The region-only simulation was
 	run for one second while the surface simulation was run for 100 ms. 
 
-	\input{profiling/cprofsummary.tex}
+		%% AUTO GENERATED DO NOT MODIFY
+		\begin{table}
+		{\footnotesize \begin{tabular}{r | r | l }
+		Sim. &        Time (s) &                     Module/Function \\
+		\hline \\
+		R / G2D / 20  &         11.7274 & \texttt{<numpy.core.multiarray.array>} \\
+		&          6.1415 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         5.18777 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         3.18454 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		 &          2.5699 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
+		\hline
+		2 &         11.8713 & \texttt{<numpy.core.multiarray.array>} \\
+		&         6.10448 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         5.54546 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         3.16143 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		 &         2.50565 & \texttt{numexpr.necompiler}, \texttt{evaluate} \\
+		\hline
+		 JR / 20  &         14.2185 & \texttt{<numpy.core.multiarray.array>} \\
+		&         9.99497 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         7.28498 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &           6.202 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         3.24052 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		\hline
+		2 &         14.2118 & \texttt{<numpy.core.multiarray.array>} \\
+		&         10.5795 & \texttt{tvb.simulator.simulator}, \texttt{\_\_call\_\_} \\
+		 &         7.40853 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &         6.12069 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		 &         3.25811 & \texttt{numpy.lib.npyio}, \texttt{pack\_items} \\
+		\hline
+		S / G2D / 20 &         126.618 & \texttt{<\_csc.csc\_matvec>} \\
+		&         57.5616 & \texttt{<numpy.core.multiarray.array>} \\
+		 &         56.1767 & \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &           9.055 & \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         7.56356 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		\hline
+		2 &         125.957 & \texttt{<\_csc.csc\_matvec>} \\
+		&         57.7524 & \texttt{<numpy.core.multiarray.array>} \\
+		 &         56.1681 & \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &         12.1041 & \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         7.37826 & \texttt{numpy.lib.npyio}, \texttt{loadtxt} \\
+		\hline
+		JR / 20 &         126.312 & \texttt{<numpy.core.multiarray.array>} \\
+		&         56.3731 & \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &         19.5234 & \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         9.47585 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		 &         8.87173 & \texttt{<mtrand.RandomState.normal>} \\
+		\hline
+		2 &         126.098 & \texttt{<numpy.core.multiarray.array>} \\
+		&         56.7912 & \texttt{<gdist.local\_gdist\_matrix>} \\
+		 &          29.109 & \texttt{<numpy.core.\_dotblas.dot>} \\
+		 &         14.1866 & \texttt{<mtrand.RandomState.normal>} \\
+		 &         9.57245 & \texttt{tvb.simulator.models}, \texttt{dfun} \\
+		\hline
+
+		\end{tabular}}
+		\caption{Profiling results for several simulation types, ``R'' for region 
+		level simulations, ``S'' for surface level. ``G2D'' signifies the generic
+		two-dimensional oscillator whereas ``JR'' is the Jansen-Rit model. Finally,
+		either 20 m/s or 2 m/s conduciton velocity was used. Time is given as the
+		total time spent in the method or function listed in the right column.}
+		\label{tab:profiling}
+		\end{table}
+
 
 	As can be seen in Table \ref{tab:profiling}, the time spent during simulation
 	is dominated by numerical, built-in methods (marked by those functions surrounded by angle
