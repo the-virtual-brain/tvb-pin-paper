@@ -706,9 +706,7 @@ of the execution time and memory required in typical simulations.
 	the main assumption of the neural mass modeling approach in TVB is that
 	large pools of neurons on the millimeter scale are strongly approximated
 	by population level equations describing the major statistical modes of
-	neural dynamics \citep{Freeman_1975book}. Often, averaging techniques are
-	employed, though techniques retaining several modes have been developed
-	\citep{Stefanescu_2008, Stefanescu_2011}. Such an approach is certainly not
+	neural dynamics \citep{Freeman_1975book}. Such an approach is certainly not
 	new; one of the early examples of this approach consist of the well known
 	Wilson-Cowan equations \citep{Wilson_1973}. Nevertheless, there are
 	important differences in the assumptions and goals from modeling of
@@ -722,38 +720,29 @@ of the execution time and memory required in typical simulations.
 	spatiotemporal pattern. In the following, we shall  briefly discuss some
 	of the models available in TVB.
 
-	This modeling paradigm may be contrasted with ensemble models which
-	model the dynamics of large (theoretically infinite) populations of
-	single neurons with a certain number of degrees of freedom (state
-	variables) (De Groff et al 1993; Omurtag et al 2000; Knight 2000;
-	Gerstner 2000; see Deco et al 2008 for review).  Then a large number of
-	neurons populates the state space with a certain density. It is the
-	evolution of this density that is characterized by population density
-	methods through the Fokker-Planck equation (Risken 1996), which
-	comprises a flow and a dispersion term. The key assumption in the
-	population density approach is that the afferent input impinging on
-	neurons in one population are uncorrelated. Neural mass models can be
-	regarded as a special case of population density models, where we
-	summarize the population density by a single number, that is the neural
-	mass variable. In other words, the full ensemble density dynamics is
-	replaced by a mass at a particular point in state space and then its
-	dynamics is summarized by the changing location of the neural mass in
-	state space. What is lost through this approximation is the information
-	about changes of the shape of the probability distributions. In the
-	full nonlinear Fokker-Planck formulation, different probability density
-	moments could couple to each other, for instance both within and
-	between populations. This means that the average depolarisation in one
-	population could be affected by the dispersion or variance of
-	depolarisation in another. In neural mass models, we ignore this
-	possibility because we can only couple the first moments. There are
-	various means to overcome this restriction in TVB, for instance by
-	extending the neural mass models to more degrees of freedom with higher
-	coupled modes (Stefanescu Jirsa 2008, 2011; Jirsa-Stefanescu 2010). The
-	explicit implementation of population density methods via the
-	Fokker-Planck equation is currently not possible in TVB, because it
-	would require the additional computation of the necessary moments to
-	derive physiologically relevant variables (such as LFP or firing rate),
-	which adds an additional level of complexity to the TVB architecture.  
+	This modeling paradigm may be contrasted with ensemble models modelling
+	the dynamics of large populations of neurons with a certain state space
+	(De Groff et al 1993; Omurtag et al 2000; Knight 2000; Gerstner 2000;
+	see Deco et al 2008 for review).  The many neurons impart the state
+	space with a density, and population density methods describe the
+	evolution of this density via the Fokker-Planck (FP) equation (Risken
+	1996), comprised of flow and dispersion terms.  This approach assumes
+	that the afferents on neurons in one population are uncorrelated.
+	Neural mass models, from this paradigm, are obtained as a special case
+	when the full ensemble density dynamics is replaced by a mass at one
+	point in state space and its dynamics summarize the movement of density
+	in state space, losing information on the changes in shape of the
+	density.  In the full, nonlinear FP form, different density moments can
+	couple, even within and between populations, meaning the membrane
+	potential variance of one population could affect the average of
+	another. Neural mass models ignore this possibility by coupling only
+	the first moments, though this may be overcome by e.g. extending mass
+	models with more than one mode 
+	\citep{Stefanescu_2008, Stefanescu_2011}. 
+	TVB does not implement density methods via the FP
+	equation because the additional moments required to derive
+	physiologically relevant variables (such as LFP or firing rate), would
+	add an additional level of complexity.  
 
 	As we have noted, many neural mass models have been developed. One of
 	the more prominent examples in the systems neuroscience literature is 
