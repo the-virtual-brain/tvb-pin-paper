@@ -724,9 +724,9 @@ of the execution time and memory required in typical simulations.
 	the dynamics of large populations of neurons with a certain state space
 	(\cite{de1993stochastical, omurtag2000simulation, knight2000dynamics, gerstner2000population};
 	see \cite{Deco_2008a} for a review).
-	The many neurons impart the state
-	space with a density, and population density methods describe the
-	evolution of this density via the Fokker-Planck (FP) equation \citep{risken1996fokker},
+	The large number of neurons impart the state
+	space with a probability density, and population density methods describe the
+	evolution of this density via the Fokker-Planck (FP) equation \citep{risken1996fokker}
 	comprised of flow and dispersion terms.  This approach assumes
 	that the afferents on neurons in one population are uncorrelated.
 	Neural mass models, from this paradigm, are obtained as a special case
@@ -745,52 +745,32 @@ of the execution time and memory required in typical simulations.
 	physiologically relevant variables (such as LFP or firing rate), would
 	add an additional level of complexity.  
 
-	As we have noted, many neural mass models have been developed. One of
-	the more prominent examples in the systems neuroscience literature is 
-	the Jansen-Rit model of rhythms and evoked responses arising from
-	coupled cortical column \citep{Zetterberg_1978, Jansen_1995,David_2004, Spiegler_2010}. 
-	Advantages of the Jansen-Rit model stem from the connection made
-	between empirical studies of neural tissue and the model's parameters, 
-	making it easier in certain cases to make concrete predictions about
-	the relation between a dynamical regime and its neurobiological 
-	mechanism. However, because the form of the model used often employs
-	at least six dimensions, it is not always clear how it should be analyzed or
-	visualized. Lastly, the model requires frequent computation of exponentials,
-	requiring considerable computational time. 
-
-	For these reasons, it is often desirable to have a simpler mathematical 
-	model, which can reproduce the same qualitative phenomena as other 
-	models, implemented with fewer and simpler equations. Such is the motivation
-	for the generic two-dimensional oscillator model 
-    provided by TVB 
-    \citep{strogatz2001nonlinear, guckenheimer1983nonlinear}.
-	This model can produce oscillations which are damped, spike-like or 
-	sinusoidal in nature. While these kinds of dynamics alone are not interesting, they 
-	permit the study of network phenomena, such as synchronization of rhythms
-	or propagation of evoked potentials, while requiring less time to simulate.
-
-	However, the modeler's goals may not be served by using either the Jansen-Rit
-	 or generic 2D oscillator, so several other mass models are
-	provided by TVB: the previously mentioned Wilson-Cowan description of
+	In TVB, many neural mass models from the literature are available, including
+	the often used Jansen-Rit model of rhythms and evoked responses arising from
+	coupled cortical column \citep{Zetterberg_1978, Jansen_1995,Spiegler_2010}. 
+	\citeauthor{David_2003}'s slightly modified form has been extensively
+	applied within a Bayesian framework known as Dynamic Causal Modeling (DCM) 
+	for modeling neuroimaging data via estimation of biophysical parameters of 
+	underlying network models \citep{friston2003dynamic, david2006dynamic}.
+	The Jansen-Rit model is a biophysical one, whose state variables and parameters 
+	are readily interpretable with respect to experiments, however it has
+	at least six state equations involving several exponential expressions. For
+	cases where it is desirable to have a simpler and more performant 
+	model, a generic two-dimensional oscillator model is also provided by TVB 
+        \citep{strogatz2001nonlinear, guckenheimer1983nonlinear}.
+	This model produces damped, spike-like or sinusoidal oscillations, which, in
+	the context of a network, permit the study of network phenomena, such as 
+	synchronization of rhythms or propagation of evoked potentials.
+	Other models implemented in TVB include the Wilson-Cowan description of
 	functional dynamics of neural tissue \citep{Wilson_1972}, the Kuramoto
 	model describing synchronization \citep{Kuramoto_1975, Cabral_2011}, two
-	and three dimensional mode-level models describing populations with
+	and three dimensional statistical mode-level models describing populations with
 	excitability distributions \citep{Stefanescu_2011, Stefanescu_2008}, a
 	reduction of \citeauthor{Wong_2006}'s (\citeyear{Wong_2006}) model as presented 
-    by
-	\cite{Deco_2013} and a lumped version of 
-    Liley's model \citep{Liley_1999, Steyn-Ross_1999} 
-    are among the available models in TVB.
-
-	Finally, should any of these be insufficient, a new model can be implemented
-	with minimal effort by subclassing a base \texttt{Model} class and
+	by \cite{Deco_2013} and a lumped version of Liley's model \citep{Liley_1999, Steyn-Ross_1999}.
+	Lastly, adding a model only requires subclassing a base \texttt{Model} class and
 	providing a  \texttt{dfun} method to compute the right hand sides of the
-	differential  equations. Please refer to the \texttt{tvb.simulator.models}
-    module of the main scientific library or the \texttt{contrib} folder
-    for
-	examples. In the \texttt{contrib} folder, models from the work of 
-	\cite{Larter_1999, Breakspear_2003, Morris_1981, Hindmarsh_1984, Brunel_2001}
-	have been implemented.
+	differential equations. 
 
 \subsection{Network structure}
 
