@@ -172,7 +172,20 @@ choice was confirmed by the publication of the first issue of Python in
 Neuroscience and has made it possible for the entirety of TVB from the
 numerical algorithms to the web server to be written in Python.
 
-\subsection{Obtaining and contributing to TVB}
+In the following, we briefly outline the scope of TVB, how to use it before detailing
+aspects of the architecture and simulator.
+
+\subsection{Framework}
+
+TVB consists of a framework and a simulator. The framework handles user
+interaction and the database while the simulator models neuroimaging data. 
+
+- User, Project, Workflow/history of operations \& datatypes
+- All backed by an SQL database via SQLAlchemy
+
+The framework has been described in detail by \citeauthor{Sanz-Leon_2013}.
+
+\subsection{Obtaining and using TVB}
 
 The easiest way to get started with TVB is to download a distribution
 from \url{http://www.thevirtualbrain.org}, which is available for Windows,
@@ -206,74 +219,58 @@ with IPython nbviewer.
 Additionally, the user interface provides an online help overlay, that pulls
 information from the User's manual.
 
-\subsection{The framework}
-
-The TVB framework was developed to allow easy integration of any computational
-tools along with a system for describing typical types of data.  Additionally,
-two main constraints for the framework were to provide a web interface to allow
-remote collaboration and the exchange of data (or simulation results) between
-users, especially for users not comfortable programming. The web interface and
-database backend are built on combination of the \textsf{CherryPy} and
-\textsf{SQLAlchemy} packages.  \footnote{The full list of dependencies can be
-found in the project's documentation.} 
-
 \section{Architecture}
 
-TVB is logically and technically divided into a scientific
-library and a framework package, where the scientific library includes
-datatypes, basic analyses and the simulator, while the
-framework handles execution infrastructure, the web-based user interface and
-data storage.  The scientific library can function as an independent Python
-module, but the framework depends the scientific library for datatype definitions
-and algorithms. 
+TVB's architecture was designed for the integration of disparate computational
+tools, allowing different kinds of data to be managed within one system, and
+different routines and processes to work with the kinds of data in the system.
+To facilitate this integration, two abstractions have been introduced, around
+which the framework is oriented: \textit{datatypes} and \textit{adapters},
+serving, briefly, as heavily annotated structs and functions allowing for
+programmatic interoperation with the database and generation of and interaction
+with the user interface.
 
-TVB is consists of a framework and a simulator. The framework handles user
-interaction and the database while the simulator models neuroimaging data. 
+\subsection{Datatypes}
 
-- User, Project, Workflow/history of operations \& datatypes
-- All backed by an SQL database via SQLAlchemy
+Concretely, a TVB datatype is a Python class with one or more attributes 
+that are \textit{trait}s, where a trait specifies both the kind of data
+expected for the corresponding attribute, as well additional metadata to
+aid in storage and user interface construction. 
 
-\subsection{Datatypes \& adapters}
+During the development of the datatype and traits system, existing implementations
+of the concepts of traits were considered, notably Enthought's extensive 
+implementation designed to accelerate the design of graphical scientific 
+applications and IPython's lighter-weight system designed, to a large extent, 
+to provide a robust configuration system. In both cases, the traits are used
+to explicitly specify types, allowing runtime values' types to be validated, 
+as well as other forms of introspection. This is the case for TVB's traits 
+as well, however, Enthought's implementation has significant compiled extensions
+(where TVB is intended to be pure-Python); IPython's implementation does not
+provide support for arrays, and neither provides integration or mapping to a
+database. For these reasons, it was judged useful to develop a system adapted 
+to the needs of TVB. 
 
-Succintly, datatypes and adapters serve as fancy structs and functions, which
-are heavily annotated to allow programmatic integration with the database and
-generation of and interaction with the user interface.
+\begin{lstlisting}[caption={Trait and datatype example}, label={lst:traitexample}]
+class Point2D(MappedType):
 
-The TVB framework is oriented around data and the operations that introduce,
-generate, transform and visualize the data. The relevant interface classes
-derive from the metaclasses in Python's abstract base class library, and
-provide a foundation for defining any type of data from a tuple to a
-set of EEG channel labels to a simulation, each of which is defined by a class
-implemented the datatype interface and possessing one or more datatypes as 
-attributes. An operation is the execution of any algorithm that
-has been \emph{adapted} to the framework in a class implementing the abstract
-adapter interface, and range from the simulator to data importers to
-visualizers.  The goal of these twin, generic abstractions is to provide a
-solid basis on which to implement a storage back-end, workflow management and a
-number of features to support collaborative work. 
+    x = Float(label="x",
+              doc="horizontal position of point")
 
-Importantly, the framework supports both the use of the web-based graphical
-interface and the console interface for advanced user and developers. Where the
-console user does not wish to rely on the database persistence, this storage
-layer can be disabled. Specifically, TVB uses the notion of \emph{profile} to
-identify in what context the application is currently running, and thus what
-components are expected to be loaded.  For example, when the scientific library
-is used alone, a specific profile (\emph{library profile}) class gets linked as
-current profile, which, in this case, disables data storage and the web
-interface. Other profiles available in TVB are: \emph{command profile},
-\emph{deployment profile} (with web interface), and \emph{test profiles}.
+    y = Float(label="y",
+              doc="vertical position of point")
+	      
+\end{lstlisting}
 
-\subsection{Datatypes and storage}
-
-\subsubsection{TVB Traits}
-
-Because an explicit goal of TVB is to provide a user interface to each of the
-entities and algorithms contained within, it is necessary at some point to
-provide metadata on how to built that interface. A traits system was
-developed, similar to that of IPython or EPD, allowing for
-attributes on a TVB class to be written out with its full metadata. An extensive
-set of building blocks implements from numeric types and arrays to
-lists, tuples, string, and dictionaries.
+Listing \ref{lst:traitexample} shows a datatype modeling a point in two 
+dimensions, consisting of two floating point values, \texttt{x} and 
+\texttt{y}. This class derives from \texttt{MappedType} whose metaclass, 
+before creating the class object, filters attributes for trait instances 
+or types and creates a corresponding SQLAlchemy model, which results 
+in mapping instances of \texttt{Point2D} to a corresponding table in TVB's
+SQL database. The trait base class implements a data descriptor protocol,
+i.e. \texttt{\_\_set\_\_} in addition to \texttt{\_\_get\_\_} methods, which, for a
+\texttt{MappedType} instance, forwards calls to the get and set methods to 
+the corresponding SQLAlchemy method, in turn, interacting with the database.
 
 % trait attribute table
 \begin{center}
@@ -305,7 +302,6 @@ lists, tuples, string, and dictionaries.
 	\end{table*}
 \end{center}
 
-
 When methods of such a class with annotated attributes are invoked, they may use
 the traited attributes directly, accessing either a default value or one given
 during the instantiation of the object. Additionally, this allows the web-based
@@ -318,33 +314,23 @@ user also may obtain extensive descriptions of class, attributes, methods and
 arguments in the usual way. Table \ref{tab:traits} lists the various parts 
 of a traited attribute and how they are used. 
 
-\subsubsection{Datatypes}
+Several trait types are built into TVB's traits system, such as dictionaries,
+tuples, lists and arrays, and in most cases, a string representation of the
+trait value is stored in the database.  Persisting arrays in SQL, however, is
+relatively inefficient, and for this case the data are automatically stored in
+HDF5 files. Such options as well as fine-tuning the presentation of different
+traits in the user interface are also specified by keyword arguments to the
+trait specification.  Table \ref{tab:traits} describes several of these
+keywords used throughout the various datatypes in TVB.
 
-To allow for the handling of various kinds of data within the TVB framework, 
-the \textit{Datatype} abstraction considers a class with several 
-attributes to fully describe (expected type, short label, long
-description, order in UI, required or not, etc.) the entity. 
-
-In TVB, datatypes represent the common language, to be used between different
-application parts: like uploaders, analyzers, simulator and visualizers.
-Some of the algorithms are producing these datatypes, while others are reading
-them as input.  In order to decouple the definition and several usages of such
-entities, datatypes are declared outside the algorithms and shared between them.
-For example an instance of datatype TimeSeriesRegion is created by the
-Simulator, and it can be accepted as input for several visualizers or analyzed
-by principal component analysis and cross coherence algorithms.
-
-Technically, TVB datatypes are annotated Python classes, which
-contain one or more fields and associated descriptive information, as
-well as methods for operating on the data they contain. The definition of a
-datatype is achieved using TVB's traiting system, mentioned in previous section.
-
-For example, the \texttt{Connectivity} datatype, which may elsewhere
-be represented by a simple $N$ by $N$ NumPy array, is written as a class
-in which one of the attributes, \texttt{weights}, is a explicitly typed 
-\texttt{FloatArray}, and the declaration of this type is complemented by
-explicit label, default values, and documentation strings. See
-Code~\ref{lst:ConnectivityData}.
+In TVB, the datatype classes must typically implement significant functionality
+with respect to the user interface, such as filtering instances based on a
+user's criterion, as well as scientific methods, such as computing the geodesic
+distance on a surface. To facilitate the organization of the code, a base class
+declaring the traited attributes is created, followed by two subclasses for 
+framework and scientific methods, and a final class that uses the framework and
+scientific classes as mixins. The advantage of this scheme is that the domain 
+data models can be grouped, and the framework and scientific code may be separated. 
 
 % connectivity data listing
 \begin{lstlisting}[caption={The ConnectivityData listing},
@@ -374,6 +360,43 @@ class ConnectivityData(MappedType):
         doc="""... locations for the region centers""")
 \end{lstlisting}
 
+
+\subsubsection{\texttt{ConnectivityData}}
+\subsubsection{Example of \texttt{}}
+\subsection{Adapters}
+\subsubsection{The MATLAB adapter}
+\subsubsection{Example}
+
+
+\subsection{Datatypes \& adapters}
+
+Succintly, datatypes and adapters 
+
+The TVB framework is oriented around data and the operations that introduce,
+generate, transform and visualize the data. The relevant interface classes
+derive from the metaclasses in Python's abstract base class library, and
+provide a foundation for defining any type of data from a tuple to a
+set of EEG channel labels to a simulation, each of which is defined by a class
+implemented the datatype interface and possessing one or more datatypes as 
+attributes. An operation is the execution of any algorithm that
+has been \emph{adapted} to the framework in a class implementing the abstract
+adapter interface, and range from the simulator to data importers to
+visualizers.  The goal of these twin, generic abstractions is to provide a
+solid basis on which to implement a storage back-end, workflow management and a
+number of features to support collaborative work. 
+
+Importantly, the framework supports both the use of the web-based graphical
+interface and the console interface for advanced user and developers. Where the
+console user does not wish to rely on the database persistence, this storage
+layer can be disabled. Specifically, TVB uses the notion of \emph{profile} to
+identify in what context the application is currently running, and thus what
+components are expected to be loaded.  For example, when the scientific library
+is used alone, a specific profile (\emph{library profile}) class gets linked as
+current profile, which, in this case, disables data storage and the web
+interface. Other profiles available in TVB are: \emph{command profile},
+\emph{deployment profile} (with web interface), and \emph{test profiles}.
+
+\subsection{Datatypes and storage}
 \subsection{Adapters}
 
 The framework expects algorithms to be adapted by providing a class
@@ -887,7 +910,7 @@ Interaction-intensive tools that combine several techniques have been developed
 for specific purposes, for example working with connectivity matrices, 
 configuring the phase space structure of the mass model, or designing
 spatiotemporal stimuli. These are built upon the same abstractions and have been
-detailed in the general overview of TVB \citep{Sanz-Lean_2013}.
+detailed in the general overview of TVB \citep{Sanz-Leon_2013}.
 
 \section{Discussion}
 
