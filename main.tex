@@ -141,7 +141,6 @@ electroencephalography, magnetoencephalography
 
 \end{abstract}
 
-
 \section{Introduction}
 
 Neuroscience has evolved through extensive interactions among disciplines
@@ -175,15 +174,25 @@ numerical algorithms to the web server to be written in Python.
 In the following, we briefly outline the scope of TVB, how to use it before detailing
 aspects of the architecture and simulator.
 
-\subsection{Framework}
+\subsection{Overview}
 
-TVB consists of a framework and a simulator. The framework handles user
-interaction and the database while the simulator models neuroimaging data. 
-
-- User, Project, Workflow/history of operations \& datatypes
-- All backed by an SQL database via SQLAlchemy
-
-The framework has been described in detail by \citeauthor{Sanz-Leon_2013}.
+TVB consists of a framework and a simulator. 
+The framework manages projects involving various data, subjects, and users
+and the different roles that the users might play in the projects (modeler, 
+clinician, etc). The framework also maintains a database of the different
+operations performed by the users in each project as well as the various
+data associated with those operations, such as structural and functional
+neuroimaging data.
+The simulator provides numerical methods to construct and simulate models
+based on human cortical and sub-cortical anatomy and dynamics. It employs principally
+a neural mass approach, incorporated realistic long-range (delayed) and
+short-range connectivity kernels, as well as stochastic fluctuations. 
+To make the connection with experimental data, it provides forward solutions to
+compute neuroimaging data (fMRI, M/EEG) from the underlying neural dynamics. 
+Finally, an graphical interface allows users to take advantage of the framework
+and simulator. These components have been described previously by 
+\citeauthor{Sanz-Leon_2013} \citeyear{Sanz-Leon_2013} in a general overview
+of TVB.
 
 \subsection{Obtaining and using TVB}
 
@@ -201,22 +210,21 @@ readily obtained from the public Git repositories hosted on Github
 only the standard scientific Python packages are required (NumPy \& SciPy).
 The framework and web interface depend on a few more packages. 
 
+Documentation including an installation guide, web interface and console 
+user guides as well as other information are available on 
+\url{http://the-virtual-brain.github.io}.
 We provide an API doc, built from the docs strings using Sphinx.
 User's, Contributor's and Developer's manuals are also provided with TVB
 distributions in PDF format. The source files (in .rst) are available
-through the Github repository \url{https://github.com/the-virtual-brain/docs}.  
+from the Git repositories.
 In addition, IPython notebooks \citep{PerezGranger_2007}
 for interactive tutorials are provided. These are based on the
 demonstration scripts provided with the scientific library, and
 include a more detailed description of the scientific goal (if
 applicable), the components and stages of a simulation as well as a
 brief description in the case of reproducing previous work. Users
-interacting with \TVB GUI may also benefit from these tutorials
-(\url{https://github.com/the-virtual-
-brain/scientific_library/wiki/Tutorials}) when displayed as snippets
-with IPython nbviewer. 
-
-Additionally, the user interface provides an online help overlay, that pulls
+interacting with \TVB GUI may also benefit from these tutorials.
+Finally, the user interface provides an online help overlay, that pulls
 information from the User's manual.
 
 \section{Architecture}
@@ -247,10 +255,15 @@ as well as other forms of introspection. This is the case for TVB's traits
 as well, however, Enthought's implementation has significant compiled extensions
 (where TVB is intended to be pure-Python); IPython's implementation does not
 provide support for arrays, and neither provides integration or mapping to a
-database. For these reasons, it was judged useful to develop a system adapted 
+database. Lastly, Nipype \citep{gorgolewski2011nipype} provides an approach
+specifically targeted toward neuroimaging, but is focused on data processing, 
+whereas TVB required database and UI integration.
+For these reasons, it was judged useful to develop a system adapted 
 to the needs of TVB. 
 
-\begin{lstlisting}[caption={Trait and datatype example}, label={lst:traitexample}]
+\begin{lstlisting}[caption={Example of a simple datatype modeling a point in two dimensions}, 
+		   label={lst:traitexample}]
+
 class Point2D(MappedType):
 
     x = Float(label="x",
@@ -332,208 +345,93 @@ framework and scientific methods, and a final class that uses the framework and
 scientific classes as mixins. The advantage of this scheme is that the domain 
 data models can be grouped, and the framework and scientific code may be separated. 
 
-% connectivity data listing
-\begin{lstlisting}[caption={The ConnectivityData listing},
-                   label={lst:ConnectivityData}]
-class ConnectivityData(MappedType):
-
-  region_labels = arrays.StringArray( 
-	label="Region labels", 
-        doc="""Labels for the regions ...""")
-
-  weights = arrays.FloatArray( 
-	label="Connection strengths",
-        doc="""... strength of connections ...""")
-
-  tract_lengths = arrays.FloatArray( 
-	label="Tract lengths",
-        doc="""... length of myelinated fibre tracts.""")
-
-   speed = arrays.FloatArray( 
-	label="Conduction speed", 
-	default=numpy.array([3.0]), 
-	file_storage=core.FILE_STORAGE_NONE,
-         doc="""... matrix of conduction speeds ...""")
-
-  centres = arrays.PositionArray( 
-	label="Region centres",
-        doc="""... locations for the region centers""")
-\end{lstlisting}
-
-
-\subsubsection{\texttt{ConnectivityData}}
-\subsubsection{Example of \texttt{}}
-\subsection{Adapters}
-\subsubsection{The MATLAB adapter}
-\subsubsection{Example}
-
-
-\subsection{Datatypes \& adapters}
-
-Succintly, datatypes and adapters 
-
-The TVB framework is oriented around data and the operations that introduce,
-generate, transform and visualize the data. The relevant interface classes
-derive from the metaclasses in Python's abstract base class library, and
-provide a foundation for defining any type of data from a tuple to a
-set of EEG channel labels to a simulation, each of which is defined by a class
-implemented the datatype interface and possessing one or more datatypes as 
-attributes. An operation is the execution of any algorithm that
-has been \emph{adapted} to the framework in a class implementing the abstract
-adapter interface, and range from the simulator to data importers to
-visualizers.  The goal of these twin, generic abstractions is to provide a
-solid basis on which to implement a storage back-end, workflow management and a
-number of features to support collaborative work. 
-
-Importantly, the framework supports both the use of the web-based graphical
-interface and the console interface for advanced user and developers. Where the
-console user does not wish to rely on the database persistence, this storage
-layer can be disabled. Specifically, TVB uses the notion of \emph{profile} to
-identify in what context the application is currently running, and thus what
-components are expected to be loaded.  For example, when the scientific library
-is used alone, a specific profile (\emph{library profile}) class gets linked as
-current profile, which, in this case, disables data storage and the web
-interface. Other profiles available in TVB are: \emph{command profile},
-\emph{deployment profile} (with web interface), and \emph{test profiles}.
-
-\subsection{Datatypes and storage}
 \subsection{Adapters}
 
-The framework expects algorithms to be adapted by providing a class
-that inherits from the base adapter, \texttt{ABCAdapter}, implementing 
-the adapter interface:
+The adapter pattern allows arbitrary processes to be invoked by a generic 
+framework by detailing the required input data, the outputs, and providing a
+method for invoking the process. The input and output data are described in terms of 
+TVB's datatypes, which allows processes with different data formats 
+to interact as long as an intermediate, common datatype is available. In
+TVB, this abstraction extends not only to computational processes such as 
+simulation and analysis, but data import, export and, notably visualizations. 
 
 % adapter example
-\begin{lstlisting}[caption={Excerpt of the ABCAdapter},
+\begin{lstlisting}[caption={Example of a minimal adapter},
                    label={lst:ABCAdapter}]
-class AdapterExample(ABCAdapter):
+class DistanceAdapter(ABCAdapter):
 
-  @abstractmethod
   def get_input_tree(self):
-  	pass
+      return {'p': Point2D(), 'q': Point2D()}
 
-  def configure(self, **kwargs):
-  	pass
+  def get_output(self):
+      return [Float]
 
-  @abstractmethod
-  def launch(self):
-  	pass
+  def launch(self, x, y, sqrt=math.sqrt):
+      return sqrt((p.x - q.x)**2 + (p.y - q.y)**2)
+  	
 \end{lstlisting}
 
+Listing \ref{lst:ABCAdapter} presents a minimal example that computes the
+distance between two points. Descriptions of the inputs and outputs are
+provided by the \texttt{get\_input\_tree} and \texttt{get\_output} methods, and
+the computation itself is set off by the \texttt{} method. 
+In practice, additional methods are used on adapters to provide for more 
+complex initialization and to obtain more information about the space and 
+time requirements of the computation. 
 
-\noindent where \texttt{get\_input\_tree} builds a dictionary of input
-arguments required for the algorithm and for presenting menus and fields in the
-user interface, \texttt{configure} allows the adapter to initialize itself and
-its algorithm based on arbitrary arguments and \texttt{launch} invokes the
-algorithm.  Additional methods include \texttt{get\_output},
-\texttt{get\_required\_memory\_size}, and \texttt{get\_required\_disk\_size}.
+This approach scales up to more complex computations, and notably, the
+simulator itself is integrated with the web interface through via a
+\texttt{SimulatorAdapter}. Additionally, due to the wide-variety of toolboxes available 
+for the MATLAB environment, an adaptor was created to allow arbitrary code
+to be called on any given data type. This adapter works by filling out
+a template driver script to handling loading and saving data and launching
+the desired code within a try-except clause. This script is with MATLAB or
+Octave via a call to the \texttt{os.system} function.
 
-Note that the adapters and datatypes are intended to provide full power and
-flexibility of the framework; when the simulator is invoked from the web-based
-UI, it is done so through a \texttt{SimulatorAdapter} which, despite being
-relatively complex, is built with \emph{traits} all the way down.  TVB employs
-adaptors for data creation, upload, simulation, analysis, visualization and
-export. 
+Several alternative to this approach are possible, such as invoking the MATLAB
+engine directly via ctypes and the MATLAB Engine API, or compiling the MATLAB
+functions with the MATLAB Compiler. Each, including our approach, has advantages 
+and disadvantages. In our case, when configuring TVB, the administrator is asked
+to provide the path to the MATLAB or Octave executable, and TVB attempts to 
+verify that this executable can be invoked. Beyond this, no other verification 
+or protection is currently provided against problematic situations, in part
+because we have found it to be sufficiently robust. 
 
-It is reasonable to ask what such a scheme offers over the more 
-conventional approach of Python, where presumably it would have been
-sufficient that each adapter consist of a class with an \texttt{\_\_init\_\_}
-and \texttt{\_\_call\_\_} method, in the case of a function type. 
-We note that because in the case of TVB, the context in which an object
-is used is more varied, e.g. not simply initialized but loaded through 
-SQLAlchemy's object relational mapping, and that the adapter is required to perform more tasks
-than just initialization and invocation, e.g. provide expected shape of 
-result, estimate occupied memory and do not start if insufficient resources are found on current machine,
- it was advantageous to create a distinct set of interfaces built on top of
-the abstract base class framework provided by Python's standard library.
+Launching MATLAB can be a relatively slow operation (cold startup ~8 seconds,
+cached ~1 second; on a Linux workstation), and where Octave is available, it is
+faster (~0.1 seconds). For our use cases, e.g. launching analyses, this works
+without problems in a single user situation. In the case that many operations
+are necessary, they can be batched into the same script such that MATLAB is
+called but once.
 
-\paragraph{An adapter for FastICA}
+One of the uses of this adapter, employs a well-known toolbox for
+characterizing anatomical and functional connectivity, the \emph{Brain
+Connectivity Toolbox} \citep{Rubinov_2010}.  In TVB, the set of functions,
+their inputs and outputs are summarized in an XML file, which is read by a
+generic adapter, which handles the data appropriately.
 
-An example of an adapter applying the FastICA algorithm to each of the 
-state variables in a simulation time series is given in Code \ref{lst:ica}.
+\subsubsection{Analysis \& Visualizers}
 
-\begin{lstlisting}[language=Python]
-class ICAAdapter(ABCAsynchronous):
-    
-    _ui_name = "Independent Component Analysis"
-    _ui_description = "ICA for a TimeSeries input DataType."
-    _ui_subsection = "ica"
-    
-    
-    def get_input_tree(self):
-        algorithm = fastICA()
-        algorithm.trait.bound = self.INTERFACE_ATTRIBUTES_ONLY
-        tree = algorithm.interface[self.INTERFACE_ATTRIBUTES]
-        filt = FilterChain(fields=
-                [FilterChain.datatype + '._nr_dimensions'],
-                operations=["=="], values=[4])
-        for node in tree:
-            if node['name'] == 'time_series':
-                node['conditions'] = filt
-        return tree
-    
-    
-    def get_output(self):
-        return [IndependentComponents]
-    
-    def configure(self, time_series, n_components=None):
-        self.input_shape = time_series.read_data_shape()
-        log_debug_array(LOG, time_series, "time_series")
-        
-        self.algorithm = fastICA()
-        self.algorithm.n_components = \
-                n_components or self.input_shape[2]
-        
-    def get_required_memory_size(self, **kwargs):
-        used_shape = (self.input_shape[0], 1, 
-                self.input_shape[2], self.input_shape[3])
-	input_size = numpy.prod(used_shape) * numpy.float64().itemsize
-        output_size = self.algorithm.\
-                            result_size(used_shape)
-        return input_size + output_size  
-    
-    def launch(self, time_series, n_components=None):
-        ica_result = IndependentComponents(
-            source=time_series,
-            n_components=int(self.algorithm.n_components),
-            storage_path=self.storage_path)
-        
-        # 4-D simulation time series
-        node_slice = [slice(self.input_shape[0]), 
-                None, slice(self.input_shape[2]), 
-                slice(self.input_shape[3])]
-        
-        ts = TimeSeries(use_storage=False)
-        for var in range(self.input_shape[1]):
-            node_slice[1] = slice(var, var + 1)
-            ts.data = time_series.read_data_slice(
-                    tuple(node_slice))
-            self.algorithm.time_series = ts 
-            partial_ica = self.algorithm.evaluate()
-            ica_result.write_data_slice(partial_ica)
-        ica_result.close_file()
-        return ica_result
-\end{lstlisting}
+TVB does not intend to provide fully featured, complex data analysis
+techniques, which have been well covered by other packages. 
+Instead, we offer a minimal set of standard algorithms to quickly
+validate simulation results or compare with imported patient data; 
+these include principal and independent component analyses, 
+Fourier and wavelet spectral analyses, correlation and coherence
+analyses.
 
-\paragraph{Interfacing with MATLAB}
+TVB visualizers employ different techniques, depending on the nature of
+the data to display and degree of interactivity required, including WebGL,
+D3.js generated SVG, Matplotlib's HTML5 Canvas backend, as well as other
+HTML5 Canvas javascript libraries for simpler, static graphs. In each case,
+an adapter is developed to abstract over the differences between these
+techniques, allowing the framework to treat it without knowing the details.
 
-One of the well-known libraries for characterizing anatomical 
-and functional connectivity is the \emph{Brain Connectivity Toolbox} 
-\citep{Rubinov_2010}. 
-Because it is written in MATLAB, with developers who prefer MATLAB, we 
-chose not to port routines of the library to Python but instead build
-a MATLAB adapter that runs arbitrary MATLAB code. 
-
-This generic Matlab adapter works by generating at runtime a script with MATLAB code, 
-wrapping the script call in Python with a try-except clause,  
-loading and saving the workspace before and after the call,
-generating a workspace \texttt{.mat} file, invoking the MATLAB or Octave
-executable, and loading the resulting workspace file. 
-
-Despite invocation of MATLAB being a relatively slow operation, this works
-without problems in a single user situation, and where Octave is available, it
-is quite fast. In the case that many operations are necessary, they can be
-batched into the same run.
+Interaction-intensive tools that combine several techniques have been developed
+for specific purposes, for example working with connectivity matrices, 
+configuring the phase space structure of the mass model, or designing
+spatiotemporal stimuli. These are built upon the same abstractions and have been
+detailed in the general overview of TVB \citep{Sanz-Leon_2013}.
 
 \section{Simulator}
 
@@ -684,14 +582,16 @@ often used in the literature.
 The local connectivity of the cortex at the scale of millimeters provides
 a continuous 2D surface along horizontal projections connect 
 cortical columns. Such a structure has previously been modeled by
-neural fields \citep{Amari_1977, Jirsa_1997, Liley_1999}. In TVB, a cortical mesh, 
-as obtained from structural MRI data and simplified, provides a spatial 
-discretization on which neural masses are placed and connected with a
-local connectivity kernel, itself only a function of the geodesic distance
-between the two masses. This is considered to provide a reasonable
-approximation of a neural field, the appropriateness of which depends on the properties
+neural fields \citep{Amari_1977, Jirsa_1997, Liley_1999}. 
+In TVB, surface meshes provide the spatial discretization of neural anatomy. A
+neural mass is placed on each vertex, and the geodesic distances between each
+mass is computed. A local connectivity kernel assigns, for each distance, a
+connection weight between masses. This kernel is usually chosen such that it
+decays exponentially with distance.
+The associated sampling problem has been studied in detail by \citeauthor{Spiegler_2013},
+which finds the approximation to be reasonable, depending on the properties
 of the mesh and the imaging modalities that sample the activity simulated
-on the mesh \citep{Spiegler_2013}. In fact,
+on the mesh. In fact,
 the implementation of the local connectivity kernel is such
 that is can be re-purposed as a discrete Laplace-Beltrami operator,
 allowing for the implementation of true neural field models that 
@@ -877,40 +777,24 @@ run for one second while the surface simulation was run for 100 ms.
 	\end{table}
 
 
-As can be seen in Table \ref{tab:profiling}, the time spent during simulation
-is dominated by numerical, built-in methods (marked by those functions
-surrounded by angle brackets) from the NumPy and SciPy libraries, with the
-exception of a few calls to the \texttt{loadtxt} function, which is necessary
-when importing TVB's datatypes the first time. For surface simulations, it is
-also necessary to compute a local distance matrix
-\texttt{<gdist.local\_gdist\_matrix>}. Nevertheless, some of the time spent on
-array operations such as computing the right hand sides of the differential
-equations can be recovered by using the \texttt{numexpr} module which
-eliminates the use of temporary arrays. 
+As can be seen in Table \ref{tab:profiling},
+significant time is spent on array manipulations written in C (marked by those
+function names surrounded by angle brackets), from the NumPy and SciPy libraries, 
+including the spare matrix-vector multiplication used to compute the local connectivity.
+In some cases, such as the 
+neural mass model definitions, large expressions implicitly generate many 
+temporary arrays, which can be ameliorated by using the \texttt{numexpr} module
+to compute the expressions elementwise: TVB's \texttt{JansenRit} model is
+implemented as regular Python expressions of NumPy arrays, while a subclass
+\texttt{JRFast} uses \texttt{numexpr.evaluate}, resulting in a 40 \% improvement
+in overall runtime.
 
-\subsubsection{Analysis \& Visualizers}
-
-TVB does not intend to provide fully featured, complex data analysis
-techniques, which have been well covered by other packages. 
-Instead, we offer a minimal set of standard algorithms to quickly
-validate simulation results or compare with imported patient data; 
-these include principal and independent component analyses, 
-Fourier and wavelet spectral analyses, correlation and coherence
-analyses, and for connectivity, an interface to the Brain 
-Connectivity Toolbox \citep{Rubinov_2010}. 
-
-TVB visualizers employ different techniques, depending on the nature of
-the data to display and degree of interactivity required, including WebGL,
-D3.js generated SVG, Matplotlib's HTML5 Canvas backend, as well as other
-HTML5 Canvas javascript libraries for simpler, static graphs. In each case,
-an adapter is developed to abstract over the differences between these
-techniques, allowing the framework to treat it without knowing the details.
-
-Interaction-intensive tools that combine several techniques have been developed
-for specific purposes, for example working with connectivity matrices, 
-configuring the phase space structure of the mass model, or designing
-spatiotemporal stimuli. These are built upon the same abstractions and have been
-detailed in the general overview of TVB \citep{Sanz-Leon_2013}.
+Given that the numerical routines are written in Python to maintain a high level
+of flexibility, it is expected that there are limits on the performance, especially 
+compared to compiled languages. Ongoing work on the simulator will take advantage of
+newer programming paradigms and hardware, such as OpenCL and graphics processing units; 
+this sort of programming is facilitated by Python libraries such as PyOpenCL
+\citep{klockner2012pycuda}.
 
 \section{Discussion}
 
@@ -962,15 +846,13 @@ is being developed to allow use of the simulator through a simple
 set of MATLAB functions. As this infrastructure is based on an HTTP and 
 JSON API, it will likely enable other applications to work with TVB as well.
 
-\subsection{Conclusion}
-
 Lastly, as TVB was originally motivated to allow a user to move from acquired
 data to simulated data as easily as possible, we will continue to integrate
 several of the requisite steps that are not currently covered, such as analysis
 of DSI data to produce connectivity matrices, though in many cases, such as
 parcellation and labeling of cortical areas, these steps may continue to
-require intervention with other software. Nevertheless, TVB provides a
-promising platform for integrating neuroinformatics tools with an emphasis on
+require interaction with other software. Altogether, TVB provides a
+rich platform for integrating neuroinformatics tools with an emphasis on
 analysis and modeling of human neuroimaging data.
 
 
@@ -979,7 +861,12 @@ Several authors have also participated in the
 development of TVB. They are listed in the \texttt{AUTHORS} file 
 of the source code and deserve our warm acknowlegments. LP wishes to thank
 specifically Y.~Mahnoun for his role in the design and development
-of the first prototype of the TVB architecture. The research reported herein
+of the first prototype of the TVB architecture. 
+
+The authors wish to thank two anonymous reviewers for their constructive comments
+and questions.
+
+The research reported herein
 was supported by the  Brain Network Recovery Group through the James S.
 McDonnell Foundation and the FP7-ICT BrainScales. PSL and MMW received
 support by from the French Minist\`{e}re de Recherche and the Fondation
