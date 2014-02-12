@@ -83,22 +83,23 @@
 
 \firstpage{1}
 
-\title[TVB]{Integrating neuroinformatics tools in TheVirtualBrain}
+\title[The Virtual Brain]{Integrating neuroinformatics tools in TheVirtualBrain}
 \author[Woodman {et~al}]{
-        M. Marmaduke Woodman\,$^{1,*}$,  
-        Laurent Pezard\,$^{1}$,  
+        M. Marmaduke Woodman\,$^{1,2,*}$,  
+        Laurent Pezard\,$^{1,2}$,  
         Lia Domide\,$^{3}$, 
-        Stuart Knock\,$^{1}$, 
-        Paula Sanz Leon\,$^{1}$, 
+        Stuart Knock\,$^{1,2}$, 
+        Paula Sanz Leon\,$^{1,2}$, 
         Jochen Mersmann\,$^{2}$,
         Anthony R. McIntosh \,$^{4}$ and  
-        Viktor Jirsa\,$^{1}$\footnote{to whom correspondence should be addressed: marmaduke.woodman@univ-amu.fr,
+        Viktor Jirsa\,$^{1,,2}$\footnote{to whom correspondence should be addressed: marmaduke.woodman@univ-amu.fr,
         viktor.jirsa@univ-amu.fr}}
 
-\address{$^{1}$ \texttt{NEED CORRECT AFFILIATION FOR AIX-MARSEILLE UNIVERSITY, Marseille, France.}\\
-         $^{3}$ Codemart, 13, Petofi Sandor, 400610, Cluj-Napoca, Romania.\\
-         $^{2}$ CodeBox GmbH, Hugo Eckener Str. 7, 70184 Stuttgart, Germany.\\
-         $^{4}$ Rotman Research Institute at Baycrest, Toronto, M6A 2E1, Ontario, Canada\\
+\address{$^{1}$ Institut National de la Sant\'{e} et de la Recherche M\'{e}dicale UMR 1106, Institut de Neurosciences des Syst\`{e}mes, 13385 Marseille, France.\\
+	 $^{2}$ Aix-Marseille Universit\'{e}, 13005 Marseille, France.\\
+         $^{3}$ CodeBox GmbH, Hugo Eckener Str. 7, 70184 Stuttgart, Germany.\\
+         $^{4}$ Codemart, 13, Petofi Sandor, 400610, Cluj-Napoca, Romania.\\
+         $^{5}$ Rotman Research Institute at Baycrest, Toronto, M6A 2E1, Ontario, Canada\\
         }
 
 \history{}
@@ -128,12 +129,12 @@ patient's connectome.  A modeler, working on the same project, tests these
 points for viability through whole brain simulation, based on the patient's
 connectome, and subsequent analysis of dynamical features.  TVB also drives
 research forward: the simulator itself represents the culmination of several
-simulation frameworks in the modeling literature on human resting state. The
-availability of the numerical methods, set of neural mass models and forward
-solutions allows for the construction of a wide range of brain-scale simulation
-scenarios.  This paper briefly outlines the history and motivation for TVB,
-describing the framework and simulator, giving usage examples in the web UI and
-Python scripting.
+simulation frameworks in the modeling literature. The availability of the
+numerical methods, set of neural mass models and forward solutions allows for
+the construction of a wide range of brain-scale simulation scenarios.  This
+paper briefly outlines the history and motivation for TVB, describing the
+framework and simulator, giving usage examples in the web UI and Python
+scripting.
   
 \section{Keywords:} large-scale brain network, simulation, web platform,
 Python, connectivity, connectome, neural mass, time delays, functional MRI,
@@ -163,7 +164,7 @@ in the domains of cellular and systems neurophysiology.
 TheVirtualBrain (TVB) provides new tools to facilitate the collaboration
 between experimentalists and modelers by exposing both a comprehensive
 simulator for brain dynamics and an integrative framework for the management,
-analysis simulation of structural and functional data in an accessible,
+analysis, and simulation of structural and functional data in an accessible,
 web-based interface. The choice of Python was made based on its wide use as the
 high-level language in scientific programming, the unparalleled open-source
 libraries and tools available, and strong software engineering culture.  This
@@ -179,7 +180,7 @@ aspects of the architecture and simulator.
 TVB consists of a framework and a simulator. 
 The framework manages projects involving various data, subjects, and users
 and the different roles that the users might play in the projects (modeler, 
-clinician, etc). The framework also maintains a database of the different
+clinician, etc.). The framework also maintains a database of the different
 operations performed by the users in each project as well as the various
 data associated with those operations, such as structural and functional
 neuroimaging data.
@@ -382,14 +383,14 @@ time requirements of the computation.
 This approach scales up to more complex computations, and notably, the
 simulator itself is integrated with the web interface through via a
 \texttt{SimulatorAdapter}. Additionally, due to the wide-variety of toolboxes available 
-for the MATLAB environment, an adaptor was created to allow arbitrary code
+for the MATLAB environment, an adapter was created to allow arbitrary code
 to be called on any given data type. This adapter works by filling out
 a template driver script to handling loading and saving data and launching
 the desired code within a try-except clause. This script is with MATLAB or
 Octave via a call to the \texttt{os.system} function.
 
-Several alternative to this approach are possible, such as invoking the MATLAB
-engine directly via ctypes and the MATLAB Engine API, or compiling the MATLAB
+Several alternatives to this approach are possible, such as invoking the MATLAB
+engine directly via \texttt{ctypes} and the MATLAB Engine API, or compiling the MATLAB
 functions with the MATLAB Compiler. Each, including our approach, has advantages 
 and disadvantages. In our case, when configuring TVB, the administrator is asked
 to provide the path to the MATLAB or Octave executable, and TVB attempts to 
@@ -423,7 +424,7 @@ analyses.
 TVB visualizers employ different techniques, depending on the nature of
 the data to display and degree of interactivity required, including WebGL,
 D3.js generated SVG, Matplotlib's HTML5 Canvas backend, as well as other
-HTML5 Canvas javascript libraries for simpler, static graphs. In each case,
+HTML5 Canvas Javascript libraries for simpler, static graphs. In each case,
 an adapter is developed to abstract over the differences between these
 techniques, allowing the framework to treat it without knowing the details.
 
@@ -443,8 +444,8 @@ make a new development necessary. We discuss these reasons in the following.
 
 % existing
 Existing neural network simulators typically focus either on abstract rate neurons, 
-modelling  neurocognitive processes, or 
-full multicompartmental neurons treating complex spatial
+modelling neurocognitive processes, or 
+multicompartmental neurons treating complex spatial
 geometries, e.g. NEURON \citep{Hines_2001}, modelling the interaction of 
 channel distributions in dendrites.  More recently, due to interest in
 the computational properties of spiking neurons and their relevance to
@@ -454,13 +455,13 @@ considered for our simulations.
 In TVB the network is defined with neural mass or field
 models \citep{Deco_2008a, Coombes_2010} rather than cellular models. The
 spatial extent of the modeled dynamics is macroscopic and scales reasonably 
-to the entire cortex, and uses empirical measurements of corticocortical
+to the entire cortex, and uses empirical measurements of cortico-cortical
 connectivity. Several technical issues are unique to this scale, such
 as efficient handling of dense $N^2$ inter-regional delays and integration
 of neural field-like models and connectivity on triangular meshes in 3D.
 Finally, comparison with experimental data requires forward solutions
 that transform physiological signals to the commonly
-used imaging modalities such as EEG, MEG and fMRI need to be employed.
+used imaging modalities such as EEG, MEG and fMRI.
 For these reasons, TVB required a new simulator, built around the paradigm
 of whole-brain scale simulation.
 
@@ -492,8 +493,8 @@ or more neural masses and the network conditions required for stability of a
 particular spatiotemporal pattern. In the following, we shall  briefly discuss
 some of the models available in TVB.
 
-This modeling paradigm may be contrasted with ensemble models modelling the
-dynamics of large populations of neurons with a certain state space
+This modeling paradigm may be contrasted with population density models modelling the
+dynamics of large populations of neurons
 (\cite{de1993stochastical, omurtag2000simulation, knight2000dynamics,
 gerstner2000population}; see \cite{Deco_2008a} for a review).  The large number
 of neurons impart the state space with a probability density, and population
@@ -516,7 +517,7 @@ complexity.
 
 In TVB, many neural mass models from the literature are available, including
 the often used Jansen-Rit model of rhythms and evoked responses arising from
-coupled cortical column \citep{Zetterberg_1978, Jansen_1995,Spiegler_2010}.
+coupled cortical columns \citep{Zetterberg_1978, Jansen_1995,Spiegler_2010}.
 \citeauthor{David_2003}'s slightly modified form has been extensively applied
 within a Bayesian framework known as Dynamic Causal Modeling (DCM) for modeling
 neuroimaging data via estimation of biophysical parameters of underlying
@@ -525,8 +526,10 @@ Jansen-Rit model is a biophysical one, whose state variables and parameters are
 readily interpretable with respect to experiments, however it has at least six
 state equations involving several exponential expressions. For cases where it
 is desirable to have a simpler and more performant model, a generic
-two-dimensional oscillator model is also provided by TVB
-\citep{strogatz2001nonlinear, guckenheimer1983nonlinear}.  This model produces
+two-dimensional oscillator model is also provided by TVB (see 
+\cite{strogatz2001nonlinear} and \cite{guckenheimer1983nonlinear} for 
+for generic mathematical references on two-dimensional dynamical systems).
+This model produces
 damped, spike-like or sinusoidal oscillations, which, in the context of a
 network, permit the study of network phenomena, such as synchronization of
 rhythms or propagation of evoked potentials.  Other models implemented in TVB
@@ -557,7 +560,7 @@ across space can also be used).
 
 TVB does not assume that the network structure is constant during the
 simulation, but does not currently implement the modeling of structural
-modulation. This can however be added by hand during simulation.
+modulation. This can however be added during simulation.
 
 \subsubsection{Large-scale connectivity}
 
@@ -580,15 +583,15 @@ often used in the literature.
 \subsubsection{Local connectivity}
 
 The local connectivity of the cortex at the scale of millimeters provides
-a continuous 2D surface along horizontal projections connect 
+a continuous 2D surface along horizontal projections connecting
 cortical columns. Such a structure has previously been modeled by
-neural fields \citep{Amari_1977, Jirsa_1997, Liley_1999}. 
+neural fields \citep{Amari_1977, Jirsa1996, Jirsa_1997, Liley_1999}. 
 In TVB, surface meshes provide the spatial discretization of neural anatomy. A
 neural mass is placed on each vertex, and the geodesic distances between each
 mass is computed. A local connectivity kernel assigns, for each distance, a
 connection weight between masses. This kernel is usually chosen such that it
 decays exponentially with distance.
-The associated sampling problem has been studied in detail by \citeauthor{Spiegler_2013},
+The associated sampling problem has been studied in detail by \citep{Spiegler_2013},
 which finds the approximation to be reasonable, depending on the properties
 of the mesh and the imaging modalities that sample the activity simulated
 on the mesh. In fact,
@@ -771,7 +774,7 @@ run for one second while the surface simulation was run for 100 ms.
 	\caption{Profiling results for several simulation types, ``R'' for region 
 	level simulations, ``S'' for surface level. ``G2D'' signifies the generic
 	two-dimensional oscillator whereas ``JR'' is the Jansen-Rit model. Finally,
-	either 20 m/s or 2 m/s conduciton velocity was used. Time is given as the
+	either 20 m/s or 2 m/s conduction velocity was used. Time is given as the
 	total time spent in the method or function listed in the right column.}
 	\label{tab:profiling}
 	\end{table}
@@ -784,7 +787,7 @@ including the spare matrix-vector multiplication used to compute the local conne
 In some cases, such as the 
 neural mass model definitions, large expressions implicitly generate many 
 temporary arrays, which can be ameliorated by using the \texttt{numexpr} module
-to compute the expressions elementwise: TVB's \texttt{JansenRit} model is
+to compute the expressions element-wise: TVB's \texttt{JansenRit} model is
 implemented as regular Python expressions of NumPy arrays, while a subclass
 \texttt{JRFast} uses \texttt{numexpr.evaluate}, resulting in a 40 \% improvement
 in overall runtime.
@@ -859,7 +862,7 @@ analysis and modeling of human neuroimaging data.
 \section*{Acknowledgments}
 Several authors have also participated in the
 development of TVB. They are listed in the \texttt{AUTHORS} file 
-of the source code and deserve our warm acknowlegments. LP wishes to thank
+of the source code and deserve our warm acknowledgments. LP wishes to thank
 specifically Y.~Mahnoun for his role in the design and development
 of the first prototype of the TVB architecture. 
 
